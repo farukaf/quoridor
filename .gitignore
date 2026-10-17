@@ -455,3 +455,8 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 
 appsettings.Production.json
+
+artifacts/
+**/TestResults/
+.scannerwork/
+.sonarqube/

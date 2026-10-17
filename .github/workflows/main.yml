@@ -1,32 +1,86 @@
-name: CI/CD for ASP.NET Project
- 
-on: 
+name: Build and publish
+
+on:
+  pull_request:
   push:
-    tags:
-      - v*
+    branches: [main]
+    tags: ['v*']
+
+permissions:
+  contents: read
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2.4.2
-
-      - name: Set up .NET Core
-        uses: actions/setup-dotnet@v3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          dotnet-version: 8.x
-
-      - name: Get version from tag
-        id: version
-        run: echo "VERSION=$(echo $GITHUB_REF | cut -d '/' -f 3)" >> $GITHUB_ENV
-
-      - name: Build and publish Docker image
-        run: |
-          docker build -t farukaf/quoridor:$VERSION .
-          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
-          docker push farukaf/quoridor:$VERSION 
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6
+        with:
+          global-json-file: global.json
+      - run: dotnet restore src/Quoridor.sln --locked-mode
+      - name: Explain Sonar status
+        if: vars.SONAR_ENABLED != 'true'
+        run: echo 'Sonar Cloud is disabled. Quality gate has not run; follow docs/security/README.md to enable it.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Explain Sonar status for fork
+        if: vars.SONAR_ENABLED == 'true' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository
+        run: echo 'Sonar Cloud did not run for this fork PR because secrets are unavailable.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Begin Sonar Cloud
+        if: vars.SONAR_ENABLED == 'true' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
         env:
-          DOCKER_BUILDKIT: 1 
-
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_ORGANIZATION: ${{ vars.SONAR_ORGANIZATION }}
+          SONAR_PROJECT_KEY: ${{ vars.SONAR_PROJECT_KEY }}
+        run: |
+          test -n "$SONAR_TOKEN" && test -n "$SONAR_ORGANIZATION" && test -n "$SONAR_PROJECT_KEY"
+          dotnet tool install dotnet-sonarscanner --version 12.0.0 --tool-path /tmp/sonar
+          /tmp/sonar/dotnet-sonarscanner begin /k:"$SONAR_PROJECT_KEY" /o:"$SONAR_ORGANIZATION" /d:sonar.host.url=https://sonarcloud.io /d:sonar.token="$SONAR_TOKEN" /d:sonar.qualitygate.wait=true /d:sonar.cs.opencover.reportsPaths='**/coverage.opencover.xml'
+      - run: dotnet build src/Quoridor.sln -c Release --no-restore -warnaserror
+      - run: |
+          dotnet list src/Quoridor.sln package --vulnerable --include-transitive --format json > nuget-audit.json
+          python3 scripts/check-audit.py nuget-audit.json
+      - run: docker build -t quoridor:ci .
+      - name: Smoke application container
+        env:
+          BROWSER_ARTIFACTS: ${{ github.workspace }}/artifacts/browser
+        run: |
+          docker run -d --name quoridor-smoke -p 127.0.0.1:8080:8080 quoridor:ci
+          mkdir -p artifacts/browser
+          trap 'docker logs quoridor-smoke > artifacts/browser/application.log 2>&1; docker stop quoridor-smoke; docker rm quoridor-smoke' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:8080/ > /dev/null; then break; fi
+            sleep 1
+          done
+          python3 scripts/smoke.py
+          docker run -d --name selenium --network host --shm-size=2g -e SE_NODE_MAX_SESSIONS=2 -e SE_NODE_OVERRIDE_MAX_SESSIONS=true selenium/standalone-chromium@sha256:c7c17cd79c62819a8329df00e610dbc4073c279da034a6f37135d454eb0d8870
+          trap 'docker logs quoridor-smoke > artifacts/browser/application.log 2>&1; docker logs selenium > artifacts/browser/selenium.log 2>&1; docker stop quoridor-smoke selenium; docker rm quoridor-smoke selenium' EXIT
+          for attempt in $(seq 1 60); do
+            if curl --fail --silent http://127.0.0.1:4444/status | grep -q '"ready": true'; then break; fi
+            sleep 1
+          done
+          SELENIUM_URL=http://127.0.0.1:4444 APP_BASE_URL=http://127.0.0.1:8080 dotnet test src/Quoridor.sln -c Release --no-build --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+      - name: Finish Sonar Cloud and wait for quality gate
+        if: vars.SONAR_ENABLED == 'true' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: /tmp/sonar/dotnet-sonarscanner end /d:sonar.token="$SONAR_TOKEN"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: test-results
+          path: |
+            artifacts/browser
+            **/TestResults
+            nuget-audit.json
+      - name: Publish tagged image
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        run: |
+          printf '%s' "$DOCKERHUB_TOKEN" | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
+          trap 'docker logout' EXIT
+          docker tag quoridor:ci "farukaf/quoridor:${GITHUB_REF_NAME}"
+          docker push "farukaf/quoridor:${GITHUB_REF_NAME}"
