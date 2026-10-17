@@ -22,7 +22,6 @@
 
         playerService.PlayerChanged += RoomChanged_Event;
         Room.RoomChanged += RoomChanged_Event;
-        Room.Board.BoardChanged += RoomChanged_Event;
     }
 
     public async Task RoomChanged_Event()
@@ -37,7 +36,6 @@
         if (Room is null)
             return ValueTask.CompletedTask;
 
-        Room.Board.BoardChanged -= RoomChanged_Event;
         Room.RoomChanged -= RoomChanged_Event;
 
         return ValueTask.CompletedTask;

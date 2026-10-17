@@ -11,8 +11,7 @@
     protected async Task CellClicked()
     {
         player ??= await playerService.GetPlayer();
-        if (Cell?.Clicked is not null && player is not null)
-            await Cell.Clicked.Invoke(Cell, player);
+        if (player is not null) await Room.ClickCell(player.Id, CellAddress);
     }
 }
 

@@ -7,9 +7,11 @@ RUN dotnet publish src/Quoridor/Quoridor.csproj -c Release --no-restore -o /app/
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine@sha256:819bd3649d8bf53f35527c68d62e17b348ef6f24ae73073f497f00a878348062 AS final
 WORKDIR /app
-ENV ASPNETCORE_HTTP_PORTS=8080
+ENV ASPNETCORE_HTTP_PORTS=8080 DataDirectory=/data
 EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s CMD wget -q -O /dev/null http://127.0.0.1:8080/ || exit 1
 COPY --from=build /app/publish .
+RUN mkdir -p /data && chown "$APP_UID:$APP_UID" /data
+VOLUME /data
 USER $APP_UID
 ENTRYPOINT ["dotnet", "Quoridor.dll"]

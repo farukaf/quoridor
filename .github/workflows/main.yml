@@ -60,7 +60,7 @@ jobs:
             if curl --fail --silent http://127.0.0.1:4444/status | grep -q '"ready": true'; then break; fi
             sleep 1
           done
-          SELENIUM_URL=http://127.0.0.1:4444 APP_BASE_URL=http://127.0.0.1:8080 dotnet test src/Quoridor.sln -c Release --no-build --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+          SELENIUM_URL=http://127.0.0.1:4444 APP_BASE_URL=http://127.0.0.1:8080 APP_RESTART_CONTAINER=quoridor-smoke dotnet test src/Quoridor.sln -c Release --no-build --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
       - name: Finish Sonar Cloud and wait for quality gate
         if: vars.SONAR_ENABLED == 'true' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
         env:
