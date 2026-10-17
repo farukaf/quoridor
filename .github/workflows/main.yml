@@ -43,6 +43,8 @@ jobs:
           python3 scripts/check-audit.py nuget-audit.json
       - run: docker build -t quoridor:ci .
       - name: Smoke application container
+        env:
+          BROWSER_ARTIFACTS: ${{ github.workspace }}/artifacts/browser
         run: |
           docker run -d --name quoridor-smoke -p 127.0.0.1:8080:8080 quoridor:ci
           mkdir -p artifacts/browser
