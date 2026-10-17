@@ -4,6 +4,7 @@
 @attribute [StreamRendering]
 @rendermode InteractiveServer
 @inject IPlayerService playerService
+@inject IJSRuntime JS
 
 @if (Loading)
 {
@@ -21,7 +22,9 @@
                 <h3>What is your name?</h3>
                 <EditForm Model="userNameForm" OnSubmit="@Submit">
                     <div>
-                        <InputText @bind-Value="userNameForm.UserName" />
+                        <label for="player-name">Display name</label>
+                        <InputText id="player-name" maxlength="40" @bind-Value="userNameForm.UserName" />
+                        @if (error is not null) { <p role="alert">@error</p> }
                     </div>
                     <div>
                         <button type="submit">Confirm</button>
@@ -47,6 +50,7 @@
     Player? player;
     bool barrierActive = true;
     bool Loading = true;
+    string? error;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -56,7 +60,8 @@
                 return;
             player = (await playerService.GetPlayer());
             userNameForm.UserName = player?.UserName ?? string.Empty;
-            barrierActive = string.IsNullOrWhiteSpace(userNameForm.UserName);
+            if (player is null) userNameForm.UserName = await JS.InvokeAsync<string>("GetLegacyName");
+            barrierActive = player is null;
             Loading = false;
             StateHasChanged();
         }
@@ -71,7 +76,11 @@
     {
         if (string.IsNullOrWhiteSpace(userNameForm.UserName))
             return;
-        await playerService.SetUser(userNameForm.UserName.Trim());
-        barrierActive = false;
+        try
+        {
+            await playerService.SetUser(userNameForm.UserName.Trim());
+            barrierActive = false;
+        }
+        catch (ArgumentException) { error = "Use a name between 1 and 40 characters without control characters."; }
     }
 }

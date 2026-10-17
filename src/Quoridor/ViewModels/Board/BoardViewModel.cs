@@ -25,8 +25,7 @@ public record BoardViewModel : IDisposable
     public Dictionary<CellAddress, CellViewModel> Cells { get; set; } = new();
     public Dictionary<CornerAddress, CornerViewModel> Corners { get; set; } = new();
 
-    public Func<Task>? BoardChanged { get; set; }
-    public Func<Task>? WallPlacedEvent { get; set; }
+
 
     public CellViewModel? GetCell(CellAddress address)
     {
@@ -34,7 +33,7 @@ public record BoardViewModel : IDisposable
     }
 
     #region CornerClick_Management
-    public async Task CornerClicked(CornerViewModel clickedCorner)
+    internal async Task HandleCorner(CornerViewModel clickedCorner)
     {
         switch (clickedCorner.State)
         {
@@ -52,8 +51,7 @@ public record BoardViewModel : IDisposable
                 break;
         }
 
-        if (BoardChanged is not null)
-            await BoardChanged.Invoke();
+
     }
 
     private (IEnumerable<CornerViewModel> corners, WallViewModel wall1, WallViewModel wall2) GetWallsFromCorners(CornerViewModel corner1, CornerViewModel corner2)
@@ -119,9 +117,10 @@ public record BoardViewModel : IDisposable
                 (corner.CornerAddress.X == clickedCorner.CornerAddress.X && corner.CornerAddress.Y == clickedCorner.CornerAddress.Y - 2) ||
                 (corner.CornerAddress.Y == clickedCorner.CornerAddress.Y && corner.CornerAddress.X == clickedCorner.CornerAddress.X - 2))
             {
+                if (!ValidWallPosition(clickedCorner, corner)) continue;
                 (var corners, var wall1, var wall2) = GetWallsFromCorners(clickedCorner, corner);
 
-                if (wall1.IsPlaced || wall2.IsPlaced)
+                if (wall1.IsPlaced || wall2.IsPlaced || CrossesWall(clickedCorner, corner))
                     continue;
 
                 //If performace is a issue, look this first :D
@@ -142,6 +141,18 @@ public record BoardViewModel : IDisposable
         }
 
         return Task.CompletedTask;
+    }
+
+    private static bool ValidWallPosition(CornerViewModel a, CornerViewModel b) =>
+        a.CornerAddress.X == b.CornerAddress.X ? a.CornerAddress.X is > 0 and < 9 : a.CornerAddress.Y is > 0 and < 9;
+
+    private bool CrossesWall(CornerViewModel first, CornerViewModel second)
+    {
+        var x = (first.CornerAddress.X + second.CornerAddress.X) / 2;
+        var y = (first.CornerAddress.Y + second.CornerAddress.Y) / 2;
+        var horizontal = first.CornerAddress.X == second.CornerAddress.X;
+        return Walls.Count(w => w.IsPlaced && (horizontal ? w.Direction == Direction.Vertical : w.Direction == Direction.Horizontal)
+            && (w.From == new CornerAddress((short)x, (short)y) || w.To == new CornerAddress((short)x, (short)y))) == 2;
     }
 
     private bool WillBlockPlayer(CornerViewModel clickedCorner, CornerViewModel corner, IEnumerable<CornerViewModel> corners, WallViewModel wall1, WallViewModel wall2)
@@ -224,7 +235,8 @@ public record BoardViewModel : IDisposable
     {
         var selectedCorner = Corners.Values.First(c => c.State == CornerState.Selected);
 
-        (_, var wall1, var wall2) = GetWallsFromCorners(clickedCorner, selectedCorner);
+        (var corners, var wall1, var wall2) = GetWallsFromCorners(clickedCorner, selectedCorner);
+        if (wall1.IsPlaced || wall2.IsPlaced || CrossesWall(clickedCorner, selectedCorner) || WillBlockPlayer(clickedCorner, selectedCorner, corners, wall1, wall2)) return;
 
         wall1.IsPlaced = true;
         wall2.IsPlaced = true;
@@ -233,110 +245,47 @@ public record BoardViewModel : IDisposable
         foreach (var corner in Corners.Values)
             corner.State = CornerState.Enabled;
 
-        //WallPlacedEvent
-        if (WallPlacedEvent is not null)
-            await WallPlacedEvent.Invoke();
+        Room.WallPlaced();
+        await Task.CompletedTask;
     }
 
     #endregion
 
     #region CellClicked_Management
 
-    public async Task CellClicked(CellViewModel cell, Player player)
+    internal async Task HandleCell(CellViewModel cell, Guid actor)
     {
-        switch (cell.State)
+        if (!Room.CanPlay(actor) || CurrentPlayer is null) return;
+        var legal = LegalMoves(CurrentPlayer.Address).ToHashSet();
+        if (cell.State == CellState.AvaliableMove && legal.Contains(cell.Address))
         {
-            case CellState.Clear:
-                await CellClicked_Clear(cell, player);
-                break;
-            case CellState.AvaliableMove:
-                await CellClicked_AvaliableMove(cell, player);
-                break;
+            Room.MoveCurrentPlayer(cell.Address);
+            ClearSelection();
         }
-
-        if (BoardChanged is not null)
-            await BoardChanged.Invoke();
+        else if (cell.Address == CurrentPlayer.Address)
+        {
+            var selected = Cells.Values.Any(c => c.State == CellState.AvaliableMove);
+            ClearSelection();
+            if (!selected) foreach (var address in legal) Cells[address].State = CellState.AvaliableMove;
+        }
+        await Task.CompletedTask;
     }
 
-    public async Task CellClicked_AvaliableMove(CellViewModel cell, Player player)
+    internal IEnumerable<CellAddress> LegalMoves(CellAddress source)
     {
-        if (CurrentPlayer is null)
-            return;
-
-        await Room.MoveCurrentPlayer(cell.Address);
-
-        foreach (var _cell in Cells.Values)
-            _cell.State = CellState.Clear;
-
-        return;
-    }
-
-    public Task CellClicked_Clear(CellViewModel cell, Player player)
-    {
-        if (CurrentPlayer is null)
-            return Task.CompletedTask;
-
-        var currentPlayerClick = player.Id == CurrentPlayer.Id;
-        var cellContainsPlayer = CurrentPlayer?.Address == cell.Address;
-        if (currentPlayerClick && cellContainsPlayer)
+        foreach (var next in GetNeighbors(source).Where(Cells.ContainsKey))
         {
-            var anyCellAvaliable = Cells.Values.Any(x => x.State == CellState.AvaliableMove);
-
-            if (anyCellAvaliable)
-            {
-                //Will return to clear state
-                foreach (var _cell in Cells.Values)
-                    _cell.State = CellState.Clear;
-                return Task.CompletedTask;
-            }
-
-            //Will define the cell avaliable
-            List<CellAddress> addresses = [];
-
-            if (!cell.TopWall.IsPlaced)
-                addresses.Add(cell.Address with { Row = (short)(cell.Address.Row - 1) });
-            if (!cell.BottomWall.IsPlaced)
-                addresses.Add(cell.Address with { Row = (short)(cell.Address.Row + 1) });
-            if (!cell.RightWall.IsPlaced)
-                addresses.Add(cell.Address with { Column = (short)(cell.Address.Column + 1) });
-            if (!cell.LeftWall.IsPlaced)
-                addresses.Add(cell.Address with { Column = (short)(cell.Address.Column - 1) });
-
-            //Validate if the other player and add the diagonals instead
-            for (int i = addresses.Count - 1; i >= 0; i--)
-            {
-                var address = addresses[i];
-
-                if (!Room.Players.TryGetValue(address, out var playerOnAddress))
-                    continue;
-
-                //Remove the address the oposite player is in
-                addresses.RemoveAt(i);
-                var cellPlayerOnAddress = Cells[address];
-
-                var isVertical = playerOnAddress.Address.Column == cell.Address.Column;
-                if (isVertical)
-                {
-                    if (!cellPlayerOnAddress.RightWall.IsPlaced)
-                        addresses.Add(cellPlayerOnAddress.Address with { Column = (short)(cell.Address.Column + 1) });
-                    if (!cellPlayerOnAddress.LeftWall.IsPlaced)
-                        addresses.Add(cellPlayerOnAddress.Address with { Column = (short)(cell.Address.Column - 1) });
-                }
-                else
-                {
-                    if (!cellPlayerOnAddress.TopWall.IsPlaced)
-                        addresses.Add(cellPlayerOnAddress.Address with { Row = (short)(cell.Address.Row + 1) });
-                    if (!cellPlayerOnAddress.BottomWall.IsPlaced)
-                        addresses.Add(cellPlayerOnAddress.Address with { Row = (short)(cell.Address.Row - 1) });
-                }
-            }
-
-            foreach (var address in addresses)
-                if (Cells.TryGetValue(address, out var cellFound))
-                    cellFound.State = CellState.AvaliableMove;
+            if (!Room.Players.ContainsKey(next)) { yield return next; continue; }
+            var beyond = new CellAddress(next.Row + next.Row - source.Row, next.Column + next.Column - source.Column);
+            var neighbors = GetNeighbors(next).Where(Cells.ContainsKey).ToHashSet();
+            if (neighbors.Contains(beyond) && !Room.Players.ContainsKey(beyond)) yield return beyond;
+            else foreach (var diagonal in neighbors.Where(n => n != source && n.Row != beyond.Row && n.Column != beyond.Column && !Room.Players.ContainsKey(n))) yield return diagonal;
         }
-
-        return Task.CompletedTask;
+    }
+    internal void ClearSelection()
+    {
+        foreach (var cell in Cells.Values) cell.State = CellState.Clear;
+        foreach (var corner in Corners.Values) corner.State = CornerState.Enabled;
     }
 
     #endregion
@@ -360,7 +309,7 @@ public record BoardViewModel : IDisposable
                     VictoryCondition = new(new())
                 };
 
-                cell.Clicked += CellClicked;
+
 
                 if (CellAddress.Player1VictoryCells.Contains(new(i, j)))
                     cell.VictoryCondition.PlayerColors.Add(ColorHelper.Player1Color);
@@ -382,7 +331,7 @@ public record BoardViewModel : IDisposable
             {
                 var cornerAddress = new CornerAddress { X = i, Y = j };
                 var corner = new CornerViewModel { CornerAddress = cornerAddress };
-                corner.Clicked += CornerClicked;
+
                 Corners.Add(cornerAddress, corner);
             }
         }

@@ -34,16 +34,16 @@
             if (player is null)
                 return;
 
-            Room.EnterRoom(player);
+            await Room.EnterRoom(player);
             loading = false;
+            Room.RoomChanged -= RoomChanged_Event;
             Room.RoomChanged += RoomChanged_Event;
-            Room.Board.BoardChanged += RoomChanged_Event;
-            Room.VictoryFinishedEvent += RoomChanged_Event;
+
         }
         catch (Exception ex)
         {
             //TODO: Toast this error
-            logger.LogError(ex, ex.Message); 
+            logger.LogError(ex, ex.Message);
         }
         finally
         {
@@ -56,19 +56,18 @@
         await InvokeAsync(StateHasChanged);
     }
 
-    public ValueTask DisposeAsync()
-    { 
+    public async ValueTask DisposeAsync()
+    {
         playerService.PlayerChanged -= EnterRoom;
 
         if (Room is null)
-            return ValueTask.CompletedTask;
+            return;
 
-        Room.Board.BoardChanged -= RoomChanged_Event;
         Room.RoomChanged -= RoomChanged_Event;
         if (player is not null)
-            Room.LeaveRoom(player);
+            await Room.LeaveRoom(player);
 
-        return ValueTask.CompletedTask;
+        return;
     }
 }
 

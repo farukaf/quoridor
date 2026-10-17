@@ -460,3 +460,6 @@ artifacts/
 **/TestResults/
 .scannerwork/
 .sonarqube/
+
+data/
+**/data/

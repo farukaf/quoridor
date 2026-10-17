@@ -10,15 +10,7 @@ public record CornerViewModel : GridElementViewModel
         return "corner";
     }
 
-    public async Task Click()
-    {
-        if (Clicked is null)
-            return;
 
-        await Clicked!.Invoke(this);
-    }
-
-    public Func<CornerViewModel, Task>? Clicked { get; set; }
 }
 
 public enum CornerState
