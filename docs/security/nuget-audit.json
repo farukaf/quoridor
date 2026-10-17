@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "parameters": "--vulnerable --include-transitive",
+  "sources": [
+    "https://api.nuget.org/v3/index.json"
+  ],
+  "projects": [
+    {
+      "path": "/home/agent/work/personal-apps-modernization/quoridor/src/Quoridor/Quoridor.csproj"
+    },
+    {
+      "path": "/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.BrowserTests/Quoridor.BrowserTests.csproj"
+    }
+  ]
+}

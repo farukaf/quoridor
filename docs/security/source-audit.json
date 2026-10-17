@@ -1,0 +1,700 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.76.0"
+  },
+  "ReportID": "01a14bc3-163a-7e10-b45b-4b084c4487ae",
+  "CreatedAt": "2026-10-17T18:27:18.842923389-03:00",
+  "ArtifactID": "sha256:0f308761bc4ad1b46413dfb1a65c502f82b12d7efe1ff896a91734942963392c",
+  "ArtifactName": ".",
+  "ArtifactType": "repository",
+  "Metadata": {
+    "RepoURL": "https://github.com/farukaf/quoridor.git",
+    "Branch": "chore/dotnet-10-security",
+    "Commit": "1aa99da8ff4468863b6c7fbbd0d6e3818f56d901",
+    "CommitMsg": "Merge branch 'main' of https://github.com/farukaf/Quoridor",
+    "Author": "Faruk Abdo Feres \u003cfaruk_feres@hotmail.com\u003e",
+    "Committer": "Faruk Abdo Feres \u003cfaruk_feres@hotmail.com\u003e"
+  },
+  "Results": [
+    {
+      "Target": "src/Quoridor/bin/Release/net10.0/Quoridor.deps.json",
+      "Class": "lang-pkgs",
+      "Type": "dotnet-core",
+      "Packages": [
+        {
+          "ID": "Quoridor/1.0.0",
+          "Name": "Quoridor",
+          "Identifier": {
+            "PURL": "pkg:nuget/Quoridor@1.0.0",
+            "UID": "574603fd62d15b1e"
+          },
+          "Version": "1.0.0",
+          "Relationship": "root",
+          "DependsOn": [
+            "Blazored.LocalStorage/4.5.0"
+          ],
+          "Locations": [
+            {
+              "StartLine": 28,
+              "EndLine": 32
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "Blazored.LocalStorage/4.5.0",
+          "Name": "Blazored.LocalStorage",
+          "Identifier": {
+            "PURL": "pkg:nuget/Blazored.LocalStorage@4.5.0",
+            "UID": "b64257c743c66233"
+          },
+          "Version": "4.5.0",
+          "Relationship": "direct",
+          "Locations": [
+            {
+              "StartLine": 33,
+              "EndLine": 39
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        }
+      ]
+    },
+    {
+      "Target": "src/Quoridor/packages.lock.json",
+      "Class": "lang-pkgs",
+      "Type": "nuget",
+      "Packages": [
+        {
+          "ID": "Blazored.LocalStorage@4.5.0",
+          "Name": "Blazored.LocalStorage",
+          "Identifier": {
+            "PURL": "pkg:nuget/Blazored.LocalStorage@4.5.0",
+            "UID": "1039ec596c614133"
+          },
+          "Version": "4.5.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Relationship": "direct",
+          "Locations": [
+            {
+              "StartLine": 5,
+              "EndLine": 10
+            }
+          ],
+          "AnalyzedBy": "nuget"
+        },
+        {
+          "ID": "Microsoft.AspNetCore.App.Internal.Assets@10.0.13",
+          "Name": "Microsoft.AspNetCore.App.Internal.Assets",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.AspNetCore.App.Internal.Assets@10.0.13",
+            "UID": "d715368e1131c9e4"
+          },
+          "Version": "10.0.13",
+          "Licenses": [
+            "MIT"
+          ],
+          "Relationship": "direct",
+          "Locations": [
+            {
+              "StartLine": 11,
+              "EndLine": 16
+            }
+          ],
+          "AnalyzedBy": "nuget"
+        }
+      ]
+    },
+    {
+      "Target": "tests/Quoridor.BrowserTests/bin/Release/net10.0/Quoridor.BrowserTests.deps.json",
+      "Class": "lang-pkgs",
+      "Type": "dotnet-core",
+      "Packages": [
+        {
+          "ID": "Quoridor.BrowserTests/1.0.0",
+          "Name": "Quoridor.BrowserTests",
+          "Identifier": {
+            "PURL": "pkg:nuget/Quoridor.BrowserTests@1.0.0",
+            "UID": "c7029900b561db6c"
+          },
+          "Version": "1.0.0",
+          "Relationship": "root",
+          "DependsOn": [
+            "Selenium.Support/4.51.0",
+            "Selenium.WebDriver/4.51.0"
+          ],
+          "Locations": [
+            {
+              "StartLine": 379,
+              "EndLine": 383
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "Selenium.Support/4.51.0",
+          "Name": "Selenium.Support",
+          "Identifier": {
+            "PURL": "pkg:nuget/Selenium.Support@4.51.0",
+            "UID": "543c80ed575e8651"
+          },
+          "Version": "4.51.0",
+          "Relationship": "direct",
+          "DependsOn": [
+            "Selenium.WebDriver/4.51.0"
+          ],
+          "Locations": [
+            {
+              "StartLine": 419,
+              "EndLine": 425
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "Selenium.WebDriver/4.51.0",
+          "Name": "Selenium.WebDriver",
+          "Identifier": {
+            "PURL": "pkg:nuget/Selenium.WebDriver@4.51.0",
+            "UID": "311de9cdfcd3f8d5"
+          },
+          "Version": "4.51.0",
+          "Relationship": "direct",
+          "Locations": [
+            {
+              "StartLine": 426,
+              "EndLine": 432
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "Microsoft.CodeCoverage/17.14.1",
+          "Name": "Microsoft.CodeCoverage",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.CodeCoverage@17.14.1",
+            "UID": "95c2f45312f6b3b6"
+          },
+          "Version": "17.14.1",
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 384,
+              "EndLine": 390
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "Microsoft.TestPlatform.ObjectModel/17.14.1",
+          "Name": "Microsoft.TestPlatform.ObjectModel",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.TestPlatform.ObjectModel@17.14.1",
+            "UID": "d0be12518dd1b9cf"
+          },
+          "Version": "17.14.1",
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 398,
+              "EndLine": 404
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "Microsoft.TestPlatform.TestHost/17.14.1",
+          "Name": "Microsoft.TestPlatform.TestHost",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.TestPlatform.TestHost@17.14.1",
+            "UID": "4cb1cc4709f01411"
+          },
+          "Version": "17.14.1",
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "Microsoft.TestPlatform.ObjectModel/17.14.1",
+            "Newtonsoft.Json/13.0.3"
+          ],
+          "Locations": [
+            {
+              "StartLine": 405,
+              "EndLine": 411
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "Newtonsoft.Json/13.0.3",
+          "Name": "Newtonsoft.Json",
+          "Identifier": {
+            "PURL": "pkg:nuget/Newtonsoft.Json@13.0.3",
+            "UID": "7470decad4295a3e"
+          },
+          "Version": "13.0.3",
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 412,
+              "EndLine": 418
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "xunit.abstractions/2.0.3",
+          "Name": "xunit.abstractions",
+          "Identifier": {
+            "PURL": "pkg:nuget/xunit.abstractions@2.0.3",
+            "UID": "e89cbb7e8d8de4a8"
+          },
+          "Version": "2.0.3",
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 440,
+              "EndLine": 446
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "xunit.assert/2.9.3",
+          "Name": "xunit.assert",
+          "Identifier": {
+            "PURL": "pkg:nuget/xunit.assert@2.9.3",
+            "UID": "e376a9e84099dde8"
+          },
+          "Version": "2.9.3",
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 447,
+              "EndLine": 453
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "xunit.extensibility.core/2.9.3",
+          "Name": "xunit.extensibility.core",
+          "Identifier": {
+            "PURL": "pkg:nuget/xunit.extensibility.core@2.9.3",
+            "UID": "20e21106b8d0ed01"
+          },
+          "Version": "2.9.3",
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "xunit.abstractions/2.0.3"
+          ],
+          "Locations": [
+            {
+              "StartLine": 461,
+              "EndLine": 467
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "xunit.extensibility.execution/2.9.3",
+          "Name": "xunit.extensibility.execution",
+          "Identifier": {
+            "PURL": "pkg:nuget/xunit.extensibility.execution@2.9.3",
+            "UID": "964b5c2311cc01bb"
+          },
+          "Version": "2.9.3",
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "xunit.extensibility.core/2.9.3"
+          ],
+          "Locations": [
+            {
+              "StartLine": 468,
+              "EndLine": 474
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        }
+      ]
+    },
+    {
+      "Target": "tests/Quoridor.BrowserTests/packages.lock.json",
+      "Class": "lang-pkgs",
+      "Type": "nuget",
+      "Packages": [
+        {
+          "ID": "Microsoft.NET.Test.Sdk@17.14.1",
+          "Name": "Microsoft.NET.Test.Sdk",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.NET.Test.Sdk@17.14.1",
+            "UID": "fdea616729d6ad58"
+          },
+          "Version": "17.14.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Relationship": "direct",
+          "DependsOn": [
+            "Microsoft.CodeCoverage@17.14.1",
+            "Microsoft.TestPlatform.TestHost@17.14.1"
+          ],
+          "Locations": [
+            {
+              "StartLine": 11,
+              "EndLine": 20
+            }
+          ],
+          "AnalyzedBy": "nuget"
+        },
+        {
+          "ID": "Selenium.Support@4.51.0",
+          "Name": "Selenium.Support",
+          "Identifier": {
+            "PURL": "pkg:nuget/Selenium.Support@4.51.0",
+            "UID": "519a65ad30bc1715"
+          },
+          "Version": "4.51.0",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Relationship": "direct",
+          "DependsOn": [
+            "Selenium.WebDriver@4.51.0"
+          ],
+          "Locations": [
+            {
+              "StartLine": 21,
+              "EndLine": 29
+            }
+          ],
+          "AnalyzedBy": "nuget"
+        },
+        {
+          "ID": "Selenium.WebDriver@4.51.0",
+          "Name": "Selenium.WebDriver",
+          "Identifier": {
+            "PURL": "pkg:nuget/Selenium.WebDriver@4.51.0",
+            "UID": "ef5bf33a7ff27c7a"
+          },
+          "Version": "4.51.0",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Relationship": "direct",
+          "Locations": [
+            {
+              "StartLine": 30,
+              "EndLine": 35
+            }
+          ],
+          "AnalyzedBy": "nuget"
+        },
+        {
+          "ID": "coverlet.collector@6.0.4",
+          "Name": "coverlet.collector",
+          "Identifier": {
+            "PURL": "pkg:nuget/coverlet.collector@6.0.4",
+            "UID": "3fa7bcdf520c2006"
+          },
+          "Version": "6.0.4",
+          "Licenses": [
+            "MIT"
+          ],
+          "Relationship": "direct",
+          "Locations": [
+            {
+              "StartLine": 5,
+              "EndLine": 10
+            }
+          ],
+          "AnalyzedBy": "nuget"
+        },
+        {
+          "ID": "xunit@2.9.3",
+          "Name": "xunit",
+          "Identifier": {
+            "PURL": "pkg:nuget/xunit@2.9.3",
+            "UID": "c6e90cc875d006d3"
+          },
+          "Version": "2.9.3",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Relationship": "direct",
+          "DependsOn": [
+            "xunit.analyzers@1.18.0",
+            "xunit.assert@2.9.3",
+            "xunit.core@2.9.3"
+          ],
+          "Locations": [
+            {
+              "StartLine": 36,
+              "EndLine": 46
+            }
+          ],
+          "AnalyzedBy": "nuget"
+        },
+        {
+          "ID": "xunit.runner.visualstudio@3.1.4",
+          "Name": "xunit.runner.visualstudio",
+          "Identifier": {
+            "PURL": "pkg:nuget/xunit.runner.visualstudio@3.1.4",
+            "UID": "54a0ab9e01ee43e9"
+          },
+          "Version": "3.1.4",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Relationship": "direct",
+          "Locations": [
+            {
+              "StartLine": 47,
+              "EndLine": 52
+            }
+          ],
+          "AnalyzedBy": "nuget"
+        },
+        {
+          "ID": "Microsoft.CodeCoverage@17.14.1",
+          "Name": "Microsoft.CodeCoverage",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.CodeCoverage@17.14.1",
+            "UID": "3259f7ba06cf03e4"
+          },
+          "Version": "17.14.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 53,
+              "EndLine": 57
+            }
+          ],
+          "AnalyzedBy": "nuget"
+        },
+        {
+          "ID": "Microsoft.TestPlatform.ObjectModel@17.14.1",
+          "Name": "Microsoft.TestPlatform.ObjectModel",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.TestPlatform.ObjectModel@17.14.1",
+            "UID": "10dd4dbfd299886"
+          },
+          "Version": "17.14.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 58,
+              "EndLine": 62
+            }
+          ],
+          "AnalyzedBy": "nuget"
+        },
+        {
+          "ID": "Microsoft.TestPlatform.TestHost@17.14.1",
+          "Name": "Microsoft.TestPlatform.TestHost",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.TestPlatform.TestHost@17.14.1",
+            "UID": "53e688407936a61"
+          },
+          "Version": "17.14.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "Microsoft.TestPlatform.ObjectModel@17.14.1",
+            "Newtonsoft.Json@13.0.3"
+          ],
+          "Locations": [
+            {
+              "StartLine": 63,
+              "EndLine": 71
+            }
+          ],
+          "AnalyzedBy": "nuget"
+        },
+        {
+          "ID": "Newtonsoft.Json@13.0.3",
+          "Name": "Newtonsoft.Json",
+          "Identifier": {
+            "PURL": "pkg:nuget/Newtonsoft.Json@13.0.3",
+            "UID": "7de48634caa2351d"
+          },
+          "Version": "13.0.3",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 72,
+              "EndLine": 76
+            }
+          ],
+          "AnalyzedBy": "nuget"
+        },
+        {
+          "ID": "xunit.abstractions@2.0.3",
+          "Name": "xunit.abstractions",
+          "Identifier": {
+            "PURL": "pkg:nuget/xunit.abstractions@2.0.3",
+            "UID": "ab613f3c51f4a43a"
+          },
+          "Version": "2.0.3",
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 77,
+              "EndLine": 81
+            }
+          ],
+          "AnalyzedBy": "nuget"
+        },
+        {
+          "ID": "xunit.analyzers@1.18.0",
+          "Name": "xunit.analyzers",
+          "Identifier": {
+            "PURL": "pkg:nuget/xunit.analyzers@1.18.0",
+            "UID": "ee5664380bd0bf78"
+          },
+          "Version": "1.18.0",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 82,
+              "EndLine": 86
+            }
+          ],
+          "AnalyzedBy": "nuget"
+        },
+        {
+          "ID": "xunit.assert@2.9.3",
+          "Name": "xunit.assert",
+          "Identifier": {
+            "PURL": "pkg:nuget/xunit.assert@2.9.3",
+            "UID": "a4e48a9788e80b6f"
+          },
+          "Version": "2.9.3",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 87,
+              "EndLine": 91
+            }
+          ],
+          "AnalyzedBy": "nuget"
+        },
+        {
+          "ID": "xunit.core@2.9.3",
+          "Name": "xunit.core",
+          "Identifier": {
+            "PURL": "pkg:nuget/xunit.core@2.9.3",
+            "UID": "5b0c203e7f214a75"
+          },
+          "Version": "2.9.3",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "xunit.extensibility.core@2.9.3",
+            "xunit.extensibility.execution@2.9.3"
+          ],
+          "Locations": [
+            {
+              "StartLine": 92,
+              "EndLine": 100
+            }
+          ],
+          "AnalyzedBy": "nuget"
+        },
+        {
+          "ID": "xunit.extensibility.core@2.9.3",
+          "Name": "xunit.extensibility.core",
+          "Identifier": {
+            "PURL": "pkg:nuget/xunit.extensibility.core@2.9.3",
+            "UID": "2ca0cdb9ac2c3ac0"
+          },
+          "Version": "2.9.3",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "xunit.abstractions@2.0.3"
+          ],
+          "Locations": [
+            {
+              "StartLine": 101,
+              "EndLine": 108
+            }
+          ],
+          "AnalyzedBy": "nuget"
+        },
+        {
+          "ID": "xunit.extensibility.execution@2.9.3",
+          "Name": "xunit.extensibility.execution",
+          "Identifier": {
+            "PURL": "pkg:nuget/xunit.extensibility.execution@2.9.3",
+            "UID": "cd3bea8e1e51eaed"
+          },
+          "Version": "2.9.3",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "xunit.extensibility.core@2.9.3"
+          ],
+          "Locations": [
+            {
+              "StartLine": 109,
+              "EndLine": 116
+            }
+          ],
+          "AnalyzedBy": "nuget"
+        }
+      ]
+    },
+    {
+      "Target": "Dockerfile",
+      "Class": "config",
+      "Type": "dockerfile",
+      "MisconfSummary": {
+        "Successes": 27,
+        "Failures": 0
+      }
+    }
+  ]
+}
