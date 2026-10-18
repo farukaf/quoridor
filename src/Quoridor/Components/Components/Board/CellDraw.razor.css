@@ -1,34 +1,8 @@
-﻿small {
-    font-size: .5rem
-}
-
-div {
-    width: 100%;
-    height: 100%;
-}
-
-
-.cell {
-    position: relative;
-}
-
-.avaliable {
-    position: absolute;
-    top: 0;
-    margin: 5%;
-    width: 90%;
-    height: 90%;
-    background: rgba(0,0,0,0.4);
-    cursor: pointer;
-}
-
-.victory-block {
-    width: 100%;
-    height: 0.5rem;
-}
-
-.victory { 
-    margin: 0.2rem;
-    width: 0.5rem;
-    height: 100%; 
-}
+.cell { position: relative; width: 100%; height: 100%; }
+.cell-control { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 0; padding: 0; border: 0; background: transparent; border-radius: 4px; z-index: 2; }
+.cell-control:hover { background: #23694e16; }
+.cell-control:focus-visible { outline-offset: -3px; outline: 3px solid #925015; background: #ffffff44; }
+.avaliable { pointer-events: none; position: absolute; top: 50%; left: 50%; width: 25%; aspect-ratio: 1; border-radius: 50%; transform: translate(-50%,-50%); background: var(--accent); box-shadow: 0 0 0 4px #23694e19; }
+.goal-mark { position: absolute; left: 40%; right: 40%; height: 3px; border-radius: 2px; pointer-events: none; }
+.goal-two { top: 3px; background: var(--coral); }
+.goal-one { bottom: 4px; background: var(--accent); }

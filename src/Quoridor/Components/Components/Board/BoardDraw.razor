@@ -4,9 +4,10 @@
 @code {
     [Parameter]
     public RoomViewModel Room { get; set; } = default!;
+    [Parameter] public bool WallMode { get; set; }
 }
 
-<div class="board">
+<div class="board @(WallMode ? "wall-mode" : "move-mode")">
     <div class="board-grid">
         @foreach (var gridElem in Room.Board.GridElements)
         {
@@ -16,7 +17,7 @@
             <div class="grid-item @cssCls" style="@style">
                 @if (gridElem.Value is CellViewModel cell)
                 {
-                    <CellDraw CellAddress="cell.Address" Room="Room" />
+                    <CellDraw CellAddress="cell.Address" Room="Room" WallMode="WallMode" />
                 }
                 else if (gridElem.Value is WallViewModel wall)
                 {
@@ -24,7 +25,7 @@
                 }
                 else if (gridElem.Value is CornerViewModel corner)
                 {
-                    <CornerDraw Corner="corner" Room="Room" />
+                    <CornerDraw Corner="corner" Room="Room" WallMode="WallMode" />
                 }
             </div>
         }
