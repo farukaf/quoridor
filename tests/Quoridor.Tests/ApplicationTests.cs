@@ -11,14 +11,16 @@ namespace Quoridor.Tests;
 
 public sealed class ApplicationTests
 {
-    [Fact]
-    public async Task RealApplicationProtectsIdentityAndPersistsResultsAndKeysAcrossRestart()
+    [Theory]
+    [InlineData("SQLite")]
+    [InlineData("PostgreSql")]
+    public async Task RealApplicationProtectsIdentityAndPersistsResultsAndKeysAcrossRestart(string provider)
     {
-        var directory=Path.Combine(Path.GetTempPath(),"quoridor-host-"+Guid.NewGuid());
+        using var database = new TestDatabase(provider);
         try
         {
             string cookie; Guid aliceId; Guid matchId;
-            using(var host=new Host(directory))
+            using(var host=new Host(database))
             using(var client=host.CreateClient(new() { BaseAddress=new Uri("https://localhost"),HandleCookies=false }))
             {
                 var response=await client.GetAsync("/"); response.EnsureSuccessStatusCode();
@@ -36,7 +38,7 @@ public sealed class ApplicationTests
                 (await client.GetAsync($"/Room/{Guid.NewGuid()}")).EnsureSuccessStatusCode();
                 (await client.PostAsync("/_blazor/negotiate?negotiateVersion=1",new StringContent(""))).EnsureSuccessStatusCode();
             }
-            using(var restarted=new Host(directory))
+            using(var restarted=new Host(database))
             using(var client=restarted.CreateClient(new() { BaseAddress=new Uri("https://localhost"),HandleCookies=false }))
             {
                 client.DefaultRequestHeaders.Add("Cookie",cookie);
@@ -46,14 +48,14 @@ public sealed class ApplicationTests
                 var forged=await client.GetAsync("/"); Assert.True(forged.Headers.TryGetValues("Set-Cookie",out var issued)); Assert.Contains(issued!,x=>x.StartsWith("Quoridor.Player="));
             }
         }
-        finally { Microsoft.Data.Sqlite.SqliteConnection.ClearAllPools(); if(Directory.Exists(directory)) Directory.Delete(directory,true); }
+        finally { /* Hosts dispose their pools before the isolated database is removed. */ }
     }
-    private sealed class Host(string directory) : WebApplicationFactory<Program>
+    private sealed class Host(TestDatabase database) : WebApplicationFactory<Program>
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder.UseEnvironment("Production");
-            builder.ConfigureAppConfiguration((_,config)=>config.AddInMemoryCollection(new Dictionary<string,string?>{["DataDirectory"]=directory}));
+            builder.ConfigureAppConfiguration((_, config) => config.AddInMemoryCollection(database.Values));
         }
     }
 }

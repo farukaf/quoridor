@@ -1,22 +1,56 @@
+using System.Data.Common;
 using Microsoft.Data.Sqlite;
+using Npgsql;
 
 namespace Quoridor.Services;
 
 public record LeaderboardEntry(Guid PlayerId, string Name, long Wins, long Games);
 public record MatchResult(Guid MatchId, Guid RoomId, Guid WinnerId, string WinnerName, Guid OpponentId, string OpponentName, DateTimeOffset FinishedAt);
 
-public sealed class GameStore
+public sealed class GameStore : IDisposable
 {
-    private readonly string connectionString;
+    private readonly Func<DbConnection> createConnection;
+    private readonly NpgsqlDataSource? dataSource;
     public GameStore(IConfiguration configuration)
     {
-        var directory = Path.GetFullPath(configuration["DataDirectory"] ?? "data");
-        Directory.CreateDirectory(directory);
-        connectionString = new SqliteConnectionStringBuilder { DataSource = Path.Combine(directory, "quoridor.db"), DefaultTimeout = 30 }.ToString();
+        var provider = configuration["Persistence:Provider"] ?? "SQLite";
+        if (provider.Equals("SQLite", StringComparison.OrdinalIgnoreCase))
+        {
+            var raw = configuration.GetConnectionString("SQLite");
+            if (string.IsNullOrWhiteSpace(raw)) throw new InvalidOperationException("ConnectionStrings:SQLite is required for SQLite persistence.");
+            var options = new SqliteConnectionStringBuilder(raw);
+            if (string.IsNullOrWhiteSpace(options.DataSource) || options.DataSource == ":memory:" || options.Mode == SqliteOpenMode.Memory)
+                throw new InvalidOperationException("SQLite persistence requires a file Data Source.");
+            var directory = Path.GetFullPath(configuration["DataDirectory"] ?? "data");
+            options.DataSource = Path.GetFullPath(options.DataSource, directory);
+            Directory.CreateDirectory(Path.GetDirectoryName(options.DataSource)!);
+            var connectionString = options.ToString();
+            createConnection = () => new SqliteConnection(connectionString);
+        }
+        else if (provider.Equals("PostgreSql", StringComparison.OrdinalIgnoreCase))
+        {
+            var raw = configuration.GetConnectionString("PostgreSql");
+            if (string.IsNullOrWhiteSpace(raw)) throw new InvalidOperationException("ConnectionStrings:PostgreSql is required for PostgreSql persistence.");
+            var options = new NpgsqlConnectionStringBuilder(raw);
+            if (string.IsNullOrWhiteSpace(options.Host) || string.IsNullOrWhiteSpace(options.Database))
+                throw new InvalidOperationException("PostgreSql persistence requires Host and Database.");
+            dataSource = NpgsqlDataSource.Create(options.ConnectionString);
+            createConnection = () => dataSource.CreateConnection();
+        }
+        else throw new InvalidOperationException("Persistence:Provider must be SQLite or PostgreSql.");
+        try { Initialize(provider); }
+        catch { dataSource?.Dispose(); throw; }
+    }
+    private void Initialize(string provider)
+    {
         using var connection = Open();
         using var command = connection.CreateCommand();
+        if (provider.Equals("SQLite",StringComparison.OrdinalIgnoreCase))
+        {
+            command.CommandText = "PRAGMA journal_mode=WAL";
+            command.ExecuteNonQuery();
+        }
         command.CommandText = """
-            PRAGMA journal_mode=WAL;
             CREATE TABLE IF NOT EXISTS Players (Id TEXT PRIMARY KEY, Name TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS Matches (
                 MatchId TEXT PRIMARY KEY, RoomId TEXT NOT NULL, WinnerId TEXT NOT NULL,
@@ -27,11 +61,21 @@ public sealed class GameStore
             """;
         command.ExecuteNonQuery();
     }
-    private SqliteConnection Open() { var connection = new SqliteConnection(connectionString); connection.Open(); return connection; }
+    private DbConnection Open()
+    {
+        var connection = createConnection();
+        try { connection.Open(); return connection; }
+        catch { connection.Dispose(); throw; }
+    }
+    private static void Add(DbCommand command,string name,object value)
+    {
+        var parameter = command.CreateParameter(); parameter.ParameterName = name; parameter.Value = value; command.Parameters.Add(parameter);
+    }
+    public void Dispose() => dataSource?.Dispose();
     public Player? GetPlayer(Guid id)
     {
         using var connection = Open(); using var command = connection.CreateCommand();
-        command.CommandText = "SELECT Name FROM Players WHERE Id=$id"; command.Parameters.AddWithValue("$id", id.ToString());
+        command.CommandText = "SELECT Name FROM Players WHERE Id=@id"; Add(command, "@id", id.ToString());
         return command.ExecuteScalar() is string name ? new Player(id, name, "UTC") : null;
     }
     public Player SetName(Guid id, string name)
@@ -39,8 +83,8 @@ public sealed class GameStore
         name = name.Trim().Normalize(System.Text.NormalizationForm.FormKC);
         if (name.Length is < 1 or > 40 || name.Any(char.IsControl)) throw new ArgumentException("Use a name between 1 and 40 characters without control characters.", nameof(name));
         using var connection = Open(); using var command = connection.CreateCommand();
-        command.CommandText = "INSERT INTO Players(Id,Name) VALUES($id,$name) ON CONFLICT(Id) DO UPDATE SET Name=excluded.Name";
-        command.Parameters.AddWithValue("$id", id.ToString()); command.Parameters.AddWithValue("$name", name); command.ExecuteNonQuery();
+        command.CommandText = "INSERT INTO Players(Id,Name) VALUES(@id,@name) ON CONFLICT(Id) DO UPDATE SET Name=excluded.Name";
+        Add(command, "@id", id.ToString()); Add(command, "@name", name); command.ExecuteNonQuery();
         return new Player(id, name, "UTC");
     }
     public bool Complete(MatchResult result)
@@ -49,12 +93,12 @@ public sealed class GameStore
         command.Transaction = transaction;
         command.CommandText = """
             INSERT INTO Matches(MatchId,RoomId,WinnerId,WinnerName,OpponentId,OpponentName,FinishedAt)
-            VALUES($match,$room,$winner,$winnerName,$opponent,$opponentName,$at) ON CONFLICT(MatchId) DO NOTHING
+            VALUES(@match,@room,@winner,@winnerName,@opponent,@opponentName,@at) ON CONFLICT(MatchId) DO NOTHING
             """;
-        command.Parameters.AddWithValue("$match", result.MatchId.ToString()); command.Parameters.AddWithValue("$room", result.RoomId.ToString());
-        command.Parameters.AddWithValue("$winner", result.WinnerId.ToString()); command.Parameters.AddWithValue("$winnerName", result.WinnerName);
-        command.Parameters.AddWithValue("$opponent", result.OpponentId.ToString()); command.Parameters.AddWithValue("$opponentName", result.OpponentName);
-        command.Parameters.AddWithValue("$at", result.FinishedAt.ToString("O"));
+        Add(command, "@match", result.MatchId.ToString()); Add(command, "@room", result.RoomId.ToString());
+        Add(command, "@winner", result.WinnerId.ToString()); Add(command, "@winnerName", result.WinnerName);
+        Add(command, "@opponent", result.OpponentId.ToString()); Add(command, "@opponentName", result.OpponentName);
+        Add(command, "@at", result.FinishedAt.ToUniversalTime().ToString("O"));
         var inserted = command.ExecuteNonQuery() == 1; transaction.Commit(); return inserted;
     }
     public IReadOnlyList<LeaderboardEntry> Leaderboard()
@@ -63,7 +107,7 @@ public sealed class GameStore
         command.CommandText = """
             SELECT p.Id,p.Name,COUNT(CASE WHEN m.WinnerId=p.Id THEN 1 END),COUNT(m.MatchId)
             FROM Players p JOIN Matches m ON p.Id=m.WinnerId OR p.Id=m.OpponentId
-            GROUP BY p.Id,p.Name ORDER BY 3 DESC,4 DESC,p.Name COLLATE NOCASE,p.Id LIMIT 100
+            GROUP BY p.Id,p.Name ORDER BY 3 DESC,4 DESC,LOWER(p.Name),p.Id LIMIT 100
             """;
         using var reader = command.ExecuteReader(); var rows = new List<LeaderboardEntry>();
         while (reader.Read()) rows.Add(new(Guid.Parse(reader.GetString(0)), reader.GetString(1), reader.GetInt64(2), reader.GetInt64(3)));
@@ -72,8 +116,8 @@ public sealed class GameStore
     public IReadOnlyList<MatchResult> History(Guid playerId)
     {
         using var connection = Open(); using var command = connection.CreateCommand();
-        command.CommandText = "SELECT MatchId,RoomId,WinnerId,WinnerName,OpponentId,OpponentName,FinishedAt FROM Matches WHERE WinnerId=$id OR OpponentId=$id ORDER BY FinishedAt DESC,MatchId DESC LIMIT 100";
-        command.Parameters.AddWithValue("$id", playerId.ToString());
+        command.CommandText = "SELECT MatchId,RoomId,WinnerId,WinnerName,OpponentId,OpponentName,FinishedAt FROM Matches WHERE WinnerId=@id OR OpponentId=@id ORDER BY FinishedAt DESC,MatchId DESC LIMIT 100";
+        Add(command, "@id", playerId.ToString());
         using var reader = command.ExecuteReader(); var rows = new List<MatchResult>();
         while (reader.Read()) rows.Add(new(Guid.Parse(reader.GetString(0)), Guid.Parse(reader.GetString(1)), Guid.Parse(reader.GetString(2)), reader.GetString(3), Guid.Parse(reader.GetString(4)), reader.GetString(5), DateTimeOffset.Parse(reader.GetString(6), System.Globalization.CultureInfo.InvariantCulture)));
         return rows;

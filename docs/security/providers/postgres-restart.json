@@ -1,0 +1,8 @@
+{
+  "container": "quoridor-postgres-hardened-tests",
+  "identity": "uid=70(postgres) gid=70(postgres) groups=70(postgres)",
+  "matchesBefore": 1,
+  "matchesAfter": 1,
+  "applicationPort": 18086,
+  "databasePort": 15434
+}
