@@ -165,7 +165,7 @@ public class GameBrowserTests
             second.Navigate().GoToUrl(room);
             Wait(second).Until(d => d.FindElements(By.XPath("//li[small[contains(.,'Player 2')]]//small[normalize-space()='YOU']")).Count == 1);
             Assert.DoesNotContain("Forged Alice", second.FindElement(By.CssSelector("body")).Text);
-            winner.FindElement(By.TagName("a")).Click();
+            Click(first, By.CssSelector($"tr[data-player='{aliceId}'] a"));
             Wait(first).Until(d => d.FindElements(By.CssSelector("tr[data-match]")).Count == 1);
             Assert.Contains("Win", first.PageSource);
             Assert.Contains(bob, first.PageSource);
