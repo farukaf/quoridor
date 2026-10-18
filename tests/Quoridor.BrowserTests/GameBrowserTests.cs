@@ -30,9 +30,9 @@ public class GameBrowserTests
         ((IJavaScriptExecutor)browser).ExecuteScript("arguments[0].scrollIntoView({block:'center',behavior:'instant'});", element);
         element.Click();
     }
-    private static void Join(IWebDriver browser, string url, string name)
+    private static void Join(IWebDriver browser, string url, string name, bool navigate = true)
     {
-        browser.Navigate().GoToUrl(url);
+        if (navigate) browser.Navigate().GoToUrl(url);
         Wait(browser).Until(d => d.FindElements(By.Id("player-name")).FirstOrDefault(e => e.Displayed))!.SendKeys(name);
         Click(browser, By.CssSelector("button[type=submit]"));
         Wait(browser).Until(d => d.FindElements(By.CssSelector(".cell.text-center")).Count == 81);
@@ -88,20 +88,24 @@ public class GameBrowserTests
             Screenshot(first,"home",width);
             first.FindElement(By.TagName("body")).SendKeys(Keys.Tab);
             Assert.Contains(first.SwitchTo().ActiveElement().TagName,new[]{"a","button","input"});
-            var room = $"{baseUrl.TrimEnd('/')}/Room/{Guid.NewGuid()}";
+            Click(first,By.CssSelector(".hero-actions .button"));
+            Wait(first).Until(d=>d.Url.Contains("/Room/") && Guid.TryParse(new Uri(d.Url).Segments.Last(),out _));
+            var room = first.Url;
             var alice = "Alice " + Guid.NewGuid().ToString("N")[..8] + " RemarkablyThoughtful";
             var bob = "Bob " + Guid.NewGuid().ToString("N")[..8] + " A Very Clever Opponent";
-            Join(first, room, alice);
+            Join(first, room, alice, navigate:false);
             Join(second, room, bob);
             Wait(first).Until(d => d.PageSource.Contains(bob));
             Click(first,By.CssSelector("button[aria-label='Copy room invitation link']"));
             Wait(first).Until(d=>!string.IsNullOrWhiteSpace(d.FindElement(By.CssSelector(".share-status")).Text));
             Assert.Equal(room,first.FindElement(By.Id("room-link")).GetAttribute("value"));
             Assert.True(first.FindElement(By.CssSelector(".cell-control")).Size.Width>=24);
+            Assert.True(first.FindElement(By.CssSelector(".cell-control")).Size.Height>=24);
             ((IJavaScriptExecutor)first).ExecuteScript("window.scrollTo({top:0,behavior:'instant'})");
             Screenshot(first,"room",width);
             ((IJavaScriptExecutor)first).ExecuteScript("document.querySelector('.board-stage').scrollIntoView({block:'start',behavior:'instant'});");
             Screenshot(first,"game",width);
+            Assert.True(((IJavaScriptExecutor)first).ExecuteScript("return [...document.querySelectorAll('.turn-pill,.you-pill')].every(element => parseFloat(getComputedStyle(element).fontSize) >= 10)") is true);
             Assert.True(((IJavaScriptExecutor)first).ExecuteScript("return [...document.querySelectorAll('button')].every(button => (button.getAttribute('aria-label') || button.innerText).trim().length > 0)") is true);
             var rules = first.FindElement(By.CssSelector(".rules-details summary"));
             rules.SendKeys(Keys.Enter);
@@ -120,6 +124,7 @@ public class GameBrowserTests
             Click(second, By.XPath("//button[normalize-space()='Place a wall']"));
             Wait(second).Until(d=>d.FindElement(By.CssSelector("button[data-corner='1,0']")).Enabled);
             Assert.True(second.FindElement(By.CssSelector("button[data-corner='1,0']")).Size.Width >= 24);
+            Assert.True(second.FindElement(By.CssSelector("button[data-corner='1,0']")).Size.Height >= 24);
             // Wall controls have their own mode, avoiding overlapping active touch targets.
             Assert.True(second.FindElement(By.CssSelector(".cell-control")).GetAttribute("disabled") is not null);
             Wait(second).Until(d=>d.SwitchTo().ActiveElement().GetAttribute("data-corner") == "1,0");

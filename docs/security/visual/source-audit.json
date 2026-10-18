@@ -3,16 +3,16 @@
   "Trivy": {
     "Version": "0.76.0"
   },
-  "ReportID": "01a14ee4-e903-7207-accf-e9dc26062d19",
-  "CreatedAt": "2026-10-18T09:03:07.13913541-03:00",
-  "ArtifactID": "sha256:75d543f5207dbe601c6991a76c51cdb0c09a6976b2e5481d812ccc5c8247460b",
+  "ReportID": "01a14ef2-910b-74ce-809f-6cc393e0259c",
+  "CreatedAt": "2026-10-18T09:18:02.12331624-03:00",
+  "ArtifactID": "sha256:26ed77a3870116046713e1e3268a5437da530334bda4f0add9a404dfec2929c2",
   "ArtifactName": ".",
   "ArtifactType": "repository",
   "Metadata": {
     "RepoURL": "https://github.com/farukaf/quoridor.git",
     "Branch": "feat/responsive-game-design",
-    "Commit": "4811ece81c7d35a36ec7726a1354aeb512bb751b",
-    "CommitMsg": "Add persistent leaderboard and authenticated anonymous match history",
+    "Commit": "e288c1c5e26bf63358ec41a89937c281841ddbe3",
+    "CommitMsg": "Add responsive Quoridor interface and accessible keyboard board controls",
     "Author": "Faruk \u003cfaruk@mottu.com.br\u003e",
     "Committer": "Faruk \u003cfaruk@mottu.com.br\u003e"
   },
@@ -27,14 +27,34 @@
           "Name": "Quoridor",
           "Identifier": {
             "PURL": "pkg:nuget/Quoridor@1.0.0",
-            "UID": "d6cd25a2cc380479"
+            "UID": "77135bbb716ed22f"
           },
           "Version": "1.0.0",
           "Relationship": "root",
+          "DependsOn": [
+            "Npgsql/10.0.3"
+          ],
           "Locations": [
             {
-              "StartLine": 183,
-              "EndLine": 187
+              "StartLine": 192,
+              "EndLine": 196
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "Npgsql/10.0.3",
+          "Name": "Npgsql",
+          "Identifier": {
+            "PURL": "pkg:nuget/Npgsql@10.0.3",
+            "UID": "575a82b8c3c92108"
+          },
+          "Version": "10.0.3",
+          "Relationship": "direct",
+          "Locations": [
+            {
+              "StartLine": 211,
+              "EndLine": 217
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -44,7 +64,7 @@
           "Name": "Microsoft.Data.Sqlite.Core",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.Data.Sqlite.Core@10.0.13",
-            "UID": "533ef4038d1d8354"
+            "UID": "7374ad4c25af779b"
           },
           "Version": "10.0.13",
           "Indirect": true,
@@ -54,8 +74,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 195,
-              "EndLine": 201
+              "StartLine": 204,
+              "EndLine": 210
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -65,7 +85,7 @@
           "Name": "SQLitePCLRaw.bundle_e_sqlite3",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.bundle_e_sqlite3@2.1.13",
-            "UID": "e6e847c033421380"
+            "UID": "aff77ebb4740e6ed"
           },
           "Version": "2.1.13",
           "Indirect": true,
@@ -76,8 +96,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 202,
-              "EndLine": 208
+              "StartLine": 218,
+              "EndLine": 224
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -87,15 +107,15 @@
           "Name": "SQLitePCLRaw.core",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.core@2.1.13",
-            "UID": "708e3e155002f53c"
+            "UID": "53da3de4d211748c"
           },
           "Version": "2.1.13",
           "Indirect": true,
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 209,
-              "EndLine": 215
+              "StartLine": 225,
+              "EndLine": 231
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -105,15 +125,15 @@
           "Name": "SQLitePCLRaw.lib.e_sqlite3",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.lib.e_sqlite3@2.1.13",
-            "UID": "2c184649b5f15946"
+            "UID": "a40336b6e334db28"
           },
           "Version": "2.1.13",
           "Indirect": true,
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 216,
-              "EndLine": 222
+              "StartLine": 232,
+              "EndLine": 238
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -123,7 +143,7 @@
           "Name": "SQLitePCLRaw.provider.e_sqlite3",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.provider.e_sqlite3@2.1.13",
-            "UID": "f2a851b9c615e1d8"
+            "UID": "e1e82cbe50d86607"
           },
           "Version": "2.1.13",
           "Indirect": true,
@@ -133,8 +153,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 223,
-              "EndLine": 229
+              "StartLine": 239,
+              "EndLine": 245
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -192,11 +212,31 @@
           "AnalyzedBy": "nuget"
         },
         {
+          "ID": "Npgsql@10.0.3",
+          "Name": "Npgsql",
+          "Identifier": {
+            "PURL": "pkg:nuget/Npgsql@10.0.3",
+            "UID": "e55dc2d421d54679"
+          },
+          "Version": "10.0.3",
+          "Licenses": [
+            "PostgreSQL"
+          ],
+          "Relationship": "direct",
+          "Locations": [
+            {
+              "StartLine": 22,
+              "EndLine": 27
+            }
+          ],
+          "AnalyzedBy": "nuget"
+        },
+        {
           "ID": "Microsoft.Data.Sqlite.Core@10.0.13",
           "Name": "Microsoft.Data.Sqlite.Core",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.Data.Sqlite.Core@10.0.13",
-            "UID": "c7667afc0602c5f3"
+            "UID": "d6e3d4ec9fb645dc"
           },
           "Version": "10.0.13",
           "Licenses": [
@@ -209,8 +249,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 22,
-              "EndLine": 29
+              "StartLine": 28,
+              "EndLine": 35
             }
           ],
           "AnalyzedBy": "nuget"
@@ -220,7 +260,7 @@
           "Name": "SQLitePCLRaw.bundle_e_sqlite3",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.bundle_e_sqlite3@2.1.13",
-            "UID": "cf83943a0a6a5435"
+            "UID": "c15bec15f21f80f4"
           },
           "Version": "2.1.13",
           "Licenses": [
@@ -234,8 +274,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 30,
-              "EndLine": 38
+              "StartLine": 36,
+              "EndLine": 44
             }
           ],
           "AnalyzedBy": "nuget"
@@ -245,7 +285,7 @@
           "Name": "SQLitePCLRaw.core",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.core@2.1.13",
-            "UID": "dd92ddaa8814b39c"
+            "UID": "659a01570208ce10"
           },
           "Version": "2.1.13",
           "Licenses": [
@@ -255,8 +295,8 @@
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 39,
-              "EndLine": 43
+              "StartLine": 45,
+              "EndLine": 49
             }
           ],
           "AnalyzedBy": "nuget"
@@ -266,7 +306,7 @@
           "Name": "SQLitePCLRaw.lib.e_sqlite3",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.lib.e_sqlite3@2.1.13",
-            "UID": "5e5ca110fea62b36"
+            "UID": "95bdf29dbdd7a773"
           },
           "Version": "2.1.13",
           "Licenses": [
@@ -276,8 +316,8 @@
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 44,
-              "EndLine": 48
+              "StartLine": 50,
+              "EndLine": 54
             }
           ],
           "AnalyzedBy": "nuget"
@@ -287,7 +327,7 @@
           "Name": "SQLitePCLRaw.provider.e_sqlite3",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.provider.e_sqlite3@2.1.13",
-            "UID": "3a9e59ea726d5894"
+            "UID": "91ab2e6d4cbab0c8"
           },
           "Version": "2.1.13",
           "Licenses": [
@@ -300,8 +340,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 49,
-              "EndLine": 56
+              "StartLine": 55,
+              "EndLine": 62
             }
           ],
           "AnalyzedBy": "nuget"
@@ -624,7 +664,7 @@
           "Name": "xunit",
           "Identifier": {
             "PURL": "pkg:nuget/xunit@2.9.3",
-            "UID": "c6e90cc875d006d3"
+            "UID": "eaddee08f0b8484d"
           },
           "Version": "2.9.3",
           "Licenses": [
@@ -632,9 +672,9 @@
           ],
           "Relationship": "direct",
           "DependsOn": [
+            "xunit.core@2.9.3",
             "xunit.analyzers@1.18.0",
-            "xunit.assert@2.9.3",
-            "xunit.core@2.9.3"
+            "xunit.assert@2.9.3"
           ],
           "Locations": [
             {
@@ -897,7 +937,7 @@
           "Name": "Quoridor.Tests",
           "Identifier": {
             "PURL": "pkg:nuget/Quoridor.Tests@1.0.0",
-            "UID": "664f2847b86deb75"
+            "UID": "7d2fe61ae6752621"
           },
           "Version": "1.0.0",
           "Relationship": "root",
@@ -907,8 +947,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 3027,
-              "EndLine": 3031
+              "StartLine": 3042,
+              "EndLine": 3046
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -918,14 +958,17 @@
           "Name": "Quoridor",
           "Identifier": {
             "PURL": "pkg:nuget/Quoridor@1.0.0",
-            "UID": "cff013e94421e76"
+            "UID": "6fdfd9a3ab00029a"
           },
           "Version": "1.0.0",
           "Relationship": "workspace",
+          "DependsOn": [
+            "Npgsql/10.0.3"
+          ],
           "Locations": [
             {
-              "StartLine": 3179,
-              "EndLine": 3183
+              "StartLine": 3201,
+              "EndLine": 3205
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -935,7 +978,7 @@
           "Name": "Microsoft.AspNetCore.Mvc.Testing",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.AspNetCore.Mvc.Testing@10.0.13",
-            "UID": "15ba7a7a4e1e9fb7"
+            "UID": "345db02b8feb9faa"
           },
           "Version": "10.0.13",
           "Relationship": "direct",
@@ -945,8 +988,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 3032,
-              "EndLine": 3038
+              "StartLine": 3047,
+              "EndLine": 3053
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -956,15 +999,15 @@
           "Name": "Microsoft.AspNetCore.TestHost",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.AspNetCore.TestHost@10.0.13",
-            "UID": "3e5d70660d0f8a64"
+            "UID": "e80c3e1da01a7600"
           },
           "Version": "10.0.13",
           "Indirect": true,
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 3039,
-              "EndLine": 3045
+              "StartLine": 3054,
+              "EndLine": 3060
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -974,15 +1017,15 @@
           "Name": "Microsoft.CodeCoverage",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.CodeCoverage@17.14.1",
-            "UID": "eb4f3b58d1ec021f"
+            "UID": "614c48af1584c437"
           },
           "Version": "17.14.1",
           "Indirect": true,
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 3046,
-              "EndLine": 3052
+              "StartLine": 3061,
+              "EndLine": 3067
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -992,7 +1035,7 @@
           "Name": "Microsoft.Data.Sqlite.Core",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.Data.Sqlite.Core@10.0.13",
-            "UID": "e3f4a0f909445753"
+            "UID": "7e6b8c34cfa07010"
           },
           "Version": "10.0.13",
           "Indirect": true,
@@ -1002,8 +1045,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 3060,
-              "EndLine": 3066
+              "StartLine": 3075,
+              "EndLine": 3081
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -1013,15 +1056,15 @@
           "Name": "Microsoft.Extensions.DependencyModel",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.Extensions.DependencyModel@10.0.13",
-            "UID": "a68b66f0a1ca0ec4"
+            "UID": "f5947d1cfb80ad78"
           },
           "Version": "10.0.13",
           "Indirect": true,
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 3067,
-              "EndLine": 3073
+              "StartLine": 3082,
+              "EndLine": 3088
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -1031,15 +1074,15 @@
           "Name": "Microsoft.TestPlatform.ObjectModel",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.TestPlatform.ObjectModel@17.14.1",
-            "UID": "619e547688f94b22"
+            "UID": "cdbeca135830d00"
           },
           "Version": "17.14.1",
           "Indirect": true,
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 3081,
-              "EndLine": 3087
+              "StartLine": 3096,
+              "EndLine": 3102
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -1049,7 +1092,7 @@
           "Name": "Microsoft.TestPlatform.TestHost",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.TestPlatform.TestHost@17.14.1",
-            "UID": "a754c83857bfb10b"
+            "UID": "4a5621a0533f6a16"
           },
           "Version": "17.14.1",
           "Indirect": true,
@@ -1060,8 +1103,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 3088,
-              "EndLine": 3094
+              "StartLine": 3103,
+              "EndLine": 3109
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -1071,15 +1114,33 @@
           "Name": "Newtonsoft.Json",
           "Identifier": {
             "PURL": "pkg:nuget/Newtonsoft.Json@13.0.3",
-            "UID": "88fb8b7241f4369c"
+            "UID": "801e5f34b138071a"
           },
           "Version": "13.0.3",
           "Indirect": true,
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 3095,
-              "EndLine": 3101
+              "StartLine": 3110,
+              "EndLine": 3116
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "Npgsql/10.0.3",
+          "Name": "Npgsql",
+          "Identifier": {
+            "PURL": "pkg:nuget/Npgsql@10.0.3",
+            "UID": "e71acf6045c29e6a"
+          },
+          "Version": "10.0.3",
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 3117,
+              "EndLine": 3123
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -1089,7 +1150,7 @@
           "Name": "SQLitePCLRaw.bundle_e_sqlite3",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.bundle_e_sqlite3@2.1.13",
-            "UID": "6b9a2d4807c1928a"
+            "UID": "151c8df9f57fa26"
           },
           "Version": "2.1.13",
           "Indirect": true,
@@ -1100,8 +1161,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 3102,
-              "EndLine": 3108
+              "StartLine": 3124,
+              "EndLine": 3130
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -1111,15 +1172,15 @@
           "Name": "SQLitePCLRaw.core",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.core@2.1.13",
-            "UID": "75e56f2300c7202b"
+            "UID": "1d5a4a4d9fb89704"
           },
           "Version": "2.1.13",
           "Indirect": true,
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 3109,
-              "EndLine": 3115
+              "StartLine": 3131,
+              "EndLine": 3137
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -1129,15 +1190,15 @@
           "Name": "SQLitePCLRaw.lib.e_sqlite3",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.lib.e_sqlite3@2.1.13",
-            "UID": "1527f807cca6f217"
+            "UID": "21802a50d0926098"
           },
           "Version": "2.1.13",
           "Indirect": true,
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 3116,
-              "EndLine": 3122
+              "StartLine": 3138,
+              "EndLine": 3144
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -1147,7 +1208,7 @@
           "Name": "SQLitePCLRaw.provider.e_sqlite3",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.provider.e_sqlite3@2.1.13",
-            "UID": "907d2a609ff46e04"
+            "UID": "46f103d6bd61f31f"
           },
           "Version": "2.1.13",
           "Indirect": true,
@@ -1157,8 +1218,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 3123,
-              "EndLine": 3129
+              "StartLine": 3145,
+              "EndLine": 3151
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -1168,15 +1229,15 @@
           "Name": "System.Diagnostics.EventLog",
           "Identifier": {
             "PURL": "pkg:nuget/System.Diagnostics.EventLog@10.0.13",
-            "UID": "8a0a3c5778194d9d"
+            "UID": "5b9c3c0746538350"
           },
           "Version": "10.0.13",
           "Indirect": true,
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 3130,
-              "EndLine": 3136
+              "StartLine": 3152,
+              "EndLine": 3158
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -1186,15 +1247,15 @@
           "Name": "xunit.abstractions",
           "Identifier": {
             "PURL": "pkg:nuget/xunit.abstractions@2.0.3",
-            "UID": "96e47fd9ba3690c3"
+            "UID": "3ac990570d2b3746"
           },
           "Version": "2.0.3",
           "Indirect": true,
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 3144,
-              "EndLine": 3150
+              "StartLine": 3166,
+              "EndLine": 3172
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -1204,15 +1265,15 @@
           "Name": "xunit.assert",
           "Identifier": {
             "PURL": "pkg:nuget/xunit.assert@2.9.3",
-            "UID": "b37e3a3553da8d22"
+            "UID": "5202a14d77af368d"
           },
           "Version": "2.9.3",
           "Indirect": true,
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 3151,
-              "EndLine": 3157
+              "StartLine": 3173,
+              "EndLine": 3179
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -1222,7 +1283,7 @@
           "Name": "xunit.extensibility.core",
           "Identifier": {
             "PURL": "pkg:nuget/xunit.extensibility.core@2.9.3",
-            "UID": "9e3bfa058d23d09a"
+            "UID": "e76cd3b2811dcc1a"
           },
           "Version": "2.9.3",
           "Indirect": true,
@@ -1232,8 +1293,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 3165,
-              "EndLine": 3171
+              "StartLine": 3187,
+              "EndLine": 3193
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -1243,7 +1304,7 @@
           "Name": "xunit.extensibility.execution",
           "Identifier": {
             "PURL": "pkg:nuget/xunit.extensibility.execution@2.9.3",
-            "UID": "2c3d5c0fc3e95c36"
+            "UID": "ad1b931b248c48d4"
           },
           "Version": "2.9.3",
           "Indirect": true,
@@ -1253,8 +1314,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 3172,
-              "EndLine": 3178
+              "StartLine": 3194,
+              "EndLine": 3200
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -1271,14 +1332,34 @@
           "Name": "Quoridor",
           "Identifier": {
             "PURL": "pkg:nuget/Quoridor@1.0.0",
-            "UID": "ad8536ef21afc3f7"
+            "UID": "6e390764183917dd"
           },
           "Version": "1.0.0",
           "Relationship": "root",
+          "DependsOn": [
+            "Npgsql/10.0.3"
+          ],
           "Locations": [
             {
-              "StartLine": 183,
-              "EndLine": 187
+              "StartLine": 192,
+              "EndLine": 196
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "Npgsql/10.0.3",
+          "Name": "Npgsql",
+          "Identifier": {
+            "PURL": "pkg:nuget/Npgsql@10.0.3",
+            "UID": "93eb27fc6eceeb7a"
+          },
+          "Version": "10.0.3",
+          "Relationship": "direct",
+          "Locations": [
+            {
+              "StartLine": 211,
+              "EndLine": 217
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -1288,7 +1369,7 @@
           "Name": "Microsoft.Data.Sqlite.Core",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.Data.Sqlite.Core@10.0.13",
-            "UID": "764a63f55d66b89e"
+            "UID": "95bfb15d656623b1"
           },
           "Version": "10.0.13",
           "Indirect": true,
@@ -1298,8 +1379,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 195,
-              "EndLine": 201
+              "StartLine": 204,
+              "EndLine": 210
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -1309,7 +1390,7 @@
           "Name": "SQLitePCLRaw.bundle_e_sqlite3",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.bundle_e_sqlite3@2.1.13",
-            "UID": "81fae615c26b2ade"
+            "UID": "1b786049162681e7"
           },
           "Version": "2.1.13",
           "Indirect": true,
@@ -1320,8 +1401,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 202,
-              "EndLine": 208
+              "StartLine": 218,
+              "EndLine": 224
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -1331,15 +1412,15 @@
           "Name": "SQLitePCLRaw.core",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.core@2.1.13",
-            "UID": "95a06751d4413836"
+            "UID": "50d09fc75d17c67e"
           },
           "Version": "2.1.13",
           "Indirect": true,
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 209,
-              "EndLine": 215
+              "StartLine": 225,
+              "EndLine": 231
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -1349,15 +1430,15 @@
           "Name": "SQLitePCLRaw.lib.e_sqlite3",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.lib.e_sqlite3@2.1.13",
-            "UID": "f3071142d3081b00"
+            "UID": "62051877b07b813e"
           },
           "Version": "2.1.13",
           "Indirect": true,
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 216,
-              "EndLine": 222
+              "StartLine": 232,
+              "EndLine": 238
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -1367,7 +1448,7 @@
           "Name": "SQLitePCLRaw.provider.e_sqlite3",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.provider.e_sqlite3@2.1.13",
-            "UID": "f5e84edaff9047c6"
+            "UID": "ba3d27e07c9ce1bd"
           },
           "Version": "2.1.13",
           "Indirect": true,
@@ -1377,8 +1458,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 223,
-              "EndLine": 229
+              "StartLine": 239,
+              "EndLine": 245
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -1464,7 +1545,7 @@
           "Name": "xunit",
           "Identifier": {
             "PURL": "pkg:nuget/xunit@2.9.3",
-            "UID": "6d3011ec5b0e94a6"
+            "UID": "61ec83d9ed05c0f6"
           },
           "Version": "2.9.3",
           "Licenses": [
@@ -1472,9 +1553,9 @@
           ],
           "Relationship": "direct",
           "DependsOn": [
+            "xunit.analyzers@1.18.0",
             "xunit.assert@2.9.3",
-            "xunit.core@2.9.3",
-            "xunit.analyzers@1.18.0"
+            "xunit.core@2.9.3"
           ],
           "Locations": [
             {
@@ -1725,7 +1806,7 @@
           "Name": "Microsoft.Extensions.Configuration.FileExtensions",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.Extensions.Configuration.FileExtensions@10.0.13",
-            "UID": "e52651ab7e14b473"
+            "UID": "c346d64db74252cd"
           },
           "Version": "10.0.13",
           "Licenses": [
@@ -1734,11 +1815,11 @@
           "Indirect": true,
           "Relationship": "indirect",
           "DependsOn": [
-            "Microsoft.Extensions.FileProviders.Physical@10.0.13",
-            "Microsoft.Extensions.Primitives@10.0.13",
             "Microsoft.Extensions.Configuration@10.0.13",
             "Microsoft.Extensions.Configuration.Abstractions@10.0.13",
-            "Microsoft.Extensions.FileProviders.Abstractions@10.0.13"
+            "Microsoft.Extensions.FileProviders.Abstractions@10.0.13",
+            "Microsoft.Extensions.FileProviders.Physical@10.0.13",
+            "Microsoft.Extensions.Primitives@10.0.13"
           ],
           "Locations": [
             {
@@ -1753,7 +1834,7 @@
           "Name": "Microsoft.Extensions.Configuration.Json",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.Extensions.Configuration.Json@10.0.13",
-            "UID": "38fa7b99fbb96ead"
+            "UID": "c9cf02dc45715e9f"
           },
           "Version": "10.0.13",
           "Licenses": [
@@ -1762,10 +1843,10 @@
           "Indirect": true,
           "Relationship": "indirect",
           "DependsOn": [
+            "Microsoft.Extensions.FileProviders.Abstractions@10.0.13",
             "Microsoft.Extensions.Configuration@10.0.13",
             "Microsoft.Extensions.Configuration.Abstractions@10.0.13",
-            "Microsoft.Extensions.Configuration.FileExtensions@10.0.13",
-            "Microsoft.Extensions.FileProviders.Abstractions@10.0.13"
+            "Microsoft.Extensions.Configuration.FileExtensions@10.0.13"
           ],
           "Locations": [
             {
@@ -1873,7 +1954,7 @@
           "Name": "Microsoft.Extensions.Diagnostics",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.Extensions.Diagnostics@10.0.13",
-            "UID": "6b65b431f54231cb"
+            "UID": "20c4de9b50cce651"
           },
           "Version": "10.0.13",
           "Licenses": [
@@ -1882,9 +1963,9 @@
           "Indirect": true,
           "Relationship": "indirect",
           "DependsOn": [
+            "Microsoft.Extensions.Configuration@10.0.13",
             "Microsoft.Extensions.Diagnostics.Abstractions@10.0.13",
-            "Microsoft.Extensions.Options.ConfigurationExtensions@10.0.13",
-            "Microsoft.Extensions.Configuration@10.0.13"
+            "Microsoft.Extensions.Options.ConfigurationExtensions@10.0.13"
           ],
           "Locations": [
             {
@@ -1948,7 +2029,7 @@
           "Name": "Microsoft.Extensions.FileProviders.Physical",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.Extensions.FileProviders.Physical@10.0.13",
-            "UID": "e01b8a76ccbfa212"
+            "UID": "dd6b82a27ca0de3f"
           },
           "Version": "10.0.13",
           "Licenses": [
@@ -1957,9 +2038,9 @@
           "Indirect": true,
           "Relationship": "indirect",
           "DependsOn": [
+            "Microsoft.Extensions.Primitives@10.0.13",
             "Microsoft.Extensions.FileProviders.Abstractions@10.0.13",
-            "Microsoft.Extensions.FileSystemGlobbing@10.0.13",
-            "Microsoft.Extensions.Primitives@10.0.13"
+            "Microsoft.Extensions.FileSystemGlobbing@10.0.13"
           ],
           "Locations": [
             {
@@ -1995,7 +2076,7 @@
           "Name": "Microsoft.Extensions.Hosting",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.Extensions.Hosting@10.0.13",
-            "UID": "f56a0d41dc0f9899"
+            "UID": "fe4726efa7296017"
           },
           "Version": "10.0.13",
           "Licenses": [
@@ -2004,28 +2085,28 @@
           "Indirect": true,
           "Relationship": "indirect",
           "DependsOn": [
-            "Microsoft.Extensions.Configuration.Binder@10.0.13",
+            "Microsoft.Extensions.Configuration.Json@10.0.13",
             "Microsoft.Extensions.Configuration.UserSecrets@10.0.13",
+            "Microsoft.Extensions.DependencyInjection@10.0.13",
             "Microsoft.Extensions.Diagnostics@10.0.13",
-            "Microsoft.Extensions.FileProviders.Abstractions@10.0.13",
             "Microsoft.Extensions.FileProviders.Physical@10.0.13",
+            "Microsoft.Extensions.Hosting.Abstractions@10.0.13",
+            "Microsoft.Extensions.Logging@10.0.13",
+            "Microsoft.Extensions.Configuration.Binder@10.0.13",
+            "Microsoft.Extensions.DependencyInjection.Abstractions@10.0.13",
+            "Microsoft.Extensions.Logging.Abstractions@10.0.13",
             "Microsoft.Extensions.Logging.EventLog@10.0.13",
-            "Microsoft.Extensions.Logging.EventSource@10.0.13",
+            "Microsoft.Extensions.Options@10.0.13",
             "Microsoft.Extensions.Configuration@10.0.13",
-            "Microsoft.Extensions.Configuration.Abstractions@10.0.13",
             "Microsoft.Extensions.Configuration.CommandLine@10.0.13",
             "Microsoft.Extensions.Configuration.EnvironmentVariables@10.0.13",
-            "Microsoft.Extensions.DependencyInjection@10.0.13",
-            "Microsoft.Extensions.DependencyInjection.Abstractions@10.0.13",
-            "Microsoft.Extensions.Options@10.0.13",
-            "Microsoft.Extensions.Configuration.Json@10.0.13",
-            "Microsoft.Extensions.Hosting.Abstractions@10.0.13",
-            "Microsoft.Extensions.Logging.Abstractions@10.0.13",
-            "Microsoft.Extensions.Logging.Configuration@10.0.13",
             "Microsoft.Extensions.Configuration.FileExtensions@10.0.13",
-            "Microsoft.Extensions.Logging@10.0.13",
+            "Microsoft.Extensions.FileProviders.Abstractions@10.0.13",
+            "Microsoft.Extensions.Logging.Configuration@10.0.13",
             "Microsoft.Extensions.Logging.Console@10.0.13",
-            "Microsoft.Extensions.Logging.Debug@10.0.13"
+            "Microsoft.Extensions.Logging.Debug@10.0.13",
+            "Microsoft.Extensions.Logging.EventSource@10.0.13",
+            "Microsoft.Extensions.Configuration.Abstractions@10.0.13"
           ],
           "Locations": [
             {
@@ -2040,7 +2121,7 @@
           "Name": "Microsoft.Extensions.Hosting.Abstractions",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.Extensions.Hosting.Abstractions@10.0.13",
-            "UID": "179aae109e50327c"
+            "UID": "50fd95059441656c"
           },
           "Version": "10.0.13",
           "Licenses": [
@@ -2049,11 +2130,11 @@
           "Indirect": true,
           "Relationship": "indirect",
           "DependsOn": [
+            "Microsoft.Extensions.FileProviders.Abstractions@10.0.13",
+            "Microsoft.Extensions.Logging.Abstractions@10.0.13",
             "Microsoft.Extensions.Configuration.Abstractions@10.0.13",
             "Microsoft.Extensions.DependencyInjection.Abstractions@10.0.13",
-            "Microsoft.Extensions.Diagnostics.Abstractions@10.0.13",
-            "Microsoft.Extensions.FileProviders.Abstractions@10.0.13",
-            "Microsoft.Extensions.Logging.Abstractions@10.0.13"
+            "Microsoft.Extensions.Diagnostics.Abstractions@10.0.13"
           ],
           "Locations": [
             {
@@ -2068,7 +2149,7 @@
           "Name": "Microsoft.Extensions.Logging",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.Extensions.Logging@10.0.13",
-            "UID": "29bf1fd32fac4c8d"
+            "UID": "bd538062ec82fd92"
           },
           "Version": "10.0.13",
           "Licenses": [
@@ -2077,9 +2158,9 @@
           "Indirect": true,
           "Relationship": "indirect",
           "DependsOn": [
-            "Microsoft.Extensions.Options@10.0.13",
             "Microsoft.Extensions.DependencyInjection@10.0.13",
-            "Microsoft.Extensions.Logging.Abstractions@10.0.13"
+            "Microsoft.Extensions.Logging.Abstractions@10.0.13",
+            "Microsoft.Extensions.Options@10.0.13"
           ],
           "Locations": [
             {
@@ -2118,7 +2199,7 @@
           "Name": "Microsoft.Extensions.Logging.Configuration",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.Extensions.Logging.Configuration@10.0.13",
-            "UID": "26d1a95ed662f5b4"
+            "UID": "ec421496bf4aea2f"
           },
           "Version": "10.0.13",
           "Licenses": [
@@ -2127,14 +2208,14 @@
           "Indirect": true,
           "Relationship": "indirect",
           "DependsOn": [
+            "Microsoft.Extensions.Configuration@10.0.13",
+            "Microsoft.Extensions.Configuration.Abstractions@10.0.13",
+            "Microsoft.Extensions.Configuration.Binder@10.0.13",
             "Microsoft.Extensions.DependencyInjection.Abstractions@10.0.13",
             "Microsoft.Extensions.Logging@10.0.13",
             "Microsoft.Extensions.Logging.Abstractions@10.0.13",
             "Microsoft.Extensions.Options@10.0.13",
-            "Microsoft.Extensions.Options.ConfigurationExtensions@10.0.13",
-            "Microsoft.Extensions.Configuration@10.0.13",
-            "Microsoft.Extensions.Configuration.Abstractions@10.0.13",
-            "Microsoft.Extensions.Configuration.Binder@10.0.13"
+            "Microsoft.Extensions.Options.ConfigurationExtensions@10.0.13"
           ],
           "Locations": [
             {
@@ -2177,7 +2258,7 @@
           "Name": "Microsoft.Extensions.Logging.Debug",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.Extensions.Logging.Debug@10.0.13",
-            "UID": "992f46adb73fec76"
+            "UID": "7925b84f48e647a3"
           },
           "Version": "10.0.13",
           "Licenses": [
@@ -2186,9 +2267,9 @@
           "Indirect": true,
           "Relationship": "indirect",
           "DependsOn": [
+            "Microsoft.Extensions.DependencyInjection.Abstractions@10.0.13",
             "Microsoft.Extensions.Logging@10.0.13",
-            "Microsoft.Extensions.Logging.Abstractions@10.0.13",
-            "Microsoft.Extensions.DependencyInjection.Abstractions@10.0.13"
+            "Microsoft.Extensions.Logging.Abstractions@10.0.13"
           ],
           "Locations": [
             {
@@ -2203,7 +2284,7 @@
           "Name": "Microsoft.Extensions.Logging.EventLog",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.Extensions.Logging.EventLog@10.0.13",
-            "UID": "d74fb00026eef13"
+            "UID": "569f85d3f51370da"
           },
           "Version": "10.0.13",
           "Licenses": [
@@ -2212,11 +2293,11 @@
           "Indirect": true,
           "Relationship": "indirect",
           "DependsOn": [
-            "System.Diagnostics.EventLog@10.0.13",
             "Microsoft.Extensions.DependencyInjection.Abstractions@10.0.13",
             "Microsoft.Extensions.Logging@10.0.13",
             "Microsoft.Extensions.Logging.Abstractions@10.0.13",
-            "Microsoft.Extensions.Options@10.0.13"
+            "Microsoft.Extensions.Options@10.0.13",
+            "System.Diagnostics.EventLog@10.0.13"
           ],
           "Locations": [
             {
@@ -2231,7 +2312,7 @@
           "Name": "Microsoft.Extensions.Logging.EventSource",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.Extensions.Logging.EventSource@10.0.13",
-            "UID": "cf1cd335136389e8"
+            "UID": "46766792f6db1ec"
           },
           "Version": "10.0.13",
           "Licenses": [
@@ -2240,11 +2321,11 @@
           "Indirect": true,
           "Relationship": "indirect",
           "DependsOn": [
+            "Microsoft.Extensions.Logging.Abstractions@10.0.13",
             "Microsoft.Extensions.Options@10.0.13",
             "Microsoft.Extensions.Primitives@10.0.13",
             "Microsoft.Extensions.DependencyInjection.Abstractions@10.0.13",
-            "Microsoft.Extensions.Logging@10.0.13",
-            "Microsoft.Extensions.Logging.Abstractions@10.0.13"
+            "Microsoft.Extensions.Logging@10.0.13"
           ],
           "Locations": [
             {
@@ -2284,7 +2365,7 @@
           "Name": "Microsoft.Extensions.Options.ConfigurationExtensions",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.Extensions.Options.ConfigurationExtensions@10.0.13",
-            "UID": "8b203e36fbf0743e"
+            "UID": "558d9200e3a7bd0"
           },
           "Version": "10.0.13",
           "Licenses": [
@@ -2293,11 +2374,11 @@
           "Indirect": true,
           "Relationship": "indirect",
           "DependsOn": [
-            "Microsoft.Extensions.Primitives@10.0.13",
             "Microsoft.Extensions.Configuration.Abstractions@10.0.13",
             "Microsoft.Extensions.Configuration.Binder@10.0.13",
             "Microsoft.Extensions.DependencyInjection.Abstractions@10.0.13",
-            "Microsoft.Extensions.Options@10.0.13"
+            "Microsoft.Extensions.Options@10.0.13",
+            "Microsoft.Extensions.Primitives@10.0.13"
           ],
           "Locations": [
             {
@@ -2396,11 +2477,35 @@
           "AnalyzedBy": "nuget"
         },
         {
+          "ID": "Npgsql@10.0.3",
+          "Name": "Npgsql",
+          "Identifier": {
+            "PURL": "pkg:nuget/Npgsql@10.0.3",
+            "UID": "32662941538d9be"
+          },
+          "Version": "10.0.3",
+          "Licenses": [
+            "PostgreSQL"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "Microsoft.Extensions.Logging.Abstractions@10.0.13"
+          ],
+          "Locations": [
+            {
+              "StartLine": 380,
+              "EndLine": 387
+            }
+          ],
+          "AnalyzedBy": "nuget"
+        },
+        {
           "ID": "SQLitePCLRaw.bundle_e_sqlite3@2.1.13",
           "Name": "SQLitePCLRaw.bundle_e_sqlite3",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.bundle_e_sqlite3@2.1.13",
-            "UID": "7f18a0788648bebf"
+            "UID": "f6c79f6a4a6d5959"
           },
           "Version": "2.1.13",
           "Licenses": [
@@ -2414,8 +2519,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 380,
-              "EndLine": 388
+              "StartLine": 388,
+              "EndLine": 396
             }
           ],
           "AnalyzedBy": "nuget"
@@ -2425,7 +2530,7 @@
           "Name": "SQLitePCLRaw.core",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.core@2.1.13",
-            "UID": "b6954146ee965176"
+            "UID": "1140a3cc9740ec13"
           },
           "Version": "2.1.13",
           "Licenses": [
@@ -2435,8 +2540,8 @@
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 389,
-              "EndLine": 393
+              "StartLine": 397,
+              "EndLine": 401
             }
           ],
           "AnalyzedBy": "nuget"
@@ -2446,7 +2551,7 @@
           "Name": "SQLitePCLRaw.lib.e_sqlite3",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.lib.e_sqlite3@2.1.13",
-            "UID": "58e29b0c0b589121"
+            "UID": "3d658cc120adef9b"
           },
           "Version": "2.1.13",
           "Licenses": [
@@ -2456,8 +2561,8 @@
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 394,
-              "EndLine": 398
+              "StartLine": 402,
+              "EndLine": 406
             }
           ],
           "AnalyzedBy": "nuget"
@@ -2467,7 +2572,7 @@
           "Name": "SQLitePCLRaw.provider.e_sqlite3",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.provider.e_sqlite3@2.1.13",
-            "UID": "7fd67f4bbf40f2a5"
+            "UID": "30e47c2a1b81e24"
           },
           "Version": "2.1.13",
           "Licenses": [
@@ -2480,8 +2585,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 399,
-              "EndLine": 406
+              "StartLine": 407,
+              "EndLine": 414
             }
           ],
           "AnalyzedBy": "nuget"
@@ -2491,7 +2596,7 @@
           "Name": "System.Diagnostics.EventLog",
           "Identifier": {
             "PURL": "pkg:nuget/System.Diagnostics.EventLog@10.0.13",
-            "UID": "636064feeff91651"
+            "UID": "2f3a99faed1568f6"
           },
           "Version": "10.0.13",
           "Licenses": [
@@ -2501,8 +2606,8 @@
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 407,
-              "EndLine": 411
+              "StartLine": 415,
+              "EndLine": 419
             }
           ],
           "AnalyzedBy": "nuget"
@@ -2512,15 +2617,15 @@
           "Name": "xunit.abstractions",
           "Identifier": {
             "PURL": "pkg:nuget/xunit.abstractions@2.0.3",
-            "UID": "88d7727379ffbd40"
+            "UID": "55263f99ffebb77c"
           },
           "Version": "2.0.3",
           "Indirect": true,
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 412,
-              "EndLine": 416
+              "StartLine": 420,
+              "EndLine": 424
             }
           ],
           "AnalyzedBy": "nuget"
@@ -2530,7 +2635,7 @@
           "Name": "xunit.analyzers",
           "Identifier": {
             "PURL": "pkg:nuget/xunit.analyzers@1.18.0",
-            "UID": "a9010b20e6df60d7"
+            "UID": "e1b9bac23f9eaa9"
           },
           "Version": "1.18.0",
           "Licenses": [
@@ -2540,8 +2645,8 @@
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 417,
-              "EndLine": 421
+              "StartLine": 425,
+              "EndLine": 429
             }
           ],
           "AnalyzedBy": "nuget"
@@ -2551,7 +2656,7 @@
           "Name": "xunit.assert",
           "Identifier": {
             "PURL": "pkg:nuget/xunit.assert@2.9.3",
-            "UID": "2548f049678acc64"
+            "UID": "caf7d8487ff15594"
           },
           "Version": "2.9.3",
           "Licenses": [
@@ -2561,8 +2666,8 @@
           "Relationship": "indirect",
           "Locations": [
             {
-              "StartLine": 422,
-              "EndLine": 426
+              "StartLine": 430,
+              "EndLine": 434
             }
           ],
           "AnalyzedBy": "nuget"
@@ -2572,7 +2677,7 @@
           "Name": "xunit.core",
           "Identifier": {
             "PURL": "pkg:nuget/xunit.core@2.9.3",
-            "UID": "354a7a2ecc18b1ee"
+            "UID": "fe35317f6a26e7bc"
           },
           "Version": "2.9.3",
           "Licenses": [
@@ -2586,8 +2691,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 427,
-              "EndLine": 435
+              "StartLine": 435,
+              "EndLine": 443
             }
           ],
           "AnalyzedBy": "nuget"
@@ -2597,7 +2702,7 @@
           "Name": "xunit.extensibility.core",
           "Identifier": {
             "PURL": "pkg:nuget/xunit.extensibility.core@2.9.3",
-            "UID": "460bc6f7f8729dc6"
+            "UID": "28900a420d279bed"
           },
           "Version": "2.9.3",
           "Licenses": [
@@ -2610,8 +2715,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 436,
-              "EndLine": 443
+              "StartLine": 444,
+              "EndLine": 451
             }
           ],
           "AnalyzedBy": "nuget"
@@ -2621,7 +2726,7 @@
           "Name": "xunit.extensibility.execution",
           "Identifier": {
             "PURL": "pkg:nuget/xunit.extensibility.execution@2.9.3",
-            "UID": "a2a0c0ae2d3f3433"
+            "UID": "ee9aef48b6ed856a"
           },
           "Version": "2.9.3",
           "Licenses": [
@@ -2634,8 +2739,8 @@
           ],
           "Locations": [
             {
-              "StartLine": 444,
-              "EndLine": 451
+              "StartLine": 452,
+              "EndLine": 459
             }
           ],
           "AnalyzedBy": "nuget"
@@ -2644,6 +2749,15 @@
     },
     {
       "Target": "Dockerfile",
+      "Class": "config",
+      "Type": "dockerfile",
+      "MisconfSummary": {
+        "Successes": 27,
+        "Failures": 0
+      }
+    },
+    {
+      "Target": "tests/Postgres.Dockerfile",
       "Class": "config",
       "Type": "dockerfile",
       "MisconfSummary": {

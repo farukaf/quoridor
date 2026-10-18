@@ -3,18 +3,18 @@
   "Trivy": {
     "Version": "0.76.0"
   },
-  "ReportID": "01a14ee4-e3fe-7e01-9426-a87526362d3f",
-  "CreatedAt": "2026-10-18T09:03:05.854920124-03:00",
-  "ArtifactID": "sha256:2804d942e0dfd90d6ebeab32d86f21d5e62dbc6d40cedb8678c0640b26df40d2",
+  "ReportID": "01a14ef2-8d0c-74db-93c9-657313618516",
+  "CreatedAt": "2026-10-18T09:18:01.1003206-03:00",
+  "ArtifactID": "sha256:893877356a3ac28c86f7a288dbdb6eda2057ec652cb62c70e14319cb3b69e0f9",
   "ArtifactName": "quoridor:visual",
   "ArtifactType": "container_image",
   "Metadata": {
-    "Size": 162862080,
+    "Size": 164344320,
     "OS": {
       "Family": "alpine",
       "Name": "3.24.2"
     },
-    "ImageID": "sha256:6b5d4520e65ca7aaa43e692fbb5a61211b8b6891b48a835621556442fbb2adce",
+    "ImageID": "sha256:2000f1aa9e3d6aaa05f0908bb246b231be2ca21b74dc0c81cf24ddcbbff5481c",
     "DiffIDs": [
       "sha256:74d97c428c51a828f9051a7a40a53ff1fc99e54fc30323ce36760701b0b7f711",
       "sha256:4ab37cc0266e393b4b6916c90defe8cc0af6400cacb72a994063653bcf63378f",
@@ -23,19 +23,19 @@
       "sha256:3435482d143070468e304ca54e6df4b7a3af8f6971baf0182e09925bee27a94a",
       "sha256:007e04ac0b6d563bb553dac2f0031b6cf7840262adc15398af77778d7624194b",
       "sha256:d9c16e134152e5db3badc9bfa3bc77e231bc4fb656bced45e30b8e8f697c3b53",
-      "sha256:9ddc234078f8b96572887153b824864073d758b515c0841b6c33af6f7544ddac",
-      "sha256:8e75e2ed8627e5e2b026a22a2229db88ac6abd0494cee98035c9e6cb486523d8"
+      "sha256:ca76b04b18a78037687391deada7a1841a1b8c11e497ba464bb81aa4216b93fe",
+      "sha256:241a5f644267ced2a020b7b7c42fe5674364c8a3adde36cbf65e90192f370bf9"
     ],
     "RepoTags": [
       "quoridor:visual"
     ],
     "RepoDigests": [
-      "quoridor@sha256:6b5d4520e65ca7aaa43e692fbb5a61211b8b6891b48a835621556442fbb2adce"
+      "quoridor@sha256:2000f1aa9e3d6aaa05f0908bb246b231be2ca21b74dc0c81cf24ddcbbff5481c"
     ],
     "Reference": "quoridor:visual",
     "ImageConfig": {
       "architecture": "amd64",
-      "created": "2026-10-18T09:02:13.982828024-03:00",
+      "created": "2026-10-18T09:17:08.110395028-03:00",
       "history": [
         {
           "created": "2026-09-17T20:37:20Z",
@@ -111,25 +111,25 @@
           "empty_layer": true
         },
         {
-          "created": "2026-10-18T12:02:12Z",
-          "created_by": "/bin/sh -c #(nop) COPY dir:4874f1bcce88ea36d87acc5189cb39c03cf4b4e172610e7068e3edb8ae6b592e in . "
+          "created": "2026-10-18T12:17:06Z",
+          "created_by": "/bin/sh -c #(nop) COPY dir:57df30fb80e5df89c290aca9604824abf018d65a611382f75990e6bd2da02ca9 in . "
         },
         {
-          "created": "2026-10-18T12:02:13Z",
+          "created": "2026-10-18T12:17:07Z",
           "created_by": "/bin/sh -c mkdir -p /data \u0026\u0026 chown \"$APP_UID:$APP_UID\" /data"
         },
         {
-          "created": "2026-10-18T12:02:13Z",
+          "created": "2026-10-18T12:17:07Z",
           "created_by": "/bin/sh -c #(nop)  VOLUME [/data]",
           "empty_layer": true
         },
         {
-          "created": "2026-10-18T12:02:13Z",
+          "created": "2026-10-18T12:17:07Z",
           "created_by": "/bin/sh -c #(nop)  USER 1654",
           "empty_layer": true
         },
         {
-          "created": "2026-10-18T12:02:13Z",
+          "created": "2026-10-18T12:17:08Z",
           "created_by": "/bin/sh -c #(nop)  ENTRYPOINT [\"dotnet\" \"Quoridor.dll\"]",
           "empty_layer": true
         }
@@ -145,8 +145,8 @@
           "sha256:3435482d143070468e304ca54e6df4b7a3af8f6971baf0182e09925bee27a94a",
           "sha256:007e04ac0b6d563bb553dac2f0031b6cf7840262adc15398af77778d7624194b",
           "sha256:d9c16e134152e5db3badc9bfa3bc77e231bc4fb656bced45e30b8e8f697c3b53",
-          "sha256:9ddc234078f8b96572887153b824864073d758b515c0841b6c33af6f7544ddac",
-          "sha256:8e75e2ed8627e5e2b026a22a2229db88ac6abd0494cee98035c9e6cb486523d8"
+          "sha256:ca76b04b18a78037687391deada7a1841a1b8c11e497ba464bb81aa4216b93fe",
+          "sha256:241a5f644267ced2a020b7b7c42fe5674364c8a3adde36cbf65e90192f370bf9"
         ]
       },
       "config": {
@@ -220,14 +220,14 @@
         "DiffID": "sha256:d9c16e134152e5db3badc9bfa3bc77e231bc4fb656bced45e30b8e8f697c3b53"
       },
       {
-        "Size": 35136000,
-        "Digest": "sha256:4b0254a3ffc1ad15a5e85fb1ef8e1bb46b8b06991342fe21d3223612d3b9c9a4",
-        "DiffID": "sha256:9ddc234078f8b96572887153b824864073d758b515c0841b6c33af6f7544ddac"
+        "Size": 36618240,
+        "Digest": "sha256:f1b91b935cbb6b723802135f8117db59ca79cf57598bd555386d0fbf9d95078f",
+        "DiffID": "sha256:ca76b04b18a78037687391deada7a1841a1b8c11e497ba464bb81aa4216b93fe"
       },
       {
         "Size": 1536,
-        "Digest": "sha256:530f042ab91939955d422126b907e32894b0e5448550ddf166ef8f2ed7e10465",
-        "DiffID": "sha256:8e75e2ed8627e5e2b026a22a2229db88ac6abd0494cee98035c9e6cb486523d8"
+        "Digest": "sha256:7055ec5f6e5673cc70331a8b03b19e34014d84d4dddd653cb52d58e2e1ed2a66",
+        "DiffID": "sha256:241a5f644267ced2a020b7b7c42fe5674364c8a3adde36cbf65e90192f370bf9"
       }
     ]
   },
@@ -854,18 +854,42 @@
           "Name": "Quoridor",
           "Identifier": {
             "PURL": "pkg:nuget/Quoridor@1.0.0",
-            "UID": "5653c51e00b7bf40"
+            "UID": "45d060379e9da6d2"
           },
           "Version": "1.0.0",
           "Relationship": "root",
+          "DependsOn": [
+            "Npgsql/10.0.3"
+          ],
           "Layer": {
-            "Digest": "sha256:4b0254a3ffc1ad15a5e85fb1ef8e1bb46b8b06991342fe21d3223612d3b9c9a4",
-            "DiffID": "sha256:9ddc234078f8b96572887153b824864073d758b515c0841b6c33af6f7544ddac"
+            "Digest": "sha256:f1b91b935cbb6b723802135f8117db59ca79cf57598bd555386d0fbf9d95078f",
+            "DiffID": "sha256:ca76b04b18a78037687391deada7a1841a1b8c11e497ba464bb81aa4216b93fe"
           },
           "Locations": [
             {
-              "StartLine": 183,
-              "EndLine": 187
+              "StartLine": 192,
+              "EndLine": 196
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "Npgsql/10.0.3",
+          "Name": "Npgsql",
+          "Identifier": {
+            "PURL": "pkg:nuget/Npgsql@10.0.3",
+            "UID": "bbc900cf7ca02775"
+          },
+          "Version": "10.0.3",
+          "Relationship": "direct",
+          "Layer": {
+            "Digest": "sha256:f1b91b935cbb6b723802135f8117db59ca79cf57598bd555386d0fbf9d95078f",
+            "DiffID": "sha256:ca76b04b18a78037687391deada7a1841a1b8c11e497ba464bb81aa4216b93fe"
+          },
+          "Locations": [
+            {
+              "StartLine": 211,
+              "EndLine": 217
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -875,7 +899,7 @@
           "Name": "Microsoft.Data.Sqlite.Core",
           "Identifier": {
             "PURL": "pkg:nuget/Microsoft.Data.Sqlite.Core@10.0.13",
-            "UID": "a31824af1781e83d"
+            "UID": "2c7568dc58b669de"
           },
           "Version": "10.0.13",
           "Indirect": true,
@@ -884,13 +908,13 @@
             "SQLitePCLRaw.core/2.1.13"
           ],
           "Layer": {
-            "Digest": "sha256:4b0254a3ffc1ad15a5e85fb1ef8e1bb46b8b06991342fe21d3223612d3b9c9a4",
-            "DiffID": "sha256:9ddc234078f8b96572887153b824864073d758b515c0841b6c33af6f7544ddac"
+            "Digest": "sha256:f1b91b935cbb6b723802135f8117db59ca79cf57598bd555386d0fbf9d95078f",
+            "DiffID": "sha256:ca76b04b18a78037687391deada7a1841a1b8c11e497ba464bb81aa4216b93fe"
           },
           "Locations": [
             {
-              "StartLine": 195,
-              "EndLine": 201
+              "StartLine": 204,
+              "EndLine": 210
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -900,7 +924,7 @@
           "Name": "SQLitePCLRaw.bundle_e_sqlite3",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.bundle_e_sqlite3@2.1.13",
-            "UID": "38d23139034e11c9"
+            "UID": "d9ab25e33a918080"
           },
           "Version": "2.1.13",
           "Indirect": true,
@@ -910,13 +934,13 @@
             "SQLitePCLRaw.provider.e_sqlite3/2.1.13"
           ],
           "Layer": {
-            "Digest": "sha256:4b0254a3ffc1ad15a5e85fb1ef8e1bb46b8b06991342fe21d3223612d3b9c9a4",
-            "DiffID": "sha256:9ddc234078f8b96572887153b824864073d758b515c0841b6c33af6f7544ddac"
+            "Digest": "sha256:f1b91b935cbb6b723802135f8117db59ca79cf57598bd555386d0fbf9d95078f",
+            "DiffID": "sha256:ca76b04b18a78037687391deada7a1841a1b8c11e497ba464bb81aa4216b93fe"
           },
           "Locations": [
             {
-              "StartLine": 202,
-              "EndLine": 208
+              "StartLine": 218,
+              "EndLine": 224
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -926,19 +950,19 @@
           "Name": "SQLitePCLRaw.core",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.core@2.1.13",
-            "UID": "94686ff16ba7bd25"
+            "UID": "cb58714b9eb24d45"
           },
           "Version": "2.1.13",
           "Indirect": true,
           "Relationship": "indirect",
           "Layer": {
-            "Digest": "sha256:4b0254a3ffc1ad15a5e85fb1ef8e1bb46b8b06991342fe21d3223612d3b9c9a4",
-            "DiffID": "sha256:9ddc234078f8b96572887153b824864073d758b515c0841b6c33af6f7544ddac"
+            "Digest": "sha256:f1b91b935cbb6b723802135f8117db59ca79cf57598bd555386d0fbf9d95078f",
+            "DiffID": "sha256:ca76b04b18a78037687391deada7a1841a1b8c11e497ba464bb81aa4216b93fe"
           },
           "Locations": [
             {
-              "StartLine": 209,
-              "EndLine": 215
+              "StartLine": 225,
+              "EndLine": 231
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -948,19 +972,19 @@
           "Name": "SQLitePCLRaw.lib.e_sqlite3",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.lib.e_sqlite3@2.1.13",
-            "UID": "8553678ca394c173"
+            "UID": "69078a86587c7d31"
           },
           "Version": "2.1.13",
           "Indirect": true,
           "Relationship": "indirect",
           "Layer": {
-            "Digest": "sha256:4b0254a3ffc1ad15a5e85fb1ef8e1bb46b8b06991342fe21d3223612d3b9c9a4",
-            "DiffID": "sha256:9ddc234078f8b96572887153b824864073d758b515c0841b6c33af6f7544ddac"
+            "Digest": "sha256:f1b91b935cbb6b723802135f8117db59ca79cf57598bd555386d0fbf9d95078f",
+            "DiffID": "sha256:ca76b04b18a78037687391deada7a1841a1b8c11e497ba464bb81aa4216b93fe"
           },
           "Locations": [
             {
-              "StartLine": 216,
-              "EndLine": 222
+              "StartLine": 232,
+              "EndLine": 238
             }
           ],
           "AnalyzedBy": "dotnet-core"
@@ -970,7 +994,7 @@
           "Name": "SQLitePCLRaw.provider.e_sqlite3",
           "Identifier": {
             "PURL": "pkg:nuget/SQLitePCLRaw.provider.e_sqlite3@2.1.13",
-            "UID": "5d9624d60d1a4d8d"
+            "UID": "d4622d324d1f9582"
           },
           "Version": "2.1.13",
           "Indirect": true,
@@ -979,13 +1003,13 @@
             "SQLitePCLRaw.core/2.1.13"
           ],
           "Layer": {
-            "Digest": "sha256:4b0254a3ffc1ad15a5e85fb1ef8e1bb46b8b06991342fe21d3223612d3b9c9a4",
-            "DiffID": "sha256:9ddc234078f8b96572887153b824864073d758b515c0841b6c33af6f7544ddac"
+            "Digest": "sha256:f1b91b935cbb6b723802135f8117db59ca79cf57598bd555386d0fbf9d95078f",
+            "DiffID": "sha256:ca76b04b18a78037687391deada7a1841a1b8c11e497ba464bb81aa4216b93fe"
           },
           "Locations": [
             {
-              "StartLine": 223,
-              "EndLine": 229
+              "StartLine": 239,
+              "EndLine": 245
             }
           ],
           "AnalyzedBy": "dotnet-core"

@@ -1,67 +1,163 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TestRun id="51a3b3a1-6fa6-41c0-b8d4-a75cb6ca7caa" name="@vpsbr-16142486 2026-10-18 09:03:11" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
-  <Times creation="2026-10-18T09:03:11.8811533-03:00" queuing="2026-10-18T09:03:11.8811534-03:00" start="2026-10-18T09:03:09.7909882-03:00" finish="2026-10-18T09:03:12.0606850-03:00" />
-  <TestSettings name="default" id="37c3c94a-4694-4342-bd1c-8f1d4681f97d">
-    <Deployment runDeploymentRoot="_vpsbr-16142486_2026-10-18_09_03_11" />
+<TestRun id="9edf5930-3002-41ad-93da-a22c8e9c17f1" name="@vpsbr-16142486 2026-10-18 09:17:59" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-18T09:17:59.3351477-03:00" queuing="2026-10-18T09:17:59.3351477-03:00" start="2026-10-18T09:17:55.8395530-03:00" finish="2026-10-18T09:17:59.8449275-03:00" />
+  <TestSettings name="default" id="eced6f53-9a26-4ac9-b590-71f45a4ea17b">
+    <Deployment runDeploymentRoot="_vpsbr-16142486_2026-10-18_09_17_59" />
   </TestSettings>
   <Results>
-    <UnitTestResult executionId="6cc1ae3d-00c9-439a-8faf-144a55478cb6" testId="7af70ef7-47bc-1ac4-25e5-5cf430e582b5" testName="Quoridor.Tests.GameTests.CompletedRoundIsRecordedOnceAndSurvivesStoreReopen" computerName="vpsbr-16142486" duration="00:00:00.0447768" startTime="2026-10-18T09:03:11.7282820-03:00" endTime="2026-10-18T09:03:11.7706432-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6cc1ae3d-00c9-439a-8faf-144a55478cb6" />
-    <UnitTestResult executionId="c07b8de1-6e48-42cb-80bd-9e4a05a24ae1" testId="4d3217f0-620f-bdf0-e447-8333a2c053cc" testName="Quoridor.Tests.GameTests.WallCannotEliminateLastPathAndPawnCanJumpOverOpponent" computerName="vpsbr-16142486" duration="00:00:00.1239384" startTime="2026-10-18T09:03:11.4051777-03:00" endTime="2026-10-18T09:03:11.5298889-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c07b8de1-6e48-42cb-80bd-9e4a05a24ae1" />
-    <UnitTestResult executionId="120a6040-1ee3-4d35-ab12-58d24f943661" testId="1698f558-9c4f-c892-64d2-7ccadb5ecad4" testName="Quoridor.Tests.GameTests.ConcurrentStoreCompletionsHaveExactlyOneWinnerAndNamesAreParameters" computerName="vpsbr-16142486" duration="00:00:00.0658865" startTime="2026-10-18T09:03:11.6575889-03:00" endTime="2026-10-18T09:03:11.7251408-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="120a6040-1ee3-4d35-ab12-58d24f943661" />
-    <UnitTestResult executionId="064bbae9-993b-4596-8fee-8c344095677d" testId="9d3b1533-235a-6eb7-8911-1d39296b834a" testName="Quoridor.Tests.GameTests.PersistenceFailureDoesNotResetOrReportVictoryAndCanRetrySameMatch" computerName="vpsbr-16142486" duration="00:00:00.0883645" startTime="2026-10-18T09:03:11.5534721-03:00" endTime="2026-10-18T09:03:11.6183520-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="064bbae9-993b-4596-8fee-8c344095677d" />
-    <UnitTestResult executionId="af44ac5e-cf98-44bf-8d23-30c0c0e299ae" testId="9f72bd02-8740-aa96-7c45-23f2aad49d6b" testName="Quoridor.Tests.ApplicationTests.RealApplicationProtectsIdentityAndPersistsResultsAndKeysAcrossRestart" computerName="vpsbr-16142486" duration="00:00:01.3309378" startTime="2026-10-18T09:03:10.6141348-03:00" endTime="2026-10-18T09:03:11.9609925-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="af44ac5e-cf98-44bf-8d23-30c0c0e299ae" />
-    <UnitTestResult executionId="2534f370-cdae-4612-95a7-309d0b159f48" testId="fa2060ea-36c4-5848-6b81-fca3f72e8122" testName="Quoridor.Tests.GameTests.SpectatorsWrongTurnsAndForgedDestinationsCannotMutateGame" computerName="vpsbr-16142486" duration="00:00:00.0313789" startTime="2026-10-18T09:03:11.7708053-03:00" endTime="2026-10-18T09:03:11.8022576-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2534f370-cdae-4612-95a7-309d0b159f48" />
-    <UnitTestResult executionId="bd97ef40-3057-4f15-b605-b5b9498a697a" testId="40240136-6c8a-b81c-d0b6-878c5c9afb4b" testName="Quoridor.Tests.GameTests.ConcurrentDuplicateMovesOnlyAdvanceOneTurnAndCrossingWallIsRejected" computerName="vpsbr-16142486" duration="00:00:00.0388699" startTime="2026-10-18T09:03:11.6196760-03:00" endTime="2026-10-18T09:03:11.6573637-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bd97ef40-3057-4f15-b605-b5b9498a697a" />
+    <UnitTestResult executionId="66f73b72-383e-4fd1-af18-c8a03b8f1a23" testId="fee3d24e-69fa-3c99-9960-4fd8b5eed9bb" testName="Quoridor.Tests.GameTests.ConcurrentStoreCompletionsHaveExactlyOneWinnerAndNamesAreParameters(provider: &quot;SQLite&quot;)" computerName="vpsbr-16142486" duration="00:00:00.0551031" startTime="2026-10-18T09:17:57.9760248-03:00" endTime="2026-10-18T09:17:58.0381815-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="66f73b72-383e-4fd1-af18-c8a03b8f1a23" />
+    <UnitTestResult executionId="25f5799b-b7d9-4fe4-9443-1613cd85a401" testId="22d5e901-462a-388f-120a-403183374eb4" testName="Quoridor.Tests.PersistenceConfigurationTests.InvalidConfigurationPreventsApplicationStartup(provider: &quot;SQLite&quot;, sqlite: &quot;&quot;, postgres: &quot;&quot;)" computerName="vpsbr-16142486" duration="00:00:00.0255354" startTime="2026-10-18T09:17:59.6285829-03:00" endTime="2026-10-18T09:17:59.6509751-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="25f5799b-b7d9-4fe4-9443-1613cd85a401" />
+    <UnitTestResult executionId="36b5212a-93f4-4726-98b2-ee7cb6b68e08" testId="a55c1670-8984-063f-1547-358ccfd2c4cf" testName="Quoridor.Tests.GameTests.PersistenceFailureDoesNotResetOrReportVictoryAndCanRetrySameMatch(provider: &quot;SQLite&quot;)" computerName="vpsbr-16142486" duration="00:00:00.0493324" startTime="2026-10-18T09:17:59.7332798-03:00" endTime="2026-10-18T09:17:59.7838652-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="36b5212a-93f4-4726-98b2-ee7cb6b68e08" />
+    <UnitTestResult executionId="4a9e0379-fe12-4a67-8a66-898f0c9e86fb" testId="b4fff2b4-a48f-5222-2041-08e6ddc63d8e" testName="Quoridor.Tests.GameTests.PersistenceFailureDoesNotResetOrReportVictoryAndCanRetrySameMatch(provider: &quot;PostgreSql&quot;)" computerName="vpsbr-16142486" duration="00:00:00.1406951" startTime="2026-10-18T09:17:59.5944209-03:00" endTime="2026-10-18T09:17:59.7331100-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4a9e0379-fe12-4a67-8a66-898f0c9e86fb" />
+    <UnitTestResult executionId="a048e053-9f67-4e08-94e5-eac92d306d7f" testId="b0f9f3d1-8d4f-ba9a-695d-0e96a6f29a02" testName="Quoridor.Tests.GameTests.HistoryNormalizesNonUtcInputAndReturnsLongCounts(provider: &quot;PostgreSql&quot;)" computerName="vpsbr-16142486" duration="00:00:00.1006737" startTime="2026-10-18T09:17:59.3653863-03:00" endTime="2026-10-18T09:17:59.4639623-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a048e053-9f67-4e08-94e5-eac92d306d7f" />
+    <UnitTestResult executionId="968fa1c4-2c51-41f3-8a01-691f574371cb" testId="c40ceca1-782f-1af7-62e6-abdd3c288866" testName="Quoridor.Tests.GameTests.ConcurrentDuplicateMovesOnlyAdvanceOneTurnAndCrossingWallIsRejected(provider: &quot;SQLite&quot;)" computerName="vpsbr-16142486" duration="00:00:00.0379710" startTime="2026-10-18T09:17:59.5551546-03:00" endTime="2026-10-18T09:17:59.5940967-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="968fa1c4-2c51-41f3-8a01-691f574371cb" />
+    <UnitTestResult executionId="90207b95-712f-4aa9-9cae-efc02c821087" testId="e4c5ebb7-57cf-05be-4813-7d84ec4cac74" testName="Quoridor.Tests.GameTests.SpectatorsWrongTurnsAndForgedDestinationsCannotMutateGame(provider: &quot;PostgreSql&quot;)" computerName="vpsbr-16142486" duration="00:00:00.0475495" startTime="2026-10-18T09:17:59.1309356-03:00" endTime="2026-10-18T09:17:59.1780972-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="90207b95-712f-4aa9-9cae-efc02c821087" />
+    <UnitTestResult executionId="16bb04dd-3cee-4fed-934b-4d588c146a58" testId="094663dc-7416-308d-6d68-8f951e113715" testName="Quoridor.Tests.GameTests.CompletedRoundIsRecordedOnceAndSurvivesStoreReopen(provider: &quot;SQLite&quot;)" computerName="vpsbr-16142486" duration="00:00:00.0427309" startTime="2026-10-18T09:17:59.1784864-03:00" endTime="2026-10-18T09:17:59.2229459-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="16bb04dd-3cee-4fed-934b-4d588c146a58" />
+    <UnitTestResult executionId="6b6b7643-5238-4e26-84b9-e33a9545f8ee" testId="f192f901-9155-cd46-e94a-5cfb55797b6a" testName="Quoridor.Tests.ApplicationTests.RealApplicationProtectsIdentityAndPersistsResultsAndKeysAcrossRestart(provider: &quot;PostgreSql&quot;)" computerName="vpsbr-16142486" duration="00:00:00.5216672" startTime="2026-10-18T09:17:59.0139435-03:00" endTime="2026-10-18T09:17:59.5376291-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6b6b7643-5238-4e26-84b9-e33a9545f8ee" />
+    <UnitTestResult executionId="a2e4e26c-4a8e-4125-8843-400e8f668530" testId="4a60d973-91db-c781-5dbc-deed8218fc8a" testName="Quoridor.Tests.PersistenceConfigurationTests.InvalidConfigurationPreventsApplicationStartup(provider: &quot;Unknown&quot;, sqlite: &quot;Data Source=quoridor.db&quot;, postgres: &quot;&quot;)" computerName="vpsbr-16142486" duration="00:00:00.0507444" startTime="2026-10-18T09:17:59.5441232-03:00" endTime="2026-10-18T09:17:59.5945144-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a2e4e26c-4a8e-4125-8843-400e8f668530" />
+    <UnitTestResult executionId="87299039-f6a9-4477-8bbb-125368064663" testId="3daf3def-4010-e1cc-a54d-4d985599103f" testName="Quoridor.Tests.GameTests.ConcurrentDuplicateMovesOnlyAdvanceOneTurnAndCrossingWallIsRejected(provider: &quot;PostgreSql&quot;)" computerName="vpsbr-16142486" duration="00:00:00.0597504" startTime="2026-10-18T09:17:59.4961044-03:00" endTime="2026-10-18T09:17:59.5549177-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="87299039-f6a9-4477-8bbb-125368064663" />
+    <UnitTestResult executionId="5556c155-b9d5-458a-8c55-387a71c3912c" testId="5ede27a5-52e2-1859-edaa-8fddae04616e" testName="Quoridor.Tests.GameTests.ConcurrentStoreCompletionsHaveExactlyOneWinnerAndNamesAreParameters(provider: &quot;PostgreSql&quot;)" computerName="vpsbr-16142486" duration="00:00:01.0398677" startTime="2026-10-18T09:17:58.0383545-03:00" endTime="2026-10-18T09:17:59.0890327-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5556c155-b9d5-458a-8c55-387a71c3912c" />
+    <UnitTestResult executionId="77384714-e44e-4110-a81b-5bff1419b6f0" testId="25fc1173-da3d-96eb-40e1-a33d9d70ca99" testName="Quoridor.Tests.PersistenceConfigurationTests.InvalidConfigurationPreventsApplicationStartup(provider: &quot;PostgreSql&quot;, sqlite: &quot;Data Source=quoridor.db&quot;, postgres: &quot;&quot;)" computerName="vpsbr-16142486" duration="00:00:00.0255710" startTime="2026-10-18T09:17:59.6928383-03:00" endTime="2026-10-18T09:17:59.7183446-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="77384714-e44e-4110-a81b-5bff1419b6f0" />
+    <UnitTestResult executionId="b2889426-09e9-4f1d-9c53-4272b9b9e6de" testId="05c1aca3-fcea-1390-4c40-a875ee3d4b82" testName="Quoridor.Tests.GameTests.HistoryNormalizesNonUtcInputAndReturnsLongCounts(provider: &quot;SQLite&quot;)" computerName="vpsbr-16142486" duration="00:00:00.0309271" startTime="2026-10-18T09:17:59.4642010-03:00" endTime="2026-10-18T09:17:59.4957365-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b2889426-09e9-4f1d-9c53-4272b9b9e6de" />
+    <UnitTestResult executionId="943ff53d-0cb2-485c-84ac-71c7214d4853" testId="4fd80aa1-8c07-c7f4-3b57-756de0e67541" testName="Quoridor.Tests.GameTests.WallCannotEliminateLastPathAndPawnCanJumpOverOpponent(provider: &quot;SQLite&quot;)" computerName="vpsbr-16142486" duration="00:00:00.0479615" startTime="2026-10-18T09:17:57.9423824-03:00" endTime="2026-10-18T09:17:57.9735173-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="943ff53d-0cb2-485c-84ac-71c7214d4853" />
+    <UnitTestResult executionId="7151ccae-0a74-4a0d-a911-a108c0c11a80" testId="fb363826-f8d3-d31a-219c-f1d0ee8aae86" testName="Quoridor.Tests.GameTests.CompletedRoundIsRecordedOnceAndSurvivesStoreReopen(provider: &quot;PostgreSql&quot;)" computerName="vpsbr-16142486" duration="00:00:00.1406006" startTime="2026-10-18T09:17:59.2539808-03:00" endTime="2026-10-18T09:17:59.3650425-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7151ccae-0a74-4a0d-a911-a108c0c11a80" />
+    <UnitTestResult executionId="56d145a2-d3a0-4984-b1bc-8deac97a68ef" testId="f9e129ab-e1c3-7f2b-7932-5807304c652e" testName="Quoridor.Tests.PersistenceConfigurationTests.PostgreSqlConnectionFailureNeverFallsBackToSQLite" computerName="vpsbr-16142486" duration="00:00:00.0040418" startTime="2026-10-18T09:17:59.7186090-03:00" endTime="2026-10-18T09:17:59.7238810-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="56d145a2-d3a0-4984-b1bc-8deac97a68ef" />
+    <UnitTestResult executionId="a330704d-8d78-4742-a511-e091032d8011" testId="b78fbaff-58d9-d653-840e-7f59580d764b" testName="Quoridor.Tests.GameTests.SpectatorsWrongTurnsAndForgedDestinationsCannotMutateGame(provider: &quot;SQLite&quot;)" computerName="vpsbr-16142486" duration="00:00:00.0424473" startTime="2026-10-18T09:17:59.0893611-03:00" endTime="2026-10-18T09:17:59.1306801-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a330704d-8d78-4742-a511-e091032d8011" />
+    <UnitTestResult executionId="5f883668-a065-49c3-92e7-ec96e047d413" testId="06d896a3-4343-254e-5dc5-f70f82ef2f5a" testName="Quoridor.Tests.PersistenceConfigurationTests.ExistingSQLiteFileIsReopenedWithoutMovingOrMigratingData" computerName="vpsbr-16142486" duration="00:00:00.0543275" startTime="2026-10-18T09:17:59.7241400-03:00" endTime="2026-10-18T09:17:59.7771492-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5f883668-a065-49c3-92e7-ec96e047d413" />
+    <UnitTestResult executionId="b06ef1a1-5eee-4ecf-b172-4053a1650193" testId="8d160fce-3049-78a0-dc3e-84a92c8b463d" testName="Quoridor.Tests.PersistenceConfigurationTests.InvalidConfigurationPreventsApplicationStartup(provider: &quot;PostgreSql&quot;, sqlite: &quot;Data Source=quoridor.db&quot;, postgres: &quot;Database=quoridor&quot;)" computerName="vpsbr-16142486" duration="00:00:00.0294015" startTime="2026-10-18T09:17:59.5946362-03:00" endTime="2026-10-18T09:17:59.6265775-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b06ef1a1-5eee-4ecf-b172-4053a1650193" />
+    <UnitTestResult executionId="0b63cc0b-cd95-4328-be0f-01014fd2b0fc" testId="4556ca84-f0e6-1f0c-3456-68ad5d8ce2d1" testName="Quoridor.Tests.ApplicationTests.RealApplicationProtectsIdentityAndPersistsResultsAndKeysAcrossRestart(provider: &quot;SQLite&quot;)" computerName="vpsbr-16142486" duration="00:00:02.4965595" startTime="2026-10-18T09:17:56.5048939-03:00" endTime="2026-10-18T09:17:59.0127772-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0b63cc0b-cd95-4328-be0f-01014fd2b0fc" />
+    <UnitTestResult executionId="e2df8389-d9a2-48aa-b904-f81411b0924f" testId="70efeedb-b334-72b5-cc35-d533806eb5a3" testName="Quoridor.Tests.PersistenceConfigurationTests.InvalidConfigurationPreventsApplicationStartup(provider: &quot;SQLite&quot;, sqlite: &quot;Data Source=:memory:&quot;, postgres: &quot;&quot;)" computerName="vpsbr-16142486" duration="00:00:00.0432065" startTime="2026-10-18T09:17:59.6511977-03:00" endTime="2026-10-18T09:17:59.6925862-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e2df8389-d9a2-48aa-b904-f81411b0924f" />
+    <UnitTestResult executionId="7ee2b8b2-6321-4641-9f45-b85847a32197" testId="2c89aa9b-c450-ef33-6cd7-8da34f7dec9f" testName="Quoridor.Tests.GameTests.WallCannotEliminateLastPathAndPawnCanJumpOverOpponent(provider: &quot;PostgreSql&quot;)" computerName="vpsbr-16142486" duration="00:00:00.4879534" startTime="2026-10-18T09:17:57.4314252-03:00" endTime="2026-10-18T09:17:57.9261868-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7ee2b8b2-6321-4641-9f45-b85847a32197" />
   </Results>
   <TestDefinitions>
-    <UnitTest name="Quoridor.Tests.GameTests.SpectatorsWrongTurnsAndForgedDestinationsCannotMutateGame" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="fa2060ea-36c4-5848-6b81-fca3f72e8122">
-      <Execution id="2534f370-cdae-4612-95a7-309d0b159f48" />
-      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.GameTests" name="SpectatorsWrongTurnsAndForgedDestinationsCannotMutateGame" />
-    </UnitTest>
-    <UnitTest name="Quoridor.Tests.GameTests.CompletedRoundIsRecordedOnceAndSurvivesStoreReopen" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="7af70ef7-47bc-1ac4-25e5-5cf430e582b5">
-      <Execution id="6cc1ae3d-00c9-439a-8faf-144a55478cb6" />
-      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.GameTests" name="CompletedRoundIsRecordedOnceAndSurvivesStoreReopen" />
-    </UnitTest>
-    <UnitTest name="Quoridor.Tests.GameTests.PersistenceFailureDoesNotResetOrReportVictoryAndCanRetrySameMatch" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="9d3b1533-235a-6eb7-8911-1d39296b834a">
-      <Execution id="064bbae9-993b-4596-8fee-8c344095677d" />
-      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.GameTests" name="PersistenceFailureDoesNotResetOrReportVictoryAndCanRetrySameMatch" />
-    </UnitTest>
-    <UnitTest name="Quoridor.Tests.ApplicationTests.RealApplicationProtectsIdentityAndPersistsResultsAndKeysAcrossRestart" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="9f72bd02-8740-aa96-7c45-23f2aad49d6b">
-      <Execution id="af44ac5e-cf98-44bf-8d23-30c0c0e299ae" />
+    <UnitTest name="Quoridor.Tests.ApplicationTests.RealApplicationProtectsIdentityAndPersistsResultsAndKeysAcrossRestart(provider: &quot;SQLite&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="4556ca84-f0e6-1f0c-3456-68ad5d8ce2d1">
+      <Execution id="0b63cc0b-cd95-4328-be0f-01014fd2b0fc" />
       <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.ApplicationTests" name="RealApplicationProtectsIdentityAndPersistsResultsAndKeysAcrossRestart" />
     </UnitTest>
-    <UnitTest name="Quoridor.Tests.GameTests.ConcurrentStoreCompletionsHaveExactlyOneWinnerAndNamesAreParameters" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="1698f558-9c4f-c892-64d2-7ccadb5ecad4">
-      <Execution id="120a6040-1ee3-4d35-ab12-58d24f943661" />
-      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.GameTests" name="ConcurrentStoreCompletionsHaveExactlyOneWinnerAndNamesAreParameters" />
-    </UnitTest>
-    <UnitTest name="Quoridor.Tests.GameTests.ConcurrentDuplicateMovesOnlyAdvanceOneTurnAndCrossingWallIsRejected" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="40240136-6c8a-b81c-d0b6-878c5c9afb4b">
-      <Execution id="bd97ef40-3057-4f15-b605-b5b9498a697a" />
+    <UnitTest name="Quoridor.Tests.GameTests.ConcurrentDuplicateMovesOnlyAdvanceOneTurnAndCrossingWallIsRejected(provider: &quot;PostgreSql&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="3daf3def-4010-e1cc-a54d-4d985599103f">
+      <Execution id="87299039-f6a9-4477-8bbb-125368064663" />
       <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.GameTests" name="ConcurrentDuplicateMovesOnlyAdvanceOneTurnAndCrossingWallIsRejected" />
     </UnitTest>
-    <UnitTest name="Quoridor.Tests.GameTests.WallCannotEliminateLastPathAndPawnCanJumpOverOpponent" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="4d3217f0-620f-bdf0-e447-8333a2c053cc">
-      <Execution id="c07b8de1-6e48-42cb-80bd-9e4a05a24ae1" />
+    <UnitTest name="Quoridor.Tests.GameTests.HistoryNormalizesNonUtcInputAndReturnsLongCounts(provider: &quot;PostgreSql&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="b0f9f3d1-8d4f-ba9a-695d-0e96a6f29a02">
+      <Execution id="a048e053-9f67-4e08-94e5-eac92d306d7f" />
+      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.GameTests" name="HistoryNormalizesNonUtcInputAndReturnsLongCounts" />
+    </UnitTest>
+    <UnitTest name="Quoridor.Tests.GameTests.CompletedRoundIsRecordedOnceAndSurvivesStoreReopen(provider: &quot;SQLite&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="094663dc-7416-308d-6d68-8f951e113715">
+      <Execution id="16bb04dd-3cee-4fed-934b-4d588c146a58" />
+      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.GameTests" name="CompletedRoundIsRecordedOnceAndSurvivesStoreReopen" />
+    </UnitTest>
+    <UnitTest name="Quoridor.Tests.GameTests.ConcurrentStoreCompletionsHaveExactlyOneWinnerAndNamesAreParameters(provider: &quot;PostgreSql&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="5ede27a5-52e2-1859-edaa-8fddae04616e">
+      <Execution id="5556c155-b9d5-458a-8c55-387a71c3912c" />
+      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.GameTests" name="ConcurrentStoreCompletionsHaveExactlyOneWinnerAndNamesAreParameters" />
+    </UnitTest>
+    <UnitTest name="Quoridor.Tests.GameTests.ConcurrentDuplicateMovesOnlyAdvanceOneTurnAndCrossingWallIsRejected(provider: &quot;SQLite&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="c40ceca1-782f-1af7-62e6-abdd3c288866">
+      <Execution id="968fa1c4-2c51-41f3-8a01-691f574371cb" />
+      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.GameTests" name="ConcurrentDuplicateMovesOnlyAdvanceOneTurnAndCrossingWallIsRejected" />
+    </UnitTest>
+    <UnitTest name="Quoridor.Tests.GameTests.PersistenceFailureDoesNotResetOrReportVictoryAndCanRetrySameMatch(provider: &quot;PostgreSql&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="b4fff2b4-a48f-5222-2041-08e6ddc63d8e">
+      <Execution id="4a9e0379-fe12-4a67-8a66-898f0c9e86fb" />
+      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.GameTests" name="PersistenceFailureDoesNotResetOrReportVictoryAndCanRetrySameMatch" />
+    </UnitTest>
+    <UnitTest name="Quoridor.Tests.GameTests.CompletedRoundIsRecordedOnceAndSurvivesStoreReopen(provider: &quot;PostgreSql&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="fb363826-f8d3-d31a-219c-f1d0ee8aae86">
+      <Execution id="7151ccae-0a74-4a0d-a911-a108c0c11a80" />
+      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.GameTests" name="CompletedRoundIsRecordedOnceAndSurvivesStoreReopen" />
+    </UnitTest>
+    <UnitTest name="Quoridor.Tests.GameTests.SpectatorsWrongTurnsAndForgedDestinationsCannotMutateGame(provider: &quot;SQLite&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="b78fbaff-58d9-d653-840e-7f59580d764b">
+      <Execution id="a330704d-8d78-4742-a511-e091032d8011" />
+      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.GameTests" name="SpectatorsWrongTurnsAndForgedDestinationsCannotMutateGame" />
+    </UnitTest>
+    <UnitTest name="Quoridor.Tests.PersistenceConfigurationTests.InvalidConfigurationPreventsApplicationStartup(provider: &quot;PostgreSql&quot;, sqlite: &quot;Data Source=quoridor.db&quot;, postgres: &quot;Database=quoridor&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="8d160fce-3049-78a0-dc3e-84a92c8b463d">
+      <Execution id="b06ef1a1-5eee-4ecf-b172-4053a1650193" />
+      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.PersistenceConfigurationTests" name="InvalidConfigurationPreventsApplicationStartup" />
+    </UnitTest>
+    <UnitTest name="Quoridor.Tests.GameTests.PersistenceFailureDoesNotResetOrReportVictoryAndCanRetrySameMatch(provider: &quot;SQLite&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="a55c1670-8984-063f-1547-358ccfd2c4cf">
+      <Execution id="36b5212a-93f4-4726-98b2-ee7cb6b68e08" />
+      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.GameTests" name="PersistenceFailureDoesNotResetOrReportVictoryAndCanRetrySameMatch" />
+    </UnitTest>
+    <UnitTest name="Quoridor.Tests.PersistenceConfigurationTests.InvalidConfigurationPreventsApplicationStartup(provider: &quot;SQLite&quot;, sqlite: &quot;Data Source=:memory:&quot;, postgres: &quot;&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="70efeedb-b334-72b5-cc35-d533806eb5a3">
+      <Execution id="e2df8389-d9a2-48aa-b904-f81411b0924f" />
+      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.PersistenceConfigurationTests" name="InvalidConfigurationPreventsApplicationStartup" />
+    </UnitTest>
+    <UnitTest name="Quoridor.Tests.GameTests.SpectatorsWrongTurnsAndForgedDestinationsCannotMutateGame(provider: &quot;PostgreSql&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="e4c5ebb7-57cf-05be-4813-7d84ec4cac74">
+      <Execution id="90207b95-712f-4aa9-9cae-efc02c821087" />
+      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.GameTests" name="SpectatorsWrongTurnsAndForgedDestinationsCannotMutateGame" />
+    </UnitTest>
+    <UnitTest name="Quoridor.Tests.PersistenceConfigurationTests.PostgreSqlConnectionFailureNeverFallsBackToSQLite" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="f9e129ab-e1c3-7f2b-7932-5807304c652e">
+      <Execution id="56d145a2-d3a0-4984-b1bc-8deac97a68ef" />
+      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.PersistenceConfigurationTests" name="PostgreSqlConnectionFailureNeverFallsBackToSQLite" />
+    </UnitTest>
+    <UnitTest name="Quoridor.Tests.PersistenceConfigurationTests.InvalidConfigurationPreventsApplicationStartup(provider: &quot;PostgreSql&quot;, sqlite: &quot;Data Source=quoridor.db&quot;, postgres: &quot;&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="25fc1173-da3d-96eb-40e1-a33d9d70ca99">
+      <Execution id="77384714-e44e-4110-a81b-5bff1419b6f0" />
+      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.PersistenceConfigurationTests" name="InvalidConfigurationPreventsApplicationStartup" />
+    </UnitTest>
+    <UnitTest name="Quoridor.Tests.GameTests.WallCannotEliminateLastPathAndPawnCanJumpOverOpponent(provider: &quot;PostgreSql&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="2c89aa9b-c450-ef33-6cd7-8da34f7dec9f">
+      <Execution id="7ee2b8b2-6321-4641-9f45-b85847a32197" />
+      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.GameTests" name="WallCannotEliminateLastPathAndPawnCanJumpOverOpponent" />
+    </UnitTest>
+    <UnitTest name="Quoridor.Tests.PersistenceConfigurationTests.InvalidConfigurationPreventsApplicationStartup(provider: &quot;SQLite&quot;, sqlite: &quot;&quot;, postgres: &quot;&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="22d5e901-462a-388f-120a-403183374eb4">
+      <Execution id="25f5799b-b7d9-4fe4-9443-1613cd85a401" />
+      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.PersistenceConfigurationTests" name="InvalidConfigurationPreventsApplicationStartup" />
+    </UnitTest>
+    <UnitTest name="Quoridor.Tests.GameTests.ConcurrentStoreCompletionsHaveExactlyOneWinnerAndNamesAreParameters(provider: &quot;SQLite&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="fee3d24e-69fa-3c99-9960-4fd8b5eed9bb">
+      <Execution id="66f73b72-383e-4fd1-af18-c8a03b8f1a23" />
+      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.GameTests" name="ConcurrentStoreCompletionsHaveExactlyOneWinnerAndNamesAreParameters" />
+    </UnitTest>
+    <UnitTest name="Quoridor.Tests.PersistenceConfigurationTests.InvalidConfigurationPreventsApplicationStartup(provider: &quot;Unknown&quot;, sqlite: &quot;Data Source=quoridor.db&quot;, postgres: &quot;&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="4a60d973-91db-c781-5dbc-deed8218fc8a">
+      <Execution id="a2e4e26c-4a8e-4125-8843-400e8f668530" />
+      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.PersistenceConfigurationTests" name="InvalidConfigurationPreventsApplicationStartup" />
+    </UnitTest>
+    <UnitTest name="Quoridor.Tests.ApplicationTests.RealApplicationProtectsIdentityAndPersistsResultsAndKeysAcrossRestart(provider: &quot;PostgreSql&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="f192f901-9155-cd46-e94a-5cfb55797b6a">
+      <Execution id="6b6b7643-5238-4e26-84b9-e33a9545f8ee" />
+      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.ApplicationTests" name="RealApplicationProtectsIdentityAndPersistsResultsAndKeysAcrossRestart" />
+    </UnitTest>
+    <UnitTest name="Quoridor.Tests.GameTests.HistoryNormalizesNonUtcInputAndReturnsLongCounts(provider: &quot;SQLite&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="05c1aca3-fcea-1390-4c40-a875ee3d4b82">
+      <Execution id="b2889426-09e9-4f1d-9c53-4272b9b9e6de" />
+      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.GameTests" name="HistoryNormalizesNonUtcInputAndReturnsLongCounts" />
+    </UnitTest>
+    <UnitTest name="Quoridor.Tests.PersistenceConfigurationTests.ExistingSQLiteFileIsReopenedWithoutMovingOrMigratingData" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="06d896a3-4343-254e-5dc5-f70f82ef2f5a">
+      <Execution id="5f883668-a065-49c3-92e7-ec96e047d413" />
+      <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.PersistenceConfigurationTests" name="ExistingSQLiteFileIsReopenedWithoutMovingOrMigratingData" />
+    </UnitTest>
+    <UnitTest name="Quoridor.Tests.GameTests.WallCannotEliminateLastPathAndPawnCanJumpOverOpponent(provider: &quot;SQLite&quot;)" storage="/home/agent/work/personal-apps-modernization/quoridor/tests/quoridor.tests/bin/release/net10.0/quoridor.tests.dll" id="4fd80aa1-8c07-c7f4-3b57-756de0e67541">
+      <Execution id="943ff53d-0cb2-485c-84ac-71c7214d4853" />
       <TestMethod codeBase="/home/agent/work/personal-apps-modernization/quoridor/tests/Quoridor.Tests/bin/Release/net10.0/Quoridor.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Quoridor.Tests.GameTests" name="WallCannotEliminateLastPathAndPawnCanJumpOverOpponent" />
     </UnitTest>
   </TestDefinitions>
   <TestEntries>
-    <TestEntry testId="7af70ef7-47bc-1ac4-25e5-5cf430e582b5" executionId="6cc1ae3d-00c9-439a-8faf-144a55478cb6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="4d3217f0-620f-bdf0-e447-8333a2c053cc" executionId="c07b8de1-6e48-42cb-80bd-9e4a05a24ae1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="1698f558-9c4f-c892-64d2-7ccadb5ecad4" executionId="120a6040-1ee3-4d35-ab12-58d24f943661" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="9d3b1533-235a-6eb7-8911-1d39296b834a" executionId="064bbae9-993b-4596-8fee-8c344095677d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="9f72bd02-8740-aa96-7c45-23f2aad49d6b" executionId="af44ac5e-cf98-44bf-8d23-30c0c0e299ae" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="fa2060ea-36c4-5848-6b81-fca3f72e8122" executionId="2534f370-cdae-4612-95a7-309d0b159f48" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="40240136-6c8a-b81c-d0b6-878c5c9afb4b" executionId="bd97ef40-3057-4f15-b605-b5b9498a697a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fee3d24e-69fa-3c99-9960-4fd8b5eed9bb" executionId="66f73b72-383e-4fd1-af18-c8a03b8f1a23" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="22d5e901-462a-388f-120a-403183374eb4" executionId="25f5799b-b7d9-4fe4-9443-1613cd85a401" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a55c1670-8984-063f-1547-358ccfd2c4cf" executionId="36b5212a-93f4-4726-98b2-ee7cb6b68e08" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b4fff2b4-a48f-5222-2041-08e6ddc63d8e" executionId="4a9e0379-fe12-4a67-8a66-898f0c9e86fb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b0f9f3d1-8d4f-ba9a-695d-0e96a6f29a02" executionId="a048e053-9f67-4e08-94e5-eac92d306d7f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c40ceca1-782f-1af7-62e6-abdd3c288866" executionId="968fa1c4-2c51-41f3-8a01-691f574371cb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e4c5ebb7-57cf-05be-4813-7d84ec4cac74" executionId="90207b95-712f-4aa9-9cae-efc02c821087" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="094663dc-7416-308d-6d68-8f951e113715" executionId="16bb04dd-3cee-4fed-934b-4d588c146a58" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f192f901-9155-cd46-e94a-5cfb55797b6a" executionId="6b6b7643-5238-4e26-84b9-e33a9545f8ee" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4a60d973-91db-c781-5dbc-deed8218fc8a" executionId="a2e4e26c-4a8e-4125-8843-400e8f668530" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3daf3def-4010-e1cc-a54d-4d985599103f" executionId="87299039-f6a9-4477-8bbb-125368064663" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5ede27a5-52e2-1859-edaa-8fddae04616e" executionId="5556c155-b9d5-458a-8c55-387a71c3912c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="25fc1173-da3d-96eb-40e1-a33d9d70ca99" executionId="77384714-e44e-4110-a81b-5bff1419b6f0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="05c1aca3-fcea-1390-4c40-a875ee3d4b82" executionId="b2889426-09e9-4f1d-9c53-4272b9b9e6de" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4fd80aa1-8c07-c7f4-3b57-756de0e67541" executionId="943ff53d-0cb2-485c-84ac-71c7214d4853" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fb363826-f8d3-d31a-219c-f1d0ee8aae86" executionId="7151ccae-0a74-4a0d-a911-a108c0c11a80" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f9e129ab-e1c3-7f2b-7932-5807304c652e" executionId="56d145a2-d3a0-4984-b1bc-8deac97a68ef" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b78fbaff-58d9-d653-840e-7f59580d764b" executionId="a330704d-8d78-4742-a511-e091032d8011" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="06d896a3-4343-254e-5dc5-f70f82ef2f5a" executionId="5f883668-a065-49c3-92e7-ec96e047d413" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8d160fce-3049-78a0-dc3e-84a92c8b463d" executionId="b06ef1a1-5eee-4ecf-b172-4053a1650193" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4556ca84-f0e6-1f0c-3456-68ad5d8ce2d1" executionId="0b63cc0b-cd95-4328-be0f-01014fd2b0fc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="70efeedb-b334-72b5-cc35-d533806eb5a3" executionId="e2df8389-d9a2-48aa-b904-f81411b0924f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2c89aa9b-c450-ef33-6cd7-8da34f7dec9f" executionId="7ee2b8b2-6321-4641-9f45-b85847a32197" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
   </TestEntries>
   <TestLists>
     <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
     <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
   </TestLists>
   <ResultSummary outcome="Completed">
-    <Counters total="7" executed="7" passed="7" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Counters total="23" executed="23" passed="23" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
     <Output>
       <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.13)
 [xUnit.net 00:00:00.12]   Discovering: Quoridor.Tests
-[xUnit.net 00:00:00.18]   Discovered:  Quoridor.Tests
+[xUnit.net 00:00:00.21]   Discovered:  Quoridor.Tests
 [xUnit.net 00:00:00.23]   Starting:    Quoridor.Tests
 info: Microsoft.Hosting.Lifetime[0]
       Application started. Press Ctrl+C to shut down.
@@ -79,7 +175,23 @@ info: Microsoft.Hosting.Lifetime[0]
       Content root path: /home/agent/work/personal-apps-modernization/quoridor/src/Quoridor
 info: Microsoft.Hosting.Lifetime[0]
       Application is shutting down...
-[xUnit.net 00:00:01.60]   Finished:    Quoridor.Tests
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /home/agent/work/personal-apps-modernization/quoridor/src/Quoridor
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /home/agent/work/personal-apps-modernization/quoridor/src/Quoridor
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
+[xUnit.net 00:00:03.54]   Finished:    Quoridor.Tests
 </StdOut>
     </Output>
   </ResultSummary>
