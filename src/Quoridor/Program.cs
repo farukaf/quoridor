@@ -11,7 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-// TODO: Make some extensions to organize before this file starting to become bloated
 var dataDirectory = Path.GetFullPath(builder.Configuration["DataDirectory"] ?? "data");
 Directory.CreateDirectory(dataDirectory);
 builder.Services.AddDataProtection().PersistKeysToFileSystem(new DirectoryInfo(Path.Combine(dataDirectory, "keys"))).SetApplicationName("Quoridor");
@@ -64,6 +63,9 @@ app.UseAntiforgery();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
-app.Run();
+await app.RunAsync();
 
-public partial class Program { }
+public partial class Program
+{
+    protected Program() { }
+}

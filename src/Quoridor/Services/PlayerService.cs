@@ -25,7 +25,7 @@ public sealed class PlayerService(AuthenticationStateProvider authentication, Ga
     public async Task<Player> SetUser(string userName)
     {
         var player = store.SetName(await Identity(), userName);
-        if (PlayerChanged is not null) foreach (Func<Task> handler in PlayerChanged.GetInvocationList()) await handler();
+        if (PlayerChanged is not null) foreach (var handler in PlayerChanged.GetInvocationList().Cast<Func<Task>>()) await handler();
         return player;
     }
 }

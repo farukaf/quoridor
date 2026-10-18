@@ -3,8 +3,9 @@ using Quoridor.Services;
 
 namespace Quoridor.ViewModels.Board;
 
-public record BoardViewModel : IDisposable
+public sealed class BoardViewModel : IDisposable
 {
+    private bool disposed;
     public BoardViewModel(RoomViewModel room)
     {
         RowSize = 9;
@@ -41,10 +42,10 @@ public record BoardViewModel : IDisposable
                 await EnabledCornerClicked(clickedCorner);
                 break;
             case CornerState.Selected:
-                await SelectedCornerClicked(clickedCorner);
+                await SelectedCornerClicked();
                 break;
             case CornerState.Disabled:
-                await DisabledCornerClicked(clickedCorner);
+                await DisabledCornerClicked();
                 break;
             case CornerState.Avaliable:
                 await AvaliableCornerClicked(clickedCorner);
@@ -81,16 +82,15 @@ public record BoardViewModel : IDisposable
         return (corners, wall1, wall2);
     }
 
-    private Task DisabledCornerClicked(CornerViewModel clickedCorner)
+    private static Task DisabledCornerClicked()
     {
         return Task.CompletedTask;
     }
 
-    private Task SelectedCornerClicked(CornerViewModel clickedCorner)
+    private Task SelectedCornerClicked()
     {
         foreach (var corner in Corners.Values)
         {
-            //TODO: Check if colides with a wall
             corner.State = CornerState.Enabled;
         }
 
@@ -103,44 +103,38 @@ public record BoardViewModel : IDisposable
         if (currentPlayerWallCount <= 0)
             return Task.CompletedTask;
 
-        var avaliable = 0;
+        var available = 0;
         clickedCorner.State = CornerState.Selected;
-        foreach (var corner in Corners.Values)
+        foreach (var corner in Corners.Values.Where(c => c != clickedCorner))
         {
-            if (corner == clickedCorner)
-                continue;
-
             corner.State = CornerState.Disabled;
-
-            if ((corner.CornerAddress.X == clickedCorner.CornerAddress.X && corner.CornerAddress.Y == clickedCorner.CornerAddress.Y + 2) ||
-                (corner.CornerAddress.Y == clickedCorner.CornerAddress.Y && corner.CornerAddress.X == clickedCorner.CornerAddress.X + 2) ||
-                (corner.CornerAddress.X == clickedCorner.CornerAddress.X && corner.CornerAddress.Y == clickedCorner.CornerAddress.Y - 2) ||
-                (corner.CornerAddress.Y == clickedCorner.CornerAddress.Y && corner.CornerAddress.X == clickedCorner.CornerAddress.X - 2))
+            if (IsValidWallCandidate(clickedCorner, corner))
             {
-                if (!ValidWallPosition(clickedCorner, corner)) continue;
-                (var corners, var wall1, var wall2) = GetWallsFromCorners(clickedCorner, corner);
-
-                if (wall1.IsPlaced || wall2.IsPlaced || CrossesWall(clickedCorner, corner))
-                    continue;
-
-                //If performace is a issue, look this first :D
-                var willBlockPlayer = WillBlockPlayer(clickedCorner, corner, corners, wall1, wall2);
-                if (willBlockPlayer)
-                    continue;
-
                 corner.State = CornerState.Avaliable;
-                avaliable++;
-                continue;
+                available++;
             }
         }
 
-        if (avaliable == 0)
-        {
-            foreach (var corner in Corners.Values)
-                corner.State = CornerState.Enabled;
-        }
+        if (available == 0) ResetCornerStates();
 
         return Task.CompletedTask;
+    }
+
+    private bool IsValidWallCandidate(CornerViewModel selected, CornerViewModel candidate)
+    {
+        if (!AreAdjacentWallCorners(selected, candidate) || !ValidWallPosition(selected, candidate)) return false;
+        var (_, wall1, wall2) = GetWallsFromCorners(selected, candidate);
+        if (wall1.IsPlaced || wall2.IsPlaced || CrossesWall(selected, candidate)) return false;
+        return !WillBlockPlayer(wall1, wall2);
+    }
+
+    private static bool AreAdjacentWallCorners(CornerViewModel first, CornerViewModel second) =>
+        (first.CornerAddress.X == second.CornerAddress.X && Math.Abs(first.CornerAddress.Y - second.CornerAddress.Y) == 2) ||
+        (first.CornerAddress.Y == second.CornerAddress.Y && Math.Abs(first.CornerAddress.X - second.CornerAddress.X) == 2);
+
+    private void ResetCornerStates()
+    {
+        foreach (var corner in Corners.Values) corner.State = CornerState.Enabled;
     }
 
     private static bool ValidWallPosition(CornerViewModel a, CornerViewModel b) =>
@@ -155,7 +149,7 @@ public record BoardViewModel : IDisposable
             && (w.From == new CornerAddress((short)x, (short)y) || w.To == new CornerAddress((short)x, (short)y))) == 2;
     }
 
-    private bool WillBlockPlayer(CornerViewModel clickedCorner, CornerViewModel corner, IEnumerable<CornerViewModel> corners, WallViewModel wall1, WallViewModel wall2)
+    private bool WillBlockPlayer(WallViewModel wall1, WallViewModel wall2)
     {
         // Simulate placing the walls to the simplify the latter algorithm
         wall1.IsPlaced = true;
@@ -172,8 +166,8 @@ public record BoardViewModel : IDisposable
         return player1Blocked || player2Blocked;
     }
 
-    Queue<CellAddress> _isPlayerBlockedQueue = new Queue<CellAddress>();
-    HashSet<CellAddress> _isPlayerBlockedVisited = new HashSet<CellAddress>();
+    private readonly Queue<CellAddress> _isPlayerBlockedQueue = new();
+    private readonly HashSet<CellAddress> _isPlayerBlockedVisited = new();
 
     /// <summary>
     /// This uses a breadth-first search (BFS) to determine if a player can reach any of their victory cells
@@ -201,10 +195,9 @@ public record BoardViewModel : IDisposable
                 return false;
 
             var neighbors = GetNeighbors(current);
-            foreach (var neighbor in neighbors)
+            foreach (var neighbor in neighbors.Where(n => !_isPlayerBlockedVisited.Contains(n)))
             {
-                if (!_isPlayerBlockedVisited.Contains(neighbor))
-                    _isPlayerBlockedQueue.Enqueue(neighbor);
+                _isPlayerBlockedQueue.Enqueue(neighbor);
             }
         }
 
@@ -231,12 +224,12 @@ public record BoardViewModel : IDisposable
         return neighbors;
     }
 
-    private async Task AvaliableCornerClicked(CornerViewModel clickedCorner)
+    private Task AvaliableCornerClicked(CornerViewModel clickedCorner)
     {
         var selectedCorner = Corners.Values.First(c => c.State == CornerState.Selected);
 
         (var corners, var wall1, var wall2) = GetWallsFromCorners(clickedCorner, selectedCorner);
-        if (wall1.IsPlaced || wall2.IsPlaced || CrossesWall(clickedCorner, selectedCorner) || WillBlockPlayer(clickedCorner, selectedCorner, corners, wall1, wall2)) return;
+        if (wall1.IsPlaced || wall2.IsPlaced || CrossesWall(clickedCorner, selectedCorner) || WillBlockPlayer(wall1, wall2)) return Task.CompletedTask;
 
         wall1.IsPlaced = true;
         wall2.IsPlaced = true;
@@ -246,7 +239,7 @@ public record BoardViewModel : IDisposable
             corner.State = CornerState.Enabled;
 
         Room.WallPlaced();
-        await Task.CompletedTask;
+        return Task.CompletedTask;
     }
 
     #endregion
@@ -396,125 +389,69 @@ public record BoardViewModel : IDisposable
     {
         var rows = RowSize * 2 + 1;
         var columns = ColumnSize * 2 + 1;
-
-        //Resolve Corners First
-        for (short i = 0; i < rows; i++)
+        for (short row = 0; row < rows; row++)
+        for (short column = 0; column < columns; column++)
         {
-            for (short j = 0; j < columns; j++)
-            {
-                var gridAddress = new GridAddress(i, j);
-                //even column and even row: corner 
-                if (j % 2 == 0 && i % 2 == 0)
-                {
-                    var cornerAddress = new CornerAddress((short)(i / 2), (short)(j / 2));
-                    var corner = Corners[cornerAddress];
-                    corner.GridAddress = gridAddress;
-                    GridElements.Add(gridAddress, corner);
-                    continue;
-                }
-            }
+            if (row % 2 != 0 || column % 2 != 0) continue;
+            var address = new GridAddress(row, column);
+            var corner = Corners[new CornerAddress((short)(row / 2), (short)(column / 2))];
+            corner.GridAddress = address;
+            GridElements.Add(address, corner);
         }
 
-        for (short i = 0; i < rows; i++)
+        for (short row = 0; row < rows; row++)
+        for (short column = 0; column < columns; column++)
         {
-            for (short j = 0; j < columns; j++)
-            {
-                var gridAddress = new GridAddress(i, j);
-                //even column and even row: corner 
-                if (j % 2 == 0 && i % 2 == 0)
-                {
-                    continue;
-                }
-
-                //odd column and odd row: cell
-                if (j % 2 != 0 && i % 2 != 0)
-                {
-                    var cellAddress = new CellAddress((short)(i / 2), (short)(j / 2));
-                    var cell = Cells[cellAddress];
-                    cell.GridAddress = gridAddress;
-                    GridElements.Add(gridAddress, cell);
-                    continue;
-                }
-
-                //odd column and even row: horizontal wall
-                if (j % 2 != 0 && i % 2 == 0)
-                {
-                    var cellAddress = new CellAddress((short)(i / 2), (short)(j / 2));
-                    WallViewModel? wall = null;
-                    if (Cells.ContainsKey(cellAddress))
-                    {
-                        var cell = Cells[cellAddress];
-                        wall = cell.TopWall;
-                    }
-                    else
-                    {
-                        //this will handle the last row
-                        var cell = Cells[new CellAddress((short)(cellAddress.Row - 1), cellAddress.Column)];
-                        wall = cell.BottomWall;
-                    }
-                    wall.GridAddress = gridAddress;
-                    GridElements.Add(gridAddress, wall);
-
-                    //resolve corners
-                    var cornerAddressFrom = gridAddress with
-                    {
-                        Column = (short)(gridAddress.Column - 1)
-                    };
-                    var cornerAddressTo = gridAddress with
-                    {
-                        Column = (short)(gridAddress.Column + 1)
-                    };
-
-                    var cornerFrom = GridElements[cornerAddressFrom] as CornerViewModel;
-                    var cornerTo = GridElements[cornerAddressTo] as CornerViewModel;
-                    wall.From = cornerFrom!.CornerAddress;
-                    wall.To = cornerTo!.CornerAddress;
-
-                    continue;
-                }
-
-                //even column and odd row: vertical wall
-                if (j % 2 == 0 && i % 2 != 0)
-                {
-                    var cellAddress = new CellAddress((short)(i / 2), (short)(j / 2));
-                    WallViewModel? wall = null;
-                    if (Cells.ContainsKey(cellAddress))
-                    {
-                        var cell = Cells[cellAddress];
-                        wall = cell.LeftWall;
-                    }
-                    else
-                    {
-                        //this will handle the last column
-                        var cell = Cells[new CellAddress(cellAddress.Row, (short)(cellAddress.Column - 1))];
-                        wall = cell.RightWall;
-                    }
-                    wall.GridAddress = gridAddress;
-                    GridElements.Add(gridAddress, wall);
-
-                    //resolve corners
-                    var cornerAddressFrom = gridAddress with
-                    {
-                        Row = (short)(gridAddress.Row - 1)
-                    };
-                    var cornerAddressTo = gridAddress with
-                    {
-                        Row = (short)(gridAddress.Row + 1)
-                    };
-
-                    var cornerFrom = GridElements[cornerAddressFrom] as CornerViewModel;
-                    var cornerTo = GridElements[cornerAddressTo] as CornerViewModel;
-                    wall.From = cornerFrom!.CornerAddress;
-                    wall.To = cornerTo!.CornerAddress;
-
-                    continue;
-                }
-            }
+            var address = new GridAddress(row, column);
+            if (row % 2 != 0 && column % 2 != 0) MapCell(address);
+            else if (row % 2 == 0 && column % 2 != 0) MapHorizontalWall(address);
+            else if (row % 2 != 0) MapVerticalWall(address);
         }
+    }
+
+    private void MapCell(GridAddress address)
+    {
+        var cell = Cells[new CellAddress((short)(address.Row / 2), (short)(address.Column / 2))];
+        cell.GridAddress = address;
+        GridElements.Add(address, cell);
+    }
+
+    private void MapHorizontalWall(GridAddress address)
+    {
+        var cellAddress = new CellAddress((short)(address.Row / 2), (short)(address.Column / 2));
+        var wall = Cells.TryGetValue(cellAddress, out var cell)
+            ? cell.TopWall
+            : Cells[new CellAddress((short)(cellAddress.Row - 1), cellAddress.Column)].BottomWall;
+        MapWall(address, wall, address with { Column = (short)(address.Column - 1) }, address with { Column = (short)(address.Column + 1) });
+    }
+
+    private void MapVerticalWall(GridAddress address)
+    {
+        var cellAddress = new CellAddress((short)(address.Row / 2), (short)(address.Column / 2));
+        var wall = Cells.TryGetValue(cellAddress, out var cell)
+            ? cell.LeftWall
+            : Cells[new CellAddress(cellAddress.Row, (short)(cellAddress.Column - 1))].RightWall;
+        MapWall(address, wall, address with { Row = (short)(address.Row - 1) }, address with { Row = (short)(address.Row + 1) });
+    }
+
+    private void MapWall(GridAddress address, WallViewModel wall, GridAddress from, GridAddress to)
+    {
+        wall.GridAddress = address;
+        GridElements.Add(address, wall);
+        wall.From = ((CornerViewModel)GridElements[from]).CornerAddress;
+        wall.To = ((CornerViewModel)GridElements[to]).CornerAddress;
     }
 
     public void Dispose()
     {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    private void Dispose(bool disposing)
+    {
+        if (disposed) return;
+        if (!disposing) return;
         //FYI: TrimExcess is a good practice to free memory, but tends to consume cpu instead...
         //Here we are prioritizing memory usage over cpu usage
         Walls.Clear();
@@ -529,6 +466,7 @@ public record BoardViewModel : IDisposable
         _isPlayerBlockedQueue.TrimExcess();
         _isPlayerBlockedVisited.Clear();
         _isPlayerBlockedVisited.TrimExcess();
+        disposed = true;
     }
 
     public void Reset()

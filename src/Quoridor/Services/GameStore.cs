@@ -9,18 +9,19 @@ public record MatchResult(Guid MatchId, Guid RoomId, Guid WinnerId, string Winne
 
 public sealed class GameStore : IDisposable
 {
+    private const string SqliteProvider = "SQLite";
     private readonly Func<DbConnection> createConnection;
     private readonly NpgsqlDataSource? dataSource;
     public GameStore(IConfiguration configuration)
     {
-        var provider = configuration["Persistence:Provider"] ?? "SQLite";
-        if (provider.Equals("SQLite", StringComparison.OrdinalIgnoreCase))
+        var provider = configuration["Persistence:Provider"] ?? SqliteProvider;
+        if (provider.Equals(SqliteProvider, StringComparison.OrdinalIgnoreCase))
         {
-            var raw = configuration.GetConnectionString("SQLite");
-            if (string.IsNullOrWhiteSpace(raw)) throw new InvalidOperationException("ConnectionStrings:SQLite is required for SQLite persistence.");
+            var raw = configuration.GetConnectionString(SqliteProvider);
+            if (string.IsNullOrWhiteSpace(raw)) throw new InvalidOperationException($"ConnectionStrings:{SqliteProvider} is required for {SqliteProvider} persistence.");
             var options = new SqliteConnectionStringBuilder(raw);
             if (string.IsNullOrWhiteSpace(options.DataSource) || options.DataSource == ":memory:" || options.Mode == SqliteOpenMode.Memory)
-                throw new InvalidOperationException("SQLite persistence requires a file Data Source.");
+                throw new InvalidOperationException($"{SqliteProvider} persistence requires a file Data Source.");
             var directory = Path.GetFullPath(configuration["DataDirectory"] ?? "data");
             options.DataSource = Path.GetFullPath(options.DataSource, directory);
             Directory.CreateDirectory(Path.GetDirectoryName(options.DataSource)!);
@@ -37,7 +38,7 @@ public sealed class GameStore : IDisposable
             dataSource = NpgsqlDataSource.Create(options.ConnectionString);
             createConnection = () => dataSource.CreateConnection();
         }
-        else throw new InvalidOperationException("Persistence:Provider must be SQLite or PostgreSql.");
+        else throw new InvalidOperationException($"Persistence:Provider must be {SqliteProvider} or PostgreSql.");
         try { Initialize(provider); }
         catch { dataSource?.Dispose(); throw; }
     }
@@ -45,7 +46,7 @@ public sealed class GameStore : IDisposable
     {
         using var connection = Open();
         using var command = connection.CreateCommand();
-        if (provider.Equals("SQLite",StringComparison.OrdinalIgnoreCase))
+        if (provider.Equals(SqliteProvider, StringComparison.OrdinalIgnoreCase))
         {
             command.CommandText = "PRAGMA journal_mode=WAL";
             command.ExecuteNonQuery();
