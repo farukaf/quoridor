@@ -228,7 +228,7 @@ public sealed class BoardViewModel : IDisposable
     {
         var selectedCorner = Corners.Values.First(c => c.State == CornerState.Selected);
 
-        (var corners, var wall1, var wall2) = GetWallsFromCorners(clickedCorner, selectedCorner);
+        (var _, var wall1, var wall2) = GetWallsFromCorners(clickedCorner, selectedCorner);
         if (wall1.IsPlaced || wall2.IsPlaced || CrossesWall(clickedCorner, selectedCorner) || WillBlockPlayer(wall1, wall2)) return Task.CompletedTask;
 
         wall1.IsPlaced = true;
@@ -387,26 +387,43 @@ public sealed class BoardViewModel : IDisposable
 
     public void GenerateGridAddress()
     {
-        var rows = RowSize * 2 + 1;
-        var columns = ColumnSize * 2 + 1;
-        for (short row = 0; row < rows; row++)
-        for (short column = 0; column < columns; column++)
-        {
-            if (row % 2 != 0 || column % 2 != 0) continue;
-            var address = new GridAddress(row, column);
-            var corner = Corners[new CornerAddress((short)(row / 2), (short)(column / 2))];
-            corner.GridAddress = address;
-            GridElements.Add(address, corner);
-        }
+        var rows = (short)(RowSize * 2 + 1);
+        var columns = (short)(ColumnSize * 2 + 1);
+        AddCornerGridElements(rows, columns);
+        AddCellAndWallGridElements(rows, columns);
+    }
 
+    private void AddCornerGridElements(short rows, short columns)
+    {
         for (short row = 0; row < rows; row++)
-        for (short column = 0; column < columns; column++)
         {
-            var address = new GridAddress(row, column);
-            if (row % 2 != 0 && column % 2 != 0) MapCell(address);
-            else if (row % 2 == 0 && column % 2 != 0) MapHorizontalWall(address);
-            else if (row % 2 != 0) MapVerticalWall(address);
+            for (short column = 0; column < columns; column++)
+            {
+                if (row % 2 != 0 || column % 2 != 0) continue;
+                var address = new GridAddress(row, column);
+                var corner = Corners[new CornerAddress((short)(row / 2), (short)(column / 2))];
+                corner.GridAddress = address;
+                GridElements.Add(address, corner);
+            }
         }
+    }
+
+    private void AddCellAndWallGridElements(short rows, short columns)
+    {
+        for (short row = 0; row < rows; row++)
+        {
+            for (short column = 0; column < columns; column++)
+            {
+                MapGridElement(new GridAddress(row, column));
+            }
+        }
+    }
+
+    private void MapGridElement(GridAddress address)
+    {
+        if (address.Row % 2 != 0 && address.Column % 2 != 0) MapCell(address);
+        else if (address.Row % 2 == 0 && address.Column % 2 != 0) MapHorizontalWall(address);
+        else if (address.Row % 2 != 0) MapVerticalWall(address);
     }
 
     private void MapCell(GridAddress address)

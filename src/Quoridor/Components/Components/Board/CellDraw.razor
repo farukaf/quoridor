@@ -8,7 +8,18 @@
     protected string CellName => Cell.ToString();
     protected PlayerViewModel? CellPlayer => Room.GetPlayer(CellAddress);
     private Player? player;
-    private string AccessibleName => $"Square row {CellAddress.Row + 1}, column {CellAddress.Column + 1}. " + (CellPlayer is not null ? $"{CellPlayer.Name}'s pawn. On your turn, select your pawn to show moves." : Cell.State == CellState.AvaliableMove ? "Available move." : "Empty square.");
+    private string AccessibleName
+    {
+        get
+        {
+            var description = "Empty square.";
+            if (CellPlayer is not null)
+                description = $"{CellPlayer.Name}'s pawn. On your turn, select your pawn to show moves.";
+            else if (Cell.State == CellState.AvaliableMove)
+                description = "Available move.";
+            return $"Square row {CellAddress.Row + 1}, column {CellAddress.Column + 1}. {description}";
+        }
+    }
     private string? CurrentPawnAttribute => CellPlayer is not null && CellPlayer.Id == Room.Board.CurrentPlayer?.Id ? "true" : null;
     protected async Task CellClicked()
     {
