@@ -13,4 +13,10 @@ The visual branch is rebased over leaderboard provider HEAD27d7623. The runtime 
 - Local quoridor-visual container on18085 is healthy with a local healthcheck override; product default8080 is unchanged. Existing named volume quoridor-visual-test preserves prior completed games across recreation and all three browser restart checks.
 - Sonar remains unexecuted pending configured account/project/token; no gate pass is claimed.
 
-Independent clean-context final validation and visual PR publication are pending with the orchestrator. No submit or PR was performed for this visual phase.
+## Independent final validation
+
+The independent reviewer validated HEAD `5d4fc7c7fa0fcfd78bf19d196211e722bead35e3`: 26 tests passed, zero failures and zero skips in one full run without retries (3 Selenium viewport cases plus 23 application/unit cases covering SQLite and real PostgreSQL). The running container was healthy and its CSS was byte-identical to the tested source.
+
+An earlier full review at `9fd5c53` had a tablet test fail because the history link was clicked outside the viewport without explicit scrolling. Commit `5d4fc7c` changed that test to use the existing instant-scroll click helper. The complete clean run above was performed after this change; it does not rely on the isolated retry of the earlier failure.
+
+The responsive interface is published separately in draft PR https://github.com/farukaf/quoridor/pull/6, stacked over the leaderboard/provider PR #4. No merge or deployment was performed.
