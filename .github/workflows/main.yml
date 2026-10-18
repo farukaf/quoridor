@@ -40,7 +40,7 @@ jobs:
       - run: dotnet build src/Quoridor.sln -c Release --no-restore -warnaserror
       - run: |
           dotnet list src/Quoridor.sln package --vulnerable --include-transitive --format json > nuget-audit.json
-          python3 scripts/check-audit.py nuget-audit.json
+          python3 -c 'import json; d=json.load(open("nuget-audit.json")); assert not any(f.get("topLevelPackages") or f.get("transitivePackages") for p in d["projects"] for f in p.get("frameworks", []))'
       - run: docker build -t quoridor:ci .
       - name: Smoke application container
         env:
