@@ -1,5 +1,11 @@
-﻿@code {
-    [Parameter] public CornerViewModel Corner { get; set; } = default!; 
+@inject IPlayerService playerService
+@code {
+    [Parameter] public CornerViewModel Corner { get; set; } = default!;
+    [Parameter] public RoomViewModel Room { get; set; } = default!;
+    private async Task Click()
+    {
+        var player = await playerService.GetPlayer();
+        if (player is not null) await Room.ClickCorner(player.Id, Corner.CornerAddress);
+    }
 }
-
-<button type="button" class="text-center @Corner.State.ToString().ToLower()" @onclick="Corner.Click">▼</button>
+<button data-corner="@($"{Corner.CornerAddress.X},{Corner.CornerAddress.Y}")" type="button" class="text-center @Corner.State.ToString().ToLower()" @onclick="Click">▼</button>

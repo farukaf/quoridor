@@ -1,0 +1,31 @@
+@page "/Players/{Id:guid}"
+@inject GameStore Store
+<PageTitle>Player history</PageTitle>
+<h1>@(player?.UserName ?? "Player not found")</h1>
+<a href="/">Back to leaderboard</a>
+@if (player is not null)
+{
+    <h2>Match history</h2>
+    @if (matches.Count == 0) { <p>No completed games yet.</p> }
+    else
+    {
+        <table>
+            <thead><tr><th scope="col">Finished (UTC)</th><th scope="col">Result</th><th scope="col">Opponent</th></tr></thead>
+            <tbody>
+            @foreach (var match in matches)
+            {
+                var won = match.WinnerId == Id;
+                var opponent = won ? match.OpponentId : match.WinnerId;
+                <tr data-match="@match.MatchId"><td>@match.FinishedAt.UtcDateTime.ToString("yyyy-MM-dd HH:mm:ss")</td><td>@(won ? "Win" : "Loss")</td><td><a href="@($"/Players/{opponent}")">@(won ? match.OpponentName : match.WinnerName)</a></td></tr>
+            }
+            </tbody>
+        </table>
+        <p>Showing the 100 most recent completed games.</p>
+    }
+}
+@code {
+    [Parameter] public Guid Id { get; set; }
+    private Player? player;
+    private IReadOnlyList<MatchResult> matches = Array.Empty<MatchResult>();
+    protected override void OnParametersSet() { player = Store.GetPlayer(Id); matches = Store.History(Id); }
+}

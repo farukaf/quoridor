@@ -22,7 +22,7 @@ public record CellViewModel : GridElementViewModel
         return $"(r{Address.Row},c{Address.Column})";
     }
      
-    public Func<CellViewModel, Player, Task>? Clicked { get; set; }
+
 }
  
 public enum CellState
