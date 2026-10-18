@@ -1,26 +1,19 @@
 # Quoridor
-Online Web Quoridor Game 
 
-## Build with [Blazor](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor)
+Play Quoridor online with friends. Start a room, share its link, and race to the opposite side of the board while placing walls to block your opponent.
 
-No aditional dependencies are necessary.
+Built with [Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) on ASP.NET Core. Game and player history use SQLite by default, with PostgreSQL available through application configuration.
 
-## Public docker images
+## Run with Docker
 
-[Docker Hub](https://hub.docker.com/r/farukaf/quoridor/tags)
+```sh
+docker run --rm -p 8080:8080 farukaf/quoridor:latest
+```
 
-## To-Do List
+Open [http://localhost:8080](http://localhost:8080) and create a room to invite another player. Browse the published [Docker Hub image and tags](https://hub.docker.com/r/farukaf/quoridor).
 
-- [x] CI/CD uploading to Docker Hub Repository.
-- [ ] ~Ugly as f*ck~ Make it pretty
-- [ ] Create a "how to" from the public docker.
-- [ ] Build *Janitor* to clean and close abandoned rooms.
-- [ ] Log things that are happening
-- [ ] Tests?
-  - [ ] Unitary
-  - [ ] Stress Test (discover our limits)
-- [ ] Support horizontal scalling with backlane (if so, must be optional)?
-- [ ] Custom styling
-- [ ] Internationalization/Localization
-- [ ] Bot
+## Source and support
+
+- [Source code and issues](https://github.com/farukaf/quoridor)
+- [Docker Hub image and tags](https://hub.docker.com/r/farukaf/quoridor/tags)
    
