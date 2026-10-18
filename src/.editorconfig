@@ -3,6 +3,7 @@ root = true
 
 # C# files
 [*.cs]
+dotnet_diagnostic.S1135.severity = none
 
 #### Core EditorConfig Options ####
 
@@ -229,3 +230,6 @@ dotnet_naming_style.begins_with_i.required_prefix = I
 dotnet_naming_style.begins_with_i.required_suffix = 
 dotnet_naming_style.begins_with_i.word_separator = 
 dotnet_naming_style.begins_with_i.capitalization = pascal_case
+
+[*.razor]
+dotnet_diagnostic.S1135.severity = none

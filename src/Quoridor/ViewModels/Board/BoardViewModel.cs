@@ -91,6 +91,7 @@ public sealed class BoardViewModel : IDisposable
     {
         foreach (var corner in Corners.Values)
         {
+            //TODO: Check if colides with a wall
             corner.State = CornerState.Enabled;
         }
 
