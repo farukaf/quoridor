@@ -12,7 +12,7 @@
 <PageTitle>Your next move · Quoridor</PageTitle>
 
 @code {
-    [Parameter] public Guid Id { get; set; } = default!;
+    [Parameter] public Guid Id { get; set; }
 
     private bool loading = true;
     private string shareStatus = string.Empty;
@@ -25,7 +25,15 @@
     private string? pendingFocus;
     private Task FocusPawn() { wallMode = false; pendingFocus = "pawn"; return Task.CompletedTask; }
     private Task FocusWall() { wallMode = true; pendingFocus = "wall"; return Task.CompletedTask; }
-    private string TurnText => Room?.Player2 is null ? "Waiting for a friend to join" : Room.Board.CurrentPlayer?.Id == player?.Id ? $"Your move, {player?.UserName}." : $"{Room?.Board.CurrentPlayer?.Name}'s turn";
+    private string TurnText
+    {
+        get
+        {
+            if (Room?.Player2 is null) return "Waiting for a friend to join";
+            if (player is not null && Room.Board.CurrentPlayer?.Id == player.Id) return $"Your move, {player.UserName}.";
+            return $"{Room.Board.CurrentPlayer?.Name}'s turn";
+        }
+    }
     protected RoomViewModel? Room { get; set; }
     private Player? player;
 

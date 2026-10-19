@@ -8,7 +8,19 @@
     protected string CellName => Cell.ToString();
     protected PlayerViewModel? CellPlayer => Room.GetPlayer(CellAddress);
     private Player? player;
-    private string AccessibleName => $"Square row {CellAddress.Row + 1}, column {CellAddress.Column + 1}. " + (CellPlayer is not null ? $"{CellPlayer.Name}'s pawn. On your turn, select your pawn to show moves." : Cell.State == CellState.AvaliableMove ? "Available move." : "Empty square.");
+    private string AccessibleName
+    {
+        get
+        {
+            var description = "Empty square.";
+            if (CellPlayer is not null)
+                description = $"{CellPlayer.Name}'s pawn. On your turn, select your pawn to show moves.";
+            else if (Cell.State == CellState.AvaliableMove)
+                description = "Available move.";
+            return $"Square row {CellAddress.Row + 1}, column {CellAddress.Column + 1}. {description}";
+        }
+    }
+    private string? CurrentPawnAttribute => CellPlayer is not null && CellPlayer.Id == Room.Board.CurrentPlayer?.Id ? "true" : null;
     protected async Task CellClicked()
     {
         player ??= await playerService.GetPlayer();
@@ -16,7 +28,7 @@
     }
 }
 <div class="text-center cell">
-    <button type="button" disabled="@WallMode" class="board-control cell-control" data-row="@(CellAddress.Row * 2 + 1)" data-column="@(CellAddress.Column * 2 + 1)" data-pawn="@(CellPlayer is not null ? "true" : null)" data-current-pawn="@(CellPlayer is not null && CellPlayer.Id == Room.Board.CurrentPlayer?.Id ? "true" : null)" tabindex="@(CellAddress.Row == 0 && CellAddress.Column == 4 ? 0 : -1)" aria-label="@AccessibleName" aria-describedby="keyboard-help" @onclick="CellClicked"></button>
+    <button type="button" disabled="@WallMode" class="board-control cell-control" data-row="@(CellAddress.Row * 2 + 1)" data-column="@(CellAddress.Column * 2 + 1)" data-pawn="@(CellPlayer is not null ? "true" : null)" data-current-pawn="@CurrentPawnAttribute" tabindex="@(CellAddress.Row == 0 && CellAddress.Column == 4 ? 0 : -1)" aria-label="@AccessibleName" aria-describedby="keyboard-help" @onclick="CellClicked"></button>
     @if (Cell.VictoryCondition.PlayerColors.Any()) { <span class="goal-mark @(CellAddress.Row == 0 ? "goal-two" : "goal-one")" aria-hidden="true"></span> }
     @if (Cell.State == CellState.AvaliableMove) { <span class="avaliable" aria-hidden="true"></span> }
     <small class="sr-only">@CellName</small>

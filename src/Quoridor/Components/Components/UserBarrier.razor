@@ -16,7 +16,7 @@ else { @ChildContent }
 @code {
     [Parameter] public RenderFragment? ChildContent { get; set; }
 
-    UserNameForm userNameForm = new();
+    readonly UserNameForm userNameForm = new();
     Player? player;
     bool barrierActive = true;
     bool Loading = true;
@@ -35,11 +35,6 @@ else { @ChildContent }
             Loading = false;
             StateHasChanged();
         }
-    }
-
-    protected override Task OnInitializedAsync()
-    {
-        return base.OnInitializedAsync();
     }
 
     private async Task Submit()

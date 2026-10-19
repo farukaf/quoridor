@@ -106,6 +106,6 @@ public sealed class RoomViewModel
     }
     private async Task Notify()
     {
-        if (RoomChanged is not null) foreach (Func<Task> handler in RoomChanged.GetInvocationList()) await handler();
+        if (RoomChanged is not null) foreach (var handler in RoomChanged.GetInvocationList().Cast<Func<Task>>()) await handler();
     }
 }
