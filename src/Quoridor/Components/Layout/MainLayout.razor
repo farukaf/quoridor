@@ -6,7 +6,13 @@
         <nav aria-label="Main navigation"><a href="/#leaderboard">Leaderboard</a><a href="/#how-to-play">How to play</a><a class="nav-play" href="@($"/Room/{roomId}")">Let's play <span aria-hidden="true">↗</span></a></nav>
     </header>
     <main id="main-content" tabindex="-1">@Body</main>
-    <footer class="site-footer"><span>Small board. Big possibilities.</span><span>Made for a little friendly competition.</span></footer>
+    <footer class="site-footer">
+        <span>Open-source project by farukaf</span>
+        <nav aria-label="Project links">
+            <a href="https://github.com/farukaf/quoridor" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://hub.docker.com/r/farukaf/quoridor" target="_blank" rel="noopener noreferrer">Docker Hub</a>
+        </nav>
+    </footer>
 </div>
 <div id="blazor-error-ui" role="alert">The connection was interrupted. <a href="" class="reload">Reload the game</a></div>
 @code { private readonly Guid roomId = Guid.NewGuid(); }
