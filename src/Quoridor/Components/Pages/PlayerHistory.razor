@@ -1,31 +1,39 @@
 @page "/Players/{Id:guid}"
 @inject GameStore Store
-<PageTitle>Player history</PageTitle>
-<h1>@(player?.UserName ?? "Player not found")</h1>
-<a href="/">Back to leaderboard</a>
+<PageTitle>@(player?.UserName ?? "Player") · Quoridor history</PageTitle>
+<header class="page-heading">
+    <a class="breadcrumb" href="/">← Back to leaderboard</a>
+    <div class="profile-heading"><span class="avatar profile-avatar" aria-hidden="true">@(player?.UserName[..1].ToUpperInvariant() ?? "?")</span><div><p class="eyebrow">Every game tells a story</p><h1>@(player?.UserName ?? "Player not found")</h1><p>@(player is null ? "This player doesn't have a profile yet." : "A record of the routes taken and the games well played.")</p></div></div>
+</header>
 @if (player is not null)
 {
-    <h2>Match history</h2>
-    @if (matches.Count == 0) { <p>No completed games yet.</p> }
+    <div class="profile-stats" aria-label="Player statistics"><div class="profile-stat"><strong>@wins</strong><span>Wins</span></div><div class="profile-stat"><strong>@games</strong><span>Games played</span></div><div class="profile-stat"><strong>@(games == 0 ? "—" : $"{(int)Math.Round(wins * 100.0 / games)}%")</strong><span>Win rate</span></div></div>
+    <div class="section-top"><div><p class="eyebrow">The journey so far</p><h2>Match history</h2></div><p>Latest games first</p></div>
+    <div class="card">
+    @if (matches.Count == 0) { <div class="empty-state"><span class="empty-icon" aria-hidden="true">↗</span><h3>A fresh start.</h3><p>No completed games yet. Your first match is a new story waiting to happen.</p></div> }
     else
     {
-        <table>
-            <thead><tr><th scope="col">Finished (UTC)</th><th scope="col">Result</th><th scope="col">Opponent</th></tr></thead>
-            <tbody>
-            @foreach (var match in matches)
-            {
-                var won = match.WinnerId == Id;
-                var opponent = won ? match.OpponentId : match.WinnerId;
-                <tr data-match="@match.MatchId"><td>@match.FinishedAt.UtcDateTime.ToString("yyyy-MM-dd HH:mm:ss")</td><td>@(won ? "Win" : "Loss")</td><td><a href="@($"/Players/{opponent}")">@(won ? match.OpponentName : match.WinnerName)</a></td></tr>
-            }
-            </tbody>
-        </table>
-        <p>Showing the 100 most recent completed games.</p>
+        <table aria-label="Player match history"><thead><tr><th scope="col">Finished (UTC)</th><th scope="col">Result</th><th scope="col">Opponent</th></tr></thead><tbody>
+        @foreach (var match in matches)
+        {
+            var won = match.WinnerId == Id;
+            var opponent = won ? match.OpponentId : match.WinnerId;
+            <tr data-match="@match.MatchId"><td class="history-date"><time datetime="@match.FinishedAt.ToString("O")">@match.FinishedAt.UtcDateTime.ToString("dd MMM yyyy · HH:mm")</time></td><td><span class="result-badge @(won ? "" : "loss")"><span aria-hidden="true">@(won ? "↗" : "↘")</span>@(won ? "Win" : "Loss")</span></td><td><a href="@($"/Players/{opponent}")">@(won ? match.OpponentName : match.WinnerName)</a></td></tr>
+        }
+        </tbody></table>
     }
+    </div>
+    <p class="table-note">Showing the 100 most recent completed games. Statistics above refer to these displayed games.</p>
 }
 @code {
     [Parameter] public Guid Id { get; set; }
     private Player? player;
     private IReadOnlyList<MatchResult> matches = Array.Empty<MatchResult>();
-    protected override void OnParametersSet() { player = Store.GetPlayer(Id); matches = Store.History(Id); }
+    private int wins;
+    private int games;
+    protected override void OnParametersSet()
+    {
+        player = Store.GetPlayer(Id); matches = Store.History(Id);
+        games = matches.Count; wins = matches.Count(match => match.WinnerId == Id);
+    }
 }

@@ -1,17 +1,12 @@
-﻿@inherits LayoutComponentBase
-
-<div class="page">
-    <nav class="navbar">
-
-    </nav>
-
-    <main class="">
-        @Body
-    </main>
+@inherits LayoutComponentBase
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="app-shell">
+    <header class="site-header">
+        <a class="brand" href="/" aria-label="Quoridor home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>quoridor<span class="brand-dot">.</span></a>
+        <nav aria-label="Main navigation"><a href="/#leaderboard">Leaderboard</a><a href="/#how-to-play">How to play</a><a class="nav-play" href="@($"/Room/{roomId}")">Let's play <span aria-hidden="true">↗</span></a></nav>
+    </header>
+    <main id="main-content" tabindex="-1">@Body</main>
+    <footer class="site-footer"><span>Small board. Big possibilities.</span><span>Made for a little friendly competition.</span></footer>
 </div>
-
-<div id="blazor-error-ui">
-    An unhandled error has occurred.
-    <a href="" class="reload">Reload</a>
-    <a class="dismiss">🗙</a>
-</div>
+<div id="blazor-error-ui" role="alert">The connection was interrupted. <a href="" class="reload">Reload the game</a></div>
+@code { private readonly Guid roomId = Guid.NewGuid(); }

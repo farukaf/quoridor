@@ -6,18 +6,32 @@
 @inject IRoomService roomService
 @inject IPlayerService playerService
 @inject ILogger<RoomPage> logger
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
 
-<PageTitle>Room @Id</PageTitle>
+<PageTitle>Your next move · Quoridor</PageTitle>
 
 @code {
     [Parameter] public Guid Id { get; set; } = default!;
 
     private bool loading = true;
+    private string shareStatus = string.Empty;
+    private async Task CopyLink()
+    {
+        try { await JS.InvokeVoidAsync("CopyRoomLink", Navigation.Uri); shareStatus = "Link copied. Your friend is one click away."; }
+        catch (JSException) { shareStatus = "Select the link above and copy it to invite a friend."; }
+    }
+    private bool wallMode;
+    private string? pendingFocus;
+    private Task FocusPawn() { wallMode = false; pendingFocus = "pawn"; return Task.CompletedTask; }
+    private Task FocusWall() { wallMode = true; pendingFocus = "wall"; return Task.CompletedTask; }
+    private string TurnText => Room?.Player2 is null ? "Waiting for a friend to join" : Room.Board.CurrentPlayer?.Id == player?.Id ? $"Your move, {player?.UserName}." : $"{Room?.Board.CurrentPlayer?.Name}'s turn";
     protected RoomViewModel? Room { get; set; }
     private Player? player;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        if (pendingFocus is { } kind) { pendingFocus = null; await JS.InvokeVoidAsync("FocusBoardControl", kind); }
         if (!firstRender)
             return;
 
@@ -71,24 +85,28 @@
     }
 }
 
+<header class="page-heading game-heading">
+    <div><a class="breadcrumb" href="/">← Back to the clubhouse</a><p class="eyebrow">Room @Id.ToString("N")[..6]</p><h1>Your next move.</h1><p>A good plan always leaves room for a surprise.</p></div>
+    <div class="room-sharing"><label for="room-link">Invite your opponent</label><div class="share-input"><input id="room-link" readonly value="@Navigation.Uri" /><button type="button" @onclick="CopyLink" aria-label="Copy room invitation link">Copy link</button></div><div class="share-status" role="status">@shareStatus</div></div>
+</header>
 <UserBarrier>
-    @if (loading)
-    {
-        <p><em>Loading...</em></p>
-    }
-
+    @if (loading) { <p class="loading-state" role="status">Getting your board ready…</p> }
     @if (!loading && Room is not null)
     {
-        <PlayerBoard Room="Room" />
-
-        <SpectatorBoard Room="Room" />
-
-        <VictoryBoard Room="Room" />
-
-        <br />
-
-        <div>
-            <BoardDraw Room="Room" />
+        <div class="game-layout">
+            <section class="board-stage" aria-label="Quoridor game">
+                <div class="turn-banner"><span role="status" aria-live="polite" aria-atomic="true">@TurnText</span><span class="live-badge">Live room</span></div>
+                <div class="board-tools"><button type="button" aria-pressed="@(!wallMode)" @onclick="FocusPawn">Move a pawn</button><button type="button" aria-pressed="@wallMode" @onclick="FocusWall">Place a wall</button></div>
+                <BoardDraw Room="Room" WallMode="wallMode" />
+                <p class="board-caption">@(wallMode ? "Wall mode: choose two highlighted wall points." : "Move mode: select your pawn, then an available square.")</p>
+                <p id="keyboard-help" class="board-caption">Keyboard: arrow keys explore the board · Enter or Space selects</p>
+            </section>
+            <aside class="game-sidebar" aria-label="Players and game information">
+                <PlayerBoard Room="Room" />
+                <details class="side-card rules-details"><summary>A quick reminder</summary><p>Reach the opposite edge first. Each turn, move your pawn or place one of your ten walls. Jump over an adjacent pawn if the way behind it is clear. If it isn't, step diagonally around it.</p><p>Walls cannot cross or overlap, and must leave both players a route to the finish.</p></details>
+                <VictoryBoard Room="Room" />
+                <SpectatorBoard Room="Room" />
+            </aside>
         </div>
     }
 </UserBarrier>

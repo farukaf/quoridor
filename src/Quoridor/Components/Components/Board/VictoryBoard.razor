@@ -1,39 +1,5 @@
-﻿@attribute [StreamRendering]
-@rendermode InteractiveServer
-@inject IPlayerService playerService
-
-@code {
-    [Parameter]
-    public RoomViewModel Room { get; set; } = default!;
-    protected Player? player;
-    protected List<string> VictoryBoardShow = new();
-
-    protected override async Task OnInitializedAsync()
-    {
-        player ??= await playerService.GetPlayer();
-    }
-
-    protected string ShowDatetime(DateTimeOffset date)
-    {
-        var timezone = player?.Timezone ?? TimeZoneInfo.Utc.Id;
-        var timezoneInfo = TimeZoneInfo.FindSystemTimeZoneById(timezone);
-        var formatedDate = TimeZoneInfo.ConvertTime(date, timezoneInfo);
-
-        return formatedDate.ToString("ddd dd MMM HH:mm");
-    }
-}
-
+@code { [Parameter] public RoomViewModel Room { get; set; } = default!; }
 @if (Room.Victories.Any())
 {
-    <fieldset>
-        <legend>Victories</legend>
-        <ul>
-            @foreach (var victory in Room.Victories)
-            {
-                <li>
-                    @victory.PlayerName - @ShowDatetime(victory.Date)
-                </li>
-            }
-        </ul>
-    </fieldset>
+    <section class="side-card" aria-label="This room's results"><h2>Well played.</h2><ul class="session-list">@foreach (var victory in Room.Victories.Reverse()) { <li><strong>@victory.PlayerName</strong> won this round<small>@victory.Date.UtcDateTime.ToString("dd MMM · HH:mm") UTC</small></li> }</ul></section>
 }

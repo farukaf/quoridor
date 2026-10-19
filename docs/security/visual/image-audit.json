@@ -1,0 +1,1074 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.76.0"
+  },
+  "ReportID": "01a14ef2-8d0c-74db-93c9-657313618516",
+  "CreatedAt": "2026-10-18T09:18:01.1003206-03:00",
+  "ArtifactID": "sha256:893877356a3ac28c86f7a288dbdb6eda2057ec652cb62c70e14319cb3b69e0f9",
+  "ArtifactName": "quoridor:visual",
+  "ArtifactType": "container_image",
+  "Metadata": {
+    "Size": 164344320,
+    "OS": {
+      "Family": "alpine",
+      "Name": "3.24.2"
+    },
+    "ImageID": "sha256:2000f1aa9e3d6aaa05f0908bb246b231be2ca21b74dc0c81cf24ddcbbff5481c",
+    "DiffIDs": [
+      "sha256:74d97c428c51a828f9051a7a40a53ff1fc99e54fc30323ce36760701b0b7f711",
+      "sha256:4ab37cc0266e393b4b6916c90defe8cc0af6400cacb72a994063653bcf63378f",
+      "sha256:32c3af567f744c0123e55cfe007a98f5c8a7acce6f7fc2a06ef5eff53b728596",
+      "sha256:dae6be4fb791bc41175bf3eb0eb2d7327a617353fcae080d2ea951a8ba3c9683",
+      "sha256:3435482d143070468e304ca54e6df4b7a3af8f6971baf0182e09925bee27a94a",
+      "sha256:007e04ac0b6d563bb553dac2f0031b6cf7840262adc15398af77778d7624194b",
+      "sha256:d9c16e134152e5db3badc9bfa3bc77e231bc4fb656bced45e30b8e8f697c3b53",
+      "sha256:ca76b04b18a78037687391deada7a1841a1b8c11e497ba464bb81aa4216b93fe",
+      "sha256:241a5f644267ced2a020b7b7c42fe5674364c8a3adde36cbf65e90192f370bf9"
+    ],
+    "RepoTags": [
+      "quoridor:visual"
+    ],
+    "RepoDigests": [
+      "quoridor@sha256:2000f1aa9e3d6aaa05f0908bb246b231be2ca21b74dc0c81cf24ddcbbff5481c"
+    ],
+    "Reference": "quoridor:visual",
+    "ImageConfig": {
+      "architecture": "amd64",
+      "created": "2026-10-18T09:17:08.110395028-03:00",
+      "history": [
+        {
+          "created": "2026-09-17T20:37:20Z",
+          "created_by": "ADD alpine-minirootfs-3.24.2-x86_64.tar.gz / # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-09-17T20:37:20Z",
+          "created_by": "CMD [\"/bin/sh\"]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-10-13T20:45:09Z",
+          "created_by": "ENV APP_UID=1654 ASPNETCORE_HTTP_PORTS=8080 DOTNET_RUNNING_IN_CONTAINER=true DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=true",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-10-13T20:45:09Z",
+          "created_by": "RUN /bin/sh -c apk add --upgrade --no-cache         ca-certificates-bundle                 libgcc         libssl3         libstdc++                 zlib # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-10-13T20:45:10Z",
+          "created_by": "RUN /bin/sh -c addgroup         --gid=$APP_UID         app     \u0026\u0026 adduser         --uid=$APP_UID         --ingroup=app         --disabled-password         app # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-10-13T20:45:22Z",
+          "created_by": "ENV DOTNET_VERSION=10.0.13",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-10-13T20:45:22Z",
+          "created_by": "COPY /dotnet /usr/share/dotnet # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-10-13T20:45:23Z",
+          "created_by": "RUN /bin/sh -c ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-10-13T20:45:38Z",
+          "created_by": "ENV ASPNET_VERSION=10.0.13",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-10-13T20:45:38Z",
+          "created_by": "COPY /dotnet /usr/share/dotnet # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-10-17T21:22:25Z",
+          "created_by": "/bin/sh -c #(nop) WORKDIR /app"
+        },
+        {
+          "created": "2026-10-17T21:32:46Z",
+          "created_by": "/bin/sh -c #(nop)  ENV ASPNETCORE_HTTP_PORTS=8080 DataDirectory=/data",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-10-17T21:32:46Z",
+          "created_by": "/bin/sh -c #(nop)  EXPOSE 8080",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-10-17T21:32:46Z",
+          "created_by": "/bin/sh -c #(nop)  HEALTHCHECK \u0026{[\"CMD-SHELL\" \"wget -q -O /dev/null http://127.0.0.1:8080/ || exit 1\"] \"30s\" \"5s\" \"10s\" \"0s\" '\\x00'}",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-10-18T12:17:06Z",
+          "created_by": "/bin/sh -c #(nop) COPY dir:57df30fb80e5df89c290aca9604824abf018d65a611382f75990e6bd2da02ca9 in . "
+        },
+        {
+          "created": "2026-10-18T12:17:07Z",
+          "created_by": "/bin/sh -c mkdir -p /data \u0026\u0026 chown \"$APP_UID:$APP_UID\" /data"
+        },
+        {
+          "created": "2026-10-18T12:17:07Z",
+          "created_by": "/bin/sh -c #(nop)  VOLUME [/data]",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-10-18T12:17:07Z",
+          "created_by": "/bin/sh -c #(nop)  USER 1654",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-10-18T12:17:08Z",
+          "created_by": "/bin/sh -c #(nop)  ENTRYPOINT [\"dotnet\" \"Quoridor.dll\"]",
+          "empty_layer": true
+        }
+      ],
+      "os": "linux",
+      "rootfs": {
+        "type": "layers",
+        "diff_ids": [
+          "sha256:74d97c428c51a828f9051a7a40a53ff1fc99e54fc30323ce36760701b0b7f711",
+          "sha256:4ab37cc0266e393b4b6916c90defe8cc0af6400cacb72a994063653bcf63378f",
+          "sha256:32c3af567f744c0123e55cfe007a98f5c8a7acce6f7fc2a06ef5eff53b728596",
+          "sha256:dae6be4fb791bc41175bf3eb0eb2d7327a617353fcae080d2ea951a8ba3c9683",
+          "sha256:3435482d143070468e304ca54e6df4b7a3af8f6971baf0182e09925bee27a94a",
+          "sha256:007e04ac0b6d563bb553dac2f0031b6cf7840262adc15398af77778d7624194b",
+          "sha256:d9c16e134152e5db3badc9bfa3bc77e231bc4fb656bced45e30b8e8f697c3b53",
+          "sha256:ca76b04b18a78037687391deada7a1841a1b8c11e497ba464bb81aa4216b93fe",
+          "sha256:241a5f644267ced2a020b7b7c42fe5674364c8a3adde36cbf65e90192f370bf9"
+        ]
+      },
+      "config": {
+        "Healthcheck": {
+          "Test": [
+            "CMD-SHELL",
+            "wget -q -O /dev/null http://127.0.0.1:8080/ || exit 1"
+          ],
+          "Interval": 30000000000,
+          "Timeout": 5000000000,
+          "StartPeriod": 10000000000
+        },
+        "Entrypoint": [
+          "dotnet",
+          "Quoridor.dll"
+        ],
+        "Env": [
+          "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "APP_UID=1654",
+          "ASPNETCORE_HTTP_PORTS=8080",
+          "DOTNET_RUNNING_IN_CONTAINER=true",
+          "DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=true",
+          "DOTNET_VERSION=10.0.13",
+          "ASPNET_VERSION=10.0.13",
+          "DataDirectory=/data"
+        ],
+        "User": "1654",
+        "Volumes": {
+          "/data": {}
+        },
+        "WorkingDir": "/app",
+        "ExposedPorts": {
+          "8080/tcp": {}
+        }
+      }
+    },
+    "Layers": [
+      {
+        "Size": 8704000,
+        "Digest": "sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5",
+        "DiffID": "sha256:74d97c428c51a828f9051a7a40a53ff1fc99e54fc30323ce36760701b0b7f711"
+      },
+      {
+        "Size": 9193472,
+        "Digest": "sha256:346376b3fc78b0a24fb48c98012c36c3ce5dec0fe2cc5f787ab5fd51d9507f90",
+        "DiffID": "sha256:4ab37cc0266e393b4b6916c90defe8cc0af6400cacb72a994063653bcf63378f"
+      },
+      {
+        "Size": 10752,
+        "Digest": "sha256:1451a302e1649d5edc2ef79d1098968caf4f9b3a3b890668a71ada5394c2cf88",
+        "DiffID": "sha256:32c3af567f744c0123e55cfe007a98f5c8a7acce6f7fc2a06ef5eff53b728596"
+      },
+      {
+        "Size": 82632192,
+        "Digest": "sha256:1a6d3dfc8c9c4fac706d998123c93a7f76c824dabfa38e8fe8cd0fc519e216d0",
+        "DiffID": "sha256:dae6be4fb791bc41175bf3eb0eb2d7327a617353fcae080d2ea951a8ba3c9683"
+      },
+      {
+        "Size": 3072,
+        "Digest": "sha256:157307ca74e06f8d9676b7c2c45905e900d8e7b92a7fa9b02a8f6f480de91067",
+        "DiffID": "sha256:3435482d143070468e304ca54e6df4b7a3af8f6971baf0182e09925bee27a94a"
+      },
+      {
+        "Size": 27179520,
+        "Digest": "sha256:59e79965787ca37b67fece1ae8b29e4c3e2ad52f7a91be3d4b10fde644f983f3",
+        "DiffID": "sha256:007e04ac0b6d563bb553dac2f0031b6cf7840262adc15398af77778d7624194b"
+      },
+      {
+        "Size": 1536,
+        "Digest": "sha256:eed9f9dec1268ce2c067932b276822116be07fd9e4f24c2ce4ea6b37ee64389b",
+        "DiffID": "sha256:d9c16e134152e5db3badc9bfa3bc77e231bc4fb656bced45e30b8e8f697c3b53"
+      },
+      {
+        "Size": 36618240,
+        "Digest": "sha256:f1b91b935cbb6b723802135f8117db59ca79cf57598bd555386d0fbf9d95078f",
+        "DiffID": "sha256:ca76b04b18a78037687391deada7a1841a1b8c11e497ba464bb81aa4216b93fe"
+      },
+      {
+        "Size": 1536,
+        "Digest": "sha256:7055ec5f6e5673cc70331a8b03b19e34014d84d4dddd653cb52d58e2e1ed2a66",
+        "DiffID": "sha256:241a5f644267ced2a020b7b7c42fe5674364c8a3adde36cbf65e90192f370bf9"
+      }
+    ]
+  },
+  "Results": [
+    {
+      "Target": "quoridor:visual (alpine 3.24.2)",
+      "Class": "os-pkgs",
+      "Type": "alpine",
+      "Packages": [
+        {
+          "ID": "alpine-baselayout@3.7.2-r1",
+          "Name": "alpine-baselayout",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/alpine-baselayout@3.7.2-r1?arch=x86_64\u0026distro=3.24.2",
+            "UID": "1b9c543300f8073e"
+          },
+          "Version": "3.7.2-r1",
+          "Arch": "x86_64",
+          "SrcName": "alpine-baselayout",
+          "SrcVersion": "3.7.2-r1",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "alpine-baselayout-data@3.7.2-r1",
+            "busybox-binsh@1.37.0-r31"
+          ],
+          "Layer": {
+            "Digest": "sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5",
+            "DiffID": "sha256:74d97c428c51a828f9051a7a40a53ff1fc99e54fc30323ce36760701b0b7f711"
+          },
+          "Digest": "sha1:f0fcfdc2f4da058af6473bc45c4eab62916225b2",
+          "InstalledFiles": [
+            "etc/motd",
+            "etc/crontabs/root",
+            "etc/modprobe.d/aliases.conf",
+            "etc/modprobe.d/blacklist.conf",
+            "etc/modprobe.d/i386.conf",
+            "etc/profile.d/20locale.sh",
+            "etc/profile.d/README",
+            "etc/profile.d/color_prompt.sh.disabled",
+            "usr/lib/sysctl.d/00-alpine.conf",
+            "var/lock",
+            "var/run",
+            "var/spool/mail",
+            "var/spool/cron/crontabs"
+          ],
+          "AnalyzedBy": "apk"
+        },
+        {
+          "ID": "alpine-baselayout-data@3.7.2-r1",
+          "Name": "alpine-baselayout-data",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/alpine-baselayout-data@3.7.2-r1?arch=x86_64\u0026distro=3.24.2",
+            "UID": "fcc3cd90122d8aa7"
+          },
+          "Version": "3.7.2-r1",
+          "Arch": "x86_64",
+          "SrcName": "alpine-baselayout",
+          "SrcVersion": "3.7.2-r1",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "Layer": {
+            "Digest": "sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5",
+            "DiffID": "sha256:74d97c428c51a828f9051a7a40a53ff1fc99e54fc30323ce36760701b0b7f711"
+          },
+          "Digest": "sha1:c6f9bded17d844b6f1b0bb5766d2c35c0d5c8508",
+          "InstalledFiles": [
+            "etc/fstab",
+            "etc/group",
+            "etc/hostname",
+            "etc/hosts",
+            "etc/inittab",
+            "etc/modules",
+            "etc/mtab",
+            "etc/nsswitch.conf",
+            "etc/passwd",
+            "etc/profile",
+            "etc/protocols",
+            "etc/services",
+            "etc/shadow",
+            "etc/shells",
+            "etc/sysctl.conf"
+          ],
+          "AnalyzedBy": "apk"
+        },
+        {
+          "ID": "alpine-keys@2.6-r0",
+          "Name": "alpine-keys",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/alpine-keys@2.6-r0?arch=x86_64\u0026distro=3.24.2",
+            "UID": "cb1f6c8fa74713e0"
+          },
+          "Version": "2.6-r0",
+          "Arch": "x86_64",
+          "SrcName": "alpine-keys",
+          "SrcVersion": "2.6-r0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "Layer": {
+            "Digest": "sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5",
+            "DiffID": "sha256:74d97c428c51a828f9051a7a40a53ff1fc99e54fc30323ce36760701b0b7f711"
+          },
+          "Digest": "sha1:d8d6b80e53c059a77e4915da78ba964f3ffea240",
+          "InstalledFiles": [
+            "etc/apk/keys/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+            "etc/apk/keys/alpine-devel@lists.alpinelinux.org-5261cecb.rsa.pub",
+            "etc/apk/keys/alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-5243ef4b.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-524d27bb.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-5261cecb.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-58199dcc.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-58cbb476.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-58e4f17d.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-5e69ca50.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-60ac2099.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-61666e3f.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616a9724.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616abc23.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616ac3bc.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616adfeb.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616db30d.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-66ba20fe.rsa.pub",
+            "usr/share/apk/keys/aarch64/alpine-devel@lists.alpinelinux.org-58199dcc.rsa.pub",
+            "usr/share/apk/keys/aarch64/alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+            "usr/share/apk/keys/armhf/alpine-devel@lists.alpinelinux.org-524d27bb.rsa.pub",
+            "usr/share/apk/keys/armhf/alpine-devel@lists.alpinelinux.org-616a9724.rsa.pub",
+            "usr/share/apk/keys/armv7/alpine-devel@lists.alpinelinux.org-524d27bb.rsa.pub",
+            "usr/share/apk/keys/armv7/alpine-devel@lists.alpinelinux.org-616adfeb.rsa.pub",
+            "usr/share/apk/keys/loongarch64/alpine-devel@lists.alpinelinux.org-66ba20fe.rsa.pub",
+            "usr/share/apk/keys/mips64/alpine-devel@lists.alpinelinux.org-5e69ca50.rsa.pub",
+            "usr/share/apk/keys/ppc64le/alpine-devel@lists.alpinelinux.org-58cbb476.rsa.pub",
+            "usr/share/apk/keys/ppc64le/alpine-devel@lists.alpinelinux.org-616abc23.rsa.pub",
+            "usr/share/apk/keys/riscv64/alpine-devel@lists.alpinelinux.org-60ac2099.rsa.pub",
+            "usr/share/apk/keys/riscv64/alpine-devel@lists.alpinelinux.org-616db30d.rsa.pub",
+            "usr/share/apk/keys/s390x/alpine-devel@lists.alpinelinux.org-58e4f17d.rsa.pub",
+            "usr/share/apk/keys/s390x/alpine-devel@lists.alpinelinux.org-616ac3bc.rsa.pub",
+            "usr/share/apk/keys/x86/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+            "usr/share/apk/keys/x86/alpine-devel@lists.alpinelinux.org-5243ef4b.rsa.pub",
+            "usr/share/apk/keys/x86/alpine-devel@lists.alpinelinux.org-61666e3f.rsa.pub",
+            "usr/share/apk/keys/x86_64/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+            "usr/share/apk/keys/x86_64/alpine-devel@lists.alpinelinux.org-5261cecb.rsa.pub",
+            "usr/share/apk/keys/x86_64/alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub"
+          ],
+          "AnalyzedBy": "apk"
+        },
+        {
+          "ID": "alpine-release@3.24.2-r0",
+          "Name": "alpine-release",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/alpine-release@3.24.2-r0?arch=x86_64\u0026distro=3.24.2",
+            "UID": "c8c46806ee8e6495"
+          },
+          "Version": "3.24.2-r0",
+          "Arch": "x86_64",
+          "SrcName": "alpine-base",
+          "SrcVersion": "3.24.2-r0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "alpine-keys@2.6-r0"
+          ],
+          "Layer": {
+            "Digest": "sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5",
+            "DiffID": "sha256:74d97c428c51a828f9051a7a40a53ff1fc99e54fc30323ce36760701b0b7f711"
+          },
+          "Digest": "sha1:6fd1be469ca235e9c62f1b73fa3e5bffafdeb6b5",
+          "InstalledFiles": [
+            "etc/alpine-release",
+            "etc/issue",
+            "etc/os-release",
+            "etc/secfixes.d/alpine",
+            "usr/lib/os-release"
+          ],
+          "AnalyzedBy": "apk"
+        },
+        {
+          "ID": "apk-tools@3.0.8-r0",
+          "Name": "apk-tools",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/apk-tools@3.0.8-r0?arch=x86_64\u0026distro=3.24.2",
+            "UID": "b31d879d87aa92c6"
+          },
+          "Version": "3.0.8-r0",
+          "Arch": "x86_64",
+          "SrcName": "apk-tools",
+          "SrcVersion": "3.0.8-r0",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "ca-certificates-bundle@20260909-r0",
+            "libapk@3.0.8-r0",
+            "libcrypto3@3.5.9-r0",
+            "musl@1.2.6-r2",
+            "zlib@1.3.2-r1"
+          ],
+          "Layer": {
+            "Digest": "sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5",
+            "DiffID": "sha256:74d97c428c51a828f9051a7a40a53ff1fc99e54fc30323ce36760701b0b7f711"
+          },
+          "Digest": "sha1:786130a8f2d3ac69fc316118757b7e8151b8b8c3",
+          "InstalledFiles": [
+            "sbin/apk"
+          ],
+          "AnalyzedBy": "apk"
+        },
+        {
+          "ID": "busybox@1.37.0-r31",
+          "Name": "busybox",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/busybox@1.37.0-r31?arch=x86_64\u0026distro=3.24.2",
+            "UID": "771020c43c8440bf"
+          },
+          "Version": "1.37.0-r31",
+          "Arch": "x86_64",
+          "SrcName": "busybox",
+          "SrcVersion": "1.37.0-r31",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Sören Tempel \u003csoeren+alpine@soeren-tempel.net\u003e",
+          "DependsOn": [
+            "musl@1.2.6-r2"
+          ],
+          "Layer": {
+            "Digest": "sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5",
+            "DiffID": "sha256:74d97c428c51a828f9051a7a40a53ff1fc99e54fc30323ce36760701b0b7f711"
+          },
+          "Digest": "sha1:b5405ebc02f7dd8be95b6265c54b243d5456ab8f",
+          "InstalledFiles": [
+            "bin/busybox",
+            "etc/securetty",
+            "etc/busybox-paths.d/busybox",
+            "etc/logrotate.d/acpid",
+            "etc/network/if-up.d/dad",
+            "etc/udhcpc/udhcpc.conf",
+            "usr/share/udhcpc/default.script"
+          ],
+          "AnalyzedBy": "apk"
+        },
+        {
+          "ID": "busybox-binsh@1.37.0-r31",
+          "Name": "busybox-binsh",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/busybox-binsh@1.37.0-r31?arch=x86_64\u0026distro=3.24.2",
+            "UID": "1ec8a3d5d2b63297"
+          },
+          "Version": "1.37.0-r31",
+          "Arch": "x86_64",
+          "SrcName": "busybox",
+          "SrcVersion": "1.37.0-r31",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Sören Tempel \u003csoeren+alpine@soeren-tempel.net\u003e",
+          "DependsOn": [
+            "busybox@1.37.0-r31"
+          ],
+          "Layer": {
+            "Digest": "sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5",
+            "DiffID": "sha256:74d97c428c51a828f9051a7a40a53ff1fc99e54fc30323ce36760701b0b7f711"
+          },
+          "Digest": "sha1:5cbd14acc6f1804c5bac6c77dc2c492f010b0fc7",
+          "InstalledFiles": [
+            "bin/sh"
+          ],
+          "AnalyzedBy": "apk"
+        },
+        {
+          "ID": "ca-certificates-bundle@20260909-r0",
+          "Name": "ca-certificates-bundle",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/ca-certificates-bundle@20260909-r0?arch=x86_64\u0026distro=3.24.2",
+            "UID": "4769f08c913e6b6c"
+          },
+          "Version": "20260909-r0",
+          "Arch": "x86_64",
+          "SrcName": "ca-certificates",
+          "SrcVersion": "20260909-r0",
+          "Licenses": [
+            "MPL-2.0",
+            "MIT"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "Layer": {
+            "Digest": "sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5",
+            "DiffID": "sha256:74d97c428c51a828f9051a7a40a53ff1fc99e54fc30323ce36760701b0b7f711"
+          },
+          "Digest": "sha1:791237cee877988893a354b5f6c9c44f35d4edb9",
+          "InstalledFiles": [
+            "etc/ssl/cert.pem",
+            "etc/ssl/certs/ca-certificates.crt",
+            "etc/ssl1.1/cert.pem",
+            "etc/ssl1.1/certs"
+          ],
+          "AnalyzedBy": "apk"
+        },
+        {
+          "ID": "libapk@3.0.8-r0",
+          "Name": "libapk",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libapk@3.0.8-r0?arch=x86_64\u0026distro=3.24.2",
+            "UID": "1fc10457d0e4bc0f"
+          },
+          "Version": "3.0.8-r0",
+          "Arch": "x86_64",
+          "SrcName": "apk-tools",
+          "SrcVersion": "3.0.8-r0",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libcrypto3@3.5.9-r0",
+            "libssl3@3.5.9-r0",
+            "musl@1.2.6-r2",
+            "zlib@1.3.2-r1"
+          ],
+          "Layer": {
+            "Digest": "sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5",
+            "DiffID": "sha256:74d97c428c51a828f9051a7a40a53ff1fc99e54fc30323ce36760701b0b7f711"
+          },
+          "Digest": "sha1:b93ce9573c1d0db3eea7ce32841ad0857abc4a54",
+          "InstalledFiles": [
+            "usr/lib/libapk.so.3.0.0"
+          ],
+          "AnalyzedBy": "apk"
+        },
+        {
+          "ID": "libcrypto3@3.5.9-r0",
+          "Name": "libcrypto3",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libcrypto3@3.5.9-r0?arch=x86_64\u0026distro=3.24.2",
+            "UID": "33f9021e6b3aac5c"
+          },
+          "Version": "3.5.9-r0",
+          "Arch": "x86_64",
+          "SrcName": "openssl",
+          "SrcVersion": "3.5.9-r0",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.2.6-r2"
+          ],
+          "Layer": {
+            "Digest": "sha256:346376b3fc78b0a24fb48c98012c36c3ce5dec0fe2cc5f787ab5fd51d9507f90",
+            "DiffID": "sha256:4ab37cc0266e393b4b6916c90defe8cc0af6400cacb72a994063653bcf63378f"
+          },
+          "Digest": "sha1:1c0dee9734cf22fc97cdd181913bbd710e6dfb08",
+          "InstalledFiles": [
+            "etc/ssl/ct_log_list.cnf",
+            "etc/ssl/ct_log_list.cnf.dist",
+            "etc/ssl/openssl.cnf",
+            "etc/ssl/openssl.cnf.dist",
+            "usr/lib/libcrypto.so.3",
+            "usr/lib/engines-3/afalg.so",
+            "usr/lib/engines-3/capi.so",
+            "usr/lib/engines-3/loader_attic.so",
+            "usr/lib/engines-3/padlock.so",
+            "usr/lib/ossl-modules/legacy.so"
+          ],
+          "AnalyzedBy": "apk"
+        },
+        {
+          "ID": "libgcc@15.2.0-r5",
+          "Name": "libgcc",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libgcc@15.2.0-r5?arch=x86_64\u0026distro=3.24.2",
+            "UID": "8cf3d813d20beeee"
+          },
+          "Version": "15.2.0-r5",
+          "Arch": "x86_64",
+          "SrcName": "gcc",
+          "SrcVersion": "15.2.0-r5",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "LGPL-2.1-or-later"
+          ],
+          "Maintainer": "Ariadne Conill \u003cariadne@dereferenced.org\u003e",
+          "DependsOn": [
+            "musl@1.2.6-r2"
+          ],
+          "Layer": {
+            "Digest": "sha256:346376b3fc78b0a24fb48c98012c36c3ce5dec0fe2cc5f787ab5fd51d9507f90",
+            "DiffID": "sha256:4ab37cc0266e393b4b6916c90defe8cc0af6400cacb72a994063653bcf63378f"
+          },
+          "Digest": "sha1:379c156c53e0cc140e87c79c0a3dd22b6ee51552",
+          "InstalledFiles": [
+            "usr/lib/libgcc_s.so.1"
+          ],
+          "AnalyzedBy": "apk"
+        },
+        {
+          "ID": "libssl3@3.5.9-r0",
+          "Name": "libssl3",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libssl3@3.5.9-r0?arch=x86_64\u0026distro=3.24.2",
+            "UID": "be064b460aa88b23"
+          },
+          "Version": "3.5.9-r0",
+          "Arch": "x86_64",
+          "SrcName": "openssl",
+          "SrcVersion": "3.5.9-r0",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libcrypto3@3.5.9-r0",
+            "musl@1.2.6-r2"
+          ],
+          "Layer": {
+            "Digest": "sha256:346376b3fc78b0a24fb48c98012c36c3ce5dec0fe2cc5f787ab5fd51d9507f90",
+            "DiffID": "sha256:4ab37cc0266e393b4b6916c90defe8cc0af6400cacb72a994063653bcf63378f"
+          },
+          "Digest": "sha1:20c4c90ea9d20a9dd3a04deadf2c6c4f64233643",
+          "InstalledFiles": [
+            "usr/lib/libssl.so.3"
+          ],
+          "AnalyzedBy": "apk"
+        },
+        {
+          "ID": "libstdc++@15.2.0-r5",
+          "Name": "libstdc++",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libstdc%2B%2B@15.2.0-r5?arch=x86_64\u0026distro=3.24.2",
+            "UID": "2eed307edf277aae"
+          },
+          "Version": "15.2.0-r5",
+          "Arch": "x86_64",
+          "SrcName": "gcc",
+          "SrcVersion": "15.2.0-r5",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "LGPL-2.1-or-later"
+          ],
+          "Maintainer": "Ariadne Conill \u003cariadne@dereferenced.org\u003e",
+          "DependsOn": [
+            "libgcc@15.2.0-r5",
+            "musl@1.2.6-r2"
+          ],
+          "Layer": {
+            "Digest": "sha256:346376b3fc78b0a24fb48c98012c36c3ce5dec0fe2cc5f787ab5fd51d9507f90",
+            "DiffID": "sha256:4ab37cc0266e393b4b6916c90defe8cc0af6400cacb72a994063653bcf63378f"
+          },
+          "Digest": "sha1:5f7a2ad7646128ba02cc0d6fb94672b6845648d5",
+          "InstalledFiles": [
+            "usr/lib/libstdc++.so.6",
+            "usr/lib/libstdc++.so.6.0.34"
+          ],
+          "AnalyzedBy": "apk"
+        },
+        {
+          "ID": "musl@1.2.6-r2",
+          "Name": "musl",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/musl@1.2.6-r2?arch=x86_64\u0026distro=3.24.2",
+            "UID": "1f8cb44befe503d4"
+          },
+          "Version": "1.2.6-r2",
+          "Arch": "x86_64",
+          "SrcName": "musl",
+          "SrcVersion": "1.2.6-r2",
+          "Licenses": [
+            "MIT"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "Layer": {
+            "Digest": "sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5",
+            "DiffID": "sha256:74d97c428c51a828f9051a7a40a53ff1fc99e54fc30323ce36760701b0b7f711"
+          },
+          "Digest": "sha1:0f7e5827e4e1a73631beda27b78431a8ba240e05",
+          "InstalledFiles": [
+            "lib/ld-musl-x86_64.so.1",
+            "lib/libc.musl-x86_64.so.1"
+          ],
+          "AnalyzedBy": "apk"
+        },
+        {
+          "ID": "musl-utils@1.2.6-r2",
+          "Name": "musl-utils",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/musl-utils@1.2.6-r2?arch=x86_64\u0026distro=3.24.2",
+            "UID": "4497482ec1d943e1"
+          },
+          "Version": "1.2.6-r2",
+          "Arch": "x86_64",
+          "SrcName": "musl",
+          "SrcVersion": "1.2.6-r2",
+          "Licenses": [
+            "MIT",
+            "BSD-2-Clause",
+            "GPL-2.0-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.2.6-r2",
+            "scanelf@1.3.9-r1"
+          ],
+          "Layer": {
+            "Digest": "sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5",
+            "DiffID": "sha256:74d97c428c51a828f9051a7a40a53ff1fc99e54fc30323ce36760701b0b7f711"
+          },
+          "Digest": "sha1:75ada3c48d63ec5d87c42fdf934a3fdd11298dc5",
+          "InstalledFiles": [
+            "sbin/ldconfig",
+            "usr/bin/getconf",
+            "usr/bin/getent",
+            "usr/bin/iconv",
+            "usr/bin/ldd"
+          ],
+          "AnalyzedBy": "apk"
+        },
+        {
+          "ID": "scanelf@1.3.9-r1",
+          "Name": "scanelf",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/scanelf@1.3.9-r1?arch=x86_64\u0026distro=3.24.2",
+            "UID": "936394657a1626fb"
+          },
+          "Version": "1.3.9-r1",
+          "Arch": "x86_64",
+          "SrcName": "pax-utils",
+          "SrcVersion": "1.3.9-r1",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.2.6-r2"
+          ],
+          "Layer": {
+            "Digest": "sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5",
+            "DiffID": "sha256:74d97c428c51a828f9051a7a40a53ff1fc99e54fc30323ce36760701b0b7f711"
+          },
+          "Digest": "sha1:013f903d0ba219673aebbdd04f74bb5ed82b01f0",
+          "InstalledFiles": [
+            "usr/bin/scanelf"
+          ],
+          "AnalyzedBy": "apk"
+        },
+        {
+          "ID": "ssl_client@1.37.0-r31",
+          "Name": "ssl_client",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/ssl_client@1.37.0-r31?arch=x86_64\u0026distro=3.24.2",
+            "UID": "d4c6622a088b9c5a"
+          },
+          "Version": "1.37.0-r31",
+          "Arch": "x86_64",
+          "SrcName": "busybox",
+          "SrcVersion": "1.37.0-r31",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Sören Tempel \u003csoeren+alpine@soeren-tempel.net\u003e",
+          "DependsOn": [
+            "libcrypto3@3.5.9-r0",
+            "libssl3@3.5.9-r0",
+            "musl@1.2.6-r2"
+          ],
+          "Layer": {
+            "Digest": "sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5",
+            "DiffID": "sha256:74d97c428c51a828f9051a7a40a53ff1fc99e54fc30323ce36760701b0b7f711"
+          },
+          "Digest": "sha1:c220f4a5125a313af733e98def94132bb1e9d40d",
+          "InstalledFiles": [
+            "usr/bin/ssl_client"
+          ],
+          "AnalyzedBy": "apk"
+        },
+        {
+          "ID": "zlib@1.3.2-r1",
+          "Name": "zlib",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/zlib@1.3.2-r1?arch=x86_64\u0026distro=3.24.2",
+            "UID": "1c01476a88d60a66"
+          },
+          "Version": "1.3.2-r1",
+          "Arch": "x86_64",
+          "SrcName": "zlib",
+          "SrcVersion": "1.3.2-r1",
+          "Licenses": [
+            "Zlib"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.2.6-r2"
+          ],
+          "Layer": {
+            "Digest": "sha256:346376b3fc78b0a24fb48c98012c36c3ce5dec0fe2cc5f787ab5fd51d9507f90",
+            "DiffID": "sha256:4ab37cc0266e393b4b6916c90defe8cc0af6400cacb72a994063653bcf63378f"
+          },
+          "Digest": "sha1:4f525c8cc204f84b8b4ca40db3be389958f056c6",
+          "InstalledFiles": [
+            "usr/lib/libz.so.1",
+            "usr/lib/libz.so.1.3.2"
+          ],
+          "AnalyzedBy": "apk"
+        }
+      ]
+    },
+    {
+      "Target": "app/Quoridor.deps.json",
+      "Class": "lang-pkgs",
+      "Type": "dotnet-core",
+      "Packages": [
+        {
+          "ID": "Quoridor/1.0.0",
+          "Name": "Quoridor",
+          "Identifier": {
+            "PURL": "pkg:nuget/Quoridor@1.0.0",
+            "UID": "45d060379e9da6d2"
+          },
+          "Version": "1.0.0",
+          "Relationship": "root",
+          "DependsOn": [
+            "Npgsql/10.0.3"
+          ],
+          "Layer": {
+            "Digest": "sha256:f1b91b935cbb6b723802135f8117db59ca79cf57598bd555386d0fbf9d95078f",
+            "DiffID": "sha256:ca76b04b18a78037687391deada7a1841a1b8c11e497ba464bb81aa4216b93fe"
+          },
+          "Locations": [
+            {
+              "StartLine": 192,
+              "EndLine": 196
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "Npgsql/10.0.3",
+          "Name": "Npgsql",
+          "Identifier": {
+            "PURL": "pkg:nuget/Npgsql@10.0.3",
+            "UID": "bbc900cf7ca02775"
+          },
+          "Version": "10.0.3",
+          "Relationship": "direct",
+          "Layer": {
+            "Digest": "sha256:f1b91b935cbb6b723802135f8117db59ca79cf57598bd555386d0fbf9d95078f",
+            "DiffID": "sha256:ca76b04b18a78037687391deada7a1841a1b8c11e497ba464bb81aa4216b93fe"
+          },
+          "Locations": [
+            {
+              "StartLine": 211,
+              "EndLine": 217
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "Microsoft.Data.Sqlite.Core/10.0.13",
+          "Name": "Microsoft.Data.Sqlite.Core",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.Data.Sqlite.Core@10.0.13",
+            "UID": "2c7568dc58b669de"
+          },
+          "Version": "10.0.13",
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "SQLitePCLRaw.core/2.1.13"
+          ],
+          "Layer": {
+            "Digest": "sha256:f1b91b935cbb6b723802135f8117db59ca79cf57598bd555386d0fbf9d95078f",
+            "DiffID": "sha256:ca76b04b18a78037687391deada7a1841a1b8c11e497ba464bb81aa4216b93fe"
+          },
+          "Locations": [
+            {
+              "StartLine": 204,
+              "EndLine": 210
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "SQLitePCLRaw.bundle_e_sqlite3/2.1.13",
+          "Name": "SQLitePCLRaw.bundle_e_sqlite3",
+          "Identifier": {
+            "PURL": "pkg:nuget/SQLitePCLRaw.bundle_e_sqlite3@2.1.13",
+            "UID": "d9ab25e33a918080"
+          },
+          "Version": "2.1.13",
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "SQLitePCLRaw.lib.e_sqlite3/2.1.13",
+            "SQLitePCLRaw.provider.e_sqlite3/2.1.13"
+          ],
+          "Layer": {
+            "Digest": "sha256:f1b91b935cbb6b723802135f8117db59ca79cf57598bd555386d0fbf9d95078f",
+            "DiffID": "sha256:ca76b04b18a78037687391deada7a1841a1b8c11e497ba464bb81aa4216b93fe"
+          },
+          "Locations": [
+            {
+              "StartLine": 218,
+              "EndLine": 224
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "SQLitePCLRaw.core/2.1.13",
+          "Name": "SQLitePCLRaw.core",
+          "Identifier": {
+            "PURL": "pkg:nuget/SQLitePCLRaw.core@2.1.13",
+            "UID": "cb58714b9eb24d45"
+          },
+          "Version": "2.1.13",
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Layer": {
+            "Digest": "sha256:f1b91b935cbb6b723802135f8117db59ca79cf57598bd555386d0fbf9d95078f",
+            "DiffID": "sha256:ca76b04b18a78037687391deada7a1841a1b8c11e497ba464bb81aa4216b93fe"
+          },
+          "Locations": [
+            {
+              "StartLine": 225,
+              "EndLine": 231
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "SQLitePCLRaw.lib.e_sqlite3/2.1.13",
+          "Name": "SQLitePCLRaw.lib.e_sqlite3",
+          "Identifier": {
+            "PURL": "pkg:nuget/SQLitePCLRaw.lib.e_sqlite3@2.1.13",
+            "UID": "69078a86587c7d31"
+          },
+          "Version": "2.1.13",
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Layer": {
+            "Digest": "sha256:f1b91b935cbb6b723802135f8117db59ca79cf57598bd555386d0fbf9d95078f",
+            "DiffID": "sha256:ca76b04b18a78037687391deada7a1841a1b8c11e497ba464bb81aa4216b93fe"
+          },
+          "Locations": [
+            {
+              "StartLine": 232,
+              "EndLine": 238
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        },
+        {
+          "ID": "SQLitePCLRaw.provider.e_sqlite3/2.1.13",
+          "Name": "SQLitePCLRaw.provider.e_sqlite3",
+          "Identifier": {
+            "PURL": "pkg:nuget/SQLitePCLRaw.provider.e_sqlite3@2.1.13",
+            "UID": "d4622d324d1f9582"
+          },
+          "Version": "2.1.13",
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "SQLitePCLRaw.core/2.1.13"
+          ],
+          "Layer": {
+            "Digest": "sha256:f1b91b935cbb6b723802135f8117db59ca79cf57598bd555386d0fbf9d95078f",
+            "DiffID": "sha256:ca76b04b18a78037687391deada7a1841a1b8c11e497ba464bb81aa4216b93fe"
+          },
+          "Locations": [
+            {
+              "StartLine": 239,
+              "EndLine": 245
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        }
+      ]
+    },
+    {
+      "Target": "usr/share/dotnet/shared/Microsoft.AspNetCore.App/10.0.13/Microsoft.AspNetCore.App.deps.json",
+      "Class": "lang-pkgs",
+      "Type": "dotnet-core",
+      "Packages": [
+        {
+          "ID": "Microsoft.AspNetCore.App.Runtime.linux-musl-x64/10.0.13",
+          "Name": "Microsoft.AspNetCore.App.Runtime.linux-musl-x64",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.AspNetCore.App.Runtime.linux-musl-x64@10.0.13",
+            "UID": "5e264d3479b47eca"
+          },
+          "Version": "10.0.13",
+          "Layer": {
+            "Digest": "sha256:59e79965787ca37b67fece1ae8b29e4c3e2ad52f7a91be3d4b10fde644f983f3",
+            "DiffID": "sha256:007e04ac0b6d563bb553dac2f0031b6cf7840262adc15398af77778d7624194b"
+          },
+          "Locations": [
+            {
+              "StartLine": 581,
+              "EndLine": 586
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        }
+      ]
+    },
+    {
+      "Target": "usr/share/dotnet/shared/Microsoft.NETCore.App/10.0.13/Microsoft.NETCore.App.deps.json",
+      "Class": "lang-pkgs",
+      "Type": "dotnet-core",
+      "Packages": [
+        {
+          "ID": "Microsoft.NETCore.App.Runtime.linux-musl-x64/10.0.13",
+          "Name": "Microsoft.NETCore.App.Runtime.linux-musl-x64",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.NETCore.App.Runtime.linux-musl-x64@10.0.13",
+            "UID": "c618d9c07f9f3bb9"
+          },
+          "Version": "10.0.13",
+          "Layer": {
+            "Digest": "sha256:1a6d3dfc8c9c4fac706d998123c93a7f76c824dabfa38e8fe8cd0fc519e216d0",
+            "DiffID": "sha256:dae6be4fb791bc41175bf3eb0eb2d7327a617353fcae080d2ea951a8ba3c9683"
+          },
+          "Locations": [
+            {
+              "StartLine": 749,
+              "EndLine": 754
+            }
+          ],
+          "AnalyzedBy": "dotnet-core"
+        }
+      ]
+    }
+  ]
+}

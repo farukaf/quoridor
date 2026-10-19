@@ -1,22 +1,5 @@
-﻿@rendermode InteractiveServer
-@inject IPlayerService playerService
-@code {
-    [Parameter] public PlayerViewModel? Player { get; set; }
-    private Player? _player;
-
-    protected override async Task OnInitializedAsync()
-    {
-        _player ??= await playerService.GetPlayer();
-    }
-
-    protected string GetCssClass() => _player?.Id == Player?.Id ? "cursor" : "";
-}
-
 @if (Player is not null)
-{ 
-    <div class="@GetCssClass()">
-        <span class="" style="font-size: 2rem; color: @ColorHelper.GetHex(Player.Color); ">
-            ♟︎
-        </span>
-    </div>
+{
+    <span class="pawn @(Player.Color == ColorHelper.Player1Color ? "pawn-one" : "pawn-two")" aria-hidden="true"><i></i></span>
 }
+@code { [Parameter] public PlayerViewModel? Player { get; set; } }

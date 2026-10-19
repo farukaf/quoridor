@@ -1,61 +1,19 @@
-﻿@attribute [StreamRendering]
-@rendermode InteractiveServer
 @inject IPlayerService playerService
-
-<fieldset>
-    <legend>Players</legend>
-    <ul>
-        @if (Room.Player1 is not null)
-        {
-            <li> 
-                @{
-                    var style = $"color: {ColorHelper.GetHex(Room.Player1.Color)}";
-                }
-                <small class="pill" style="@style">Player 1</small>
-                @Room.Player1.Name
-                @if (Room.Board.CurrentPlayer is not null && Room.Board.CurrentPlayer == Room.Player1)
-                {
-                    <small class="pill">TURN</small>
-                }
-                <ul>
-                    @if (player?.Id == Room.Player1.Id)
-                    {
-                        <li>
-                            <small class="pill">YOU</small>
-                        </li>
-                    }
-                    <li>
-                        Walls: @Room.Player1.WallCount
-                    </li>
-                </ul>
-            </li>
-        }   
-        @if (Room.Player2 is not null)
-        {
-            <li>
-                @{
-                    var style = $"color: {ColorHelper.GetHex(Room.Player2.Color)}";
-                }
-                <small class="pill" style="@style">Player 2</small>
-                @Room.Player2.Name
-                @if (Room.Board.CurrentPlayer is not null && Room.Board.CurrentPlayer == Room.Player2)
-                {
-                    <small class="pill">TURN</small>
-                }
-                <ul>
-                    @if (player?.Id == Room.Player2.Id)
-                    {
-                        <li>
-                            <small class="pill">YOU</small>
-                        </li>
-                    }
-                    <li>
-                        Walls: @Room.Player2.WallCount
-                    </li>
-                </ul>
-            </li>
-        }
+<section class="side-card" aria-labelledby="players-heading">
+    <h2 id="players-heading">The players</h2>
+    <ul class="player-list">
+    @foreach (var entry in new[] { (View: Room.Player1, Number: 1), (View: Room.Player2, Number: 2) })
+    {
+        var view = entry.View;
+        <li class="@(entry.Number == 1 ? "player-one" : "player-two") @(view is not null && Room.Board.CurrentPlayer == view ? "active" : "") @(view is null ? "waiting-player" : "")">
+            <small>Player @entry.Number</small>
+            <strong>@(view?.Name ?? "An open seat")</strong>
+            @if (view is not null && Room.Board.CurrentPlayer == view) { <small class="turn-pill">TURN</small> }
+            <ul>
+                <li>@if (view is not null && player?.Id == view.Id) { <small class="you-pill">YOU</small> } else { <span>@(view is null ? "Share your room link" : "Opponent")</span> }</li>
+                @if (view is not null) { <li>Walls: @view.WallCount</li> }
+            </ul>
+        </li>
+    }
     </ul>
-
-
-</fieldset>
+</section>

@@ -5,7 +5,7 @@ import urllib.request
 import uuid
 
 base = (sys.argv[1] if len(sys.argv) > 1 else 'http://127.0.0.1:8080').rstrip('/')
-for path, expected in [('/', b'Welcome'), (f'/Room/{uuid.uuid4()}', b'blazor'),
+for path, expected in [('/', b'clever detour'), (f'/Room/{uuid.uuid4()}', b'blazor'),
                        ('/app.js', b'GetTimezone'), ('/app.css', b'{'),
                        ('/_framework/blazor.web.js', b'Blazor')]:
     with urllib.request.urlopen(base + path, timeout=20) as response:

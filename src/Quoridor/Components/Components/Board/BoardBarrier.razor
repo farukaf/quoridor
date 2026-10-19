@@ -1,67 +1,8 @@
-﻿@rendermode InteractiveServer
-@implements IAsyncDisposable
 @inject IPlayerService playerService
 @code {
     [Parameter] public RoomViewModel Room { get; set; } = default!;
-    protected Player? player;
-
-    protected bool MissingPlayers => Room.Player1 is null || Room.Player2 is null;
-    protected bool PlayerIsMissing => player is null;
-    protected bool NotYourTurn => Room.Board.CurrentPlayer is not null && player is not null && Room.Board.CurrentPlayer.Id != player.Id;
-    protected bool ShouldShow => MissingPlayers || PlayerIsMissing || NotYourTurn;
-
-    protected override async Task OnInitializedAsync()
-    {
-        player ??= await playerService.GetPlayer();
-    }
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        if (!firstRender)
-            return;
-
-        playerService.PlayerChanged += RoomChanged_Event;
-        Room.RoomChanged += RoomChanged_Event;
-    }
-
-    public async Task RoomChanged_Event()
-    {
-        await InvokeAsync(StateHasChanged);
-    }
-
-    public ValueTask DisposeAsync()
-    {
-        playerService.PlayerChanged -= RoomChanged_Event;
-
-        if (Room is null)
-            return ValueTask.CompletedTask;
-
-        Room.RoomChanged -= RoomChanged_Event;
-
-        return ValueTask.CompletedTask;
-    }
+    private Player? player;
+    protected override async Task OnInitializedAsync() => player = await playerService.GetPlayer();
 }
-
-@if (ShouldShow)
-{
-    <div style="background: rgba(255,255,255,0.3); width: 100%; height: 100%; position: absolute; top: 0;">
-        @if (MissingPlayers)
-        {
-            <h3 style="background: rgba(255,255,255,0.7); padding: 1rem; margin-top: 5rem;">
-                Waiting for players...
-            </h3>
-        }
-        @if (PlayerIsMissing)
-        {
-            <h3 style="background: rgba(255,255,255,0.7); padding: 1rem; margin-top: 5rem;">
-                Your info was not loaded
-            </h3>
-        }
-        @if (NotYourTurn)
-        {
-            <h3 style="background: rgba(255,255,255,0.7); padding: 1rem; margin-top: 5rem;">
-                It's not your turn
-            </h3>
-        }
-    </div>
-}
+@if (Room.Player2 is null) { <p class="board-notice">An open seat, a fresh board. Invite a friend to get started.</p> }
+else if (Room.Board.CurrentPlayer?.Id != player?.Id) { <p class="board-notice">Watch the board. Your next idea can start while you wait.</p> }

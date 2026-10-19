@@ -1,30 +1,49 @@
 @page "/"
 @inject GameStore Store
-<PageTitle>Quoridor leaderboard</PageTitle>
-<h1>Quoridor</h1>
-<p>Welcome. Play a friend and climb the leaderboard.</p>
-<NavLink class="nav-link" href="@($"Room/{Guid.NewGuid()}")">Create a room</NavLink>
-<p>Share the room address with a friend to play.</p>
-<h2>Leaderboard</h2>
-@if (leaders.Count == 0)
-{
-    <p>No completed games yet. Be the first to win!</p>
-}
-else
-{
-    <table>
-        <thead><tr><th scope="col">Rank</th><th scope="col">Player</th><th scope="col">Wins</th><th scope="col">Games</th></tr></thead>
-        <tbody>
+<PageTitle>Quoridor · A clever way forward</PageTitle>
+<section class="hero" aria-labelledby="hero-heading">
+    <div>
+        <p class="eyebrow">A little strategy. A lot of possibility.</p>
+        <h1 id="hero-heading">A clear path.<br />A <em>clever detour.</em></h1>
+        <p class="hero-description">Race to the other side. Put a wall in your friend's plans. Every move is a new possibility.</p>
+        <div class="hero-actions"><a class="button" href="@($"Room/{roomId}")">Create a room <span aria-hidden="true">↗</span></a><a class="text-link" href="#how-to-play">New here? Learn the rules <span aria-hidden="true">↓</span></a></div>
+        <p class="microcopy">Two players · No sign-up · Just share your room link</p>
+    </div>
+    <div class="preview-card" aria-hidden="true">
+        <div class="preview-board">@for (var i = 0; i < 25; i++) { <span></span> }<i class="preview-pawn"></i><i class="preview-pawn second"></i><i class="preview-wall"></i><i class="preview-wall other"></i></div>
+        <p class="preview-label">SIMPLE TO LEARN. HARD TO OUTSMART.</p>
+    </div>
+</section>
+<section id="leaderboard" aria-labelledby="leaderboard-heading">
+    <div class="section-top"><div><p class="eyebrow">The friendly competition</p><h2 id="leaderboard-heading">A place at the top.</h2></div><p>Great moves deserve<br />a little recognition.</p></div>
+    <div class="card leaderboard-card">
+    @if (leaders.Count == 0)
+    {
+        <div class="empty-state"><span class="empty-icon" aria-hidden="true">♜</span><h3>The board is open.</h3><p>No completed games yet. Make the first winning move and start the leaderboard.</p></div>
+    }
+    else
+    {
+        <table aria-label="Leaderboard ordered by wins"><thead><tr><th scope="col">Rank</th><th scope="col">Player</th><th scope="col">Wins</th><th scope="col">Games</th></tr></thead><tbody>
         @for (var i = 0; i < leaders.Count; i++)
         {
             var player = leaders[i];
-            <tr data-player="@player.PlayerId"><td>@(i + 1)</td><td><a href="@($"Players/{player.PlayerId}")">@player.Name</a></td><td data-wins>@player.Wins</td><td>@player.Games</td></tr>
+            <tr data-player="@player.PlayerId"><td><span class="rank-number">@((i + 1).ToString("D2"))</span></td><td><a class="player-name" href="@($"Players/{player.PlayerId}")"><span class="avatar" aria-hidden="true">@player.Name[..1].ToUpperInvariant()</span><span>@player.Name</span></a></td><td><span class="win-count" data-wins>@player.Wins</span></td><td>@player.Games</td></tr>
         }
-        </tbody>
-    </table>
-    <p>Showing up to 100 players, ordered by wins, games and name.</p>
-}
+        </tbody></table>
+    }
+    </div>
+    <p class="table-note">Up to 100 players · Ranked by wins, then games played · Select a player to explore their history</p>
+</section>
+<section id="how-to-play" class="how-section" aria-labelledby="rules-heading">
+    <div class="section-top"><div><p class="eyebrow">Your next good idea starts here</p><h2 id="rules-heading">Three rules. Endless routes.</h2></div></div>
+    <div class="rule-cards">
+        <article class="rule-card"><span class="rule-number">01 /</span><h3>Find your way across.</h3><p>Your pawn starts on one edge. Be the first to reach any square on the opposite side.</p></article>
+        <article class="rule-card"><span class="rule-number">02 /</span><h3>Move. Or make a detour.</h3><p>On your turn, move one square or place a wall. Jump an adjacent pawn when the way is clear.</p></article>
+        <article class="rule-card"><span class="rule-number">03 /</span><h3>Leave a way forward.</h3><p>Each player gets ten walls. They can slow a journey, but must always leave a path to the finish.</p></article>
+    </div>
+</section>
 @code {
+    private readonly Guid roomId = Guid.NewGuid();
     private IReadOnlyList<LeaderboardEntry> leaders = Array.Empty<LeaderboardEntry>();
     protected override void OnInitialized() => leaders = Store.Leaderboard();
 }

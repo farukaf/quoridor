@@ -2,10 +2,12 @@
 @code {
     [Parameter] public CornerViewModel Corner { get; set; } = default!;
     [Parameter] public RoomViewModel Room { get; set; } = default!;
+    [Parameter] public bool WallMode { get; set; }
+    private string StateDescription => Corner.State switch { CornerState.Selected => "Selected wall start", CornerState.Avaliable => "Available wall end", CornerState.Disabled => "Unavailable wall point", _ => "Choose a wall start" };
     private async Task Click()
     {
         var player = await playerService.GetPlayer();
         if (player is not null) await Room.ClickCorner(player.Id, Corner.CornerAddress);
     }
 }
-<button data-corner="@($"{Corner.CornerAddress.X},{Corner.CornerAddress.Y}")" type="button" class="text-center @Corner.State.ToString().ToLower()" @onclick="Click">▼</button>
+<button data-corner="@($"{Corner.CornerAddress.X},{Corner.CornerAddress.Y}")" data-row="@(Corner.CornerAddress.X * 2)" data-column="@(Corner.CornerAddress.Y * 2)" disabled="@(!WallMode || Corner.State == CornerState.Disabled)" type="button" tabindex="-1" class="board-control corner-control text-center @Corner.State.ToString().ToLower()" aria-label="@($"Wall point row {Corner.CornerAddress.X + 1}, column {Corner.CornerAddress.Y + 1}. {StateDescription}.")" aria-pressed="@(Corner.State == CornerState.Selected)" aria-disabled="@(Corner.State == CornerState.Disabled)" aria-describedby="keyboard-help" @onclick="Click"><span aria-hidden="true"></span></button>

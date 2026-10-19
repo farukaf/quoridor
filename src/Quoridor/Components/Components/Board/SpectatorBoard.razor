@@ -1,17 +1,5 @@
-﻿@code {
-    [Parameter]
-    public RoomViewModel Room { get; set; } = default!;
-}
-
 @if (Room.GetSpectators().Any())
 {
-    <fieldset>
-        <legend>Spectators</legend>
-        <ul>
-            @foreach (var spectator in Room.GetSpectators())
-            {
-                <li>@spectator.UserName</li>
-            }
-        </ul>
-    </fieldset>
+    <section class="side-card"><h2>On the sidelines</h2><ul class="spectator-list">@foreach (var spectator in Room.GetSpectators()) { <li>@spectator.UserName</li> }</ul></section>
 }
+@code { [Parameter] public RoomViewModel Room { get; set; } = default!; }

@@ -1,50 +1,20 @@
-﻿@using Quoridor.Services
-@using Quoridor.Components.Components.Shared
 @using Quoridor.ViewModels.Forms
-@attribute [StreamRendering]
-@rendermode InteractiveServer
 @inject IPlayerService playerService
 @inject IJSRuntime JS
-
-@if (Loading)
+@if (Loading) { <p class="loading-state" role="status">A fresh board is on its way…</p> }
+else if (barrierActive)
 {
-    <i>Loading...</i>
+    <section class="form-panel" aria-labelledby="name-heading"><p class="eyebrow">Welcome to the table</p><h2 id="name-heading">Take your seat.</h2><p>Pick a display name. Your moves, wins and a little friendly rivalry start here.</p>
+        <EditForm Model="userNameForm" OnSubmit="Submit"><label for="player-name">What should we call you?</label><InputText id="player-name" maxlength="40" autocomplete="nickname" placeholder="Your display name" @bind-Value="userNameForm.UserName" />
+            @if (error is not null) { <p role="alert">@error</p> }
+            <button type="submit">Join the game <span aria-hidden="true">↗</span></button>
+        </EditForm><p class="microcopy">No account needed. This browser remembers your player.</p>
+    </section>
 }
-
-@if (!Loading)
-{
-    @if (barrierActive)
-    {
-        <CustomDialog AutoStart="true" DialogId="@dialogId">
-            <ContentHeader>
-            </ContentHeader>
-            <ContentBody>
-                <h3>What is your name?</h3>
-                <EditForm Model="userNameForm" OnSubmit="@Submit">
-                    <div>
-                        <label for="player-name">Display name</label>
-                        <InputText id="player-name" maxlength="40" @bind-Value="userNameForm.UserName" />
-                        @if (error is not null) { <p role="alert">@error</p> }
-                    </div>
-                    <div>
-                        <button type="submit">Confirm</button>
-                    </div>
-                </EditForm>
-            </ContentBody>
-            <ContentFooter>
-            </ContentFooter>
-        </CustomDialog>
-    }
-
-    @if (!barrierActive)
-    {
-        @ChildContent
-    }
-}
+else { @ChildContent }
 
 @code {
     [Parameter] public RenderFragment? ChildContent { get; set; }
-    string dialogId = "UserBarrier";
 
     UserNameForm userNameForm = new();
     Player? player;
