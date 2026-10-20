@@ -21,10 +21,6 @@
         try { await JS.InvokeVoidAsync("CopyRoomLink", Navigation.Uri); shareStatus = "Link copied. Your friend is one click away."; }
         catch (JSException) { shareStatus = "Select the link above and copy it to invite a friend."; }
     }
-    private bool wallMode;
-    private string? pendingFocus;
-    private Task FocusPawn() { wallMode = false; pendingFocus = "pawn"; return Task.CompletedTask; }
-    private Task FocusWall() { wallMode = true; pendingFocus = "wall"; return Task.CompletedTask; }
     private string TurnText
     {
         get
@@ -39,7 +35,6 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (pendingFocus is { } kind) { pendingFocus = null; await JS.InvokeVoidAsync("FocusBoardControl", kind); }
         if (!firstRender)
             return;
 
@@ -104,9 +99,8 @@
         <div class="game-layout">
             <section class="board-stage" aria-label="Quoridor game">
                 <div class="turn-banner"><span role="status" aria-live="polite" aria-atomic="true">@TurnText</span><span class="live-badge">Live room</span></div>
-                <div class="board-tools"><button type="button" aria-pressed="@(!wallMode)" @onclick="FocusPawn">Move a pawn</button><button type="button" aria-pressed="@wallMode" @onclick="FocusWall">Place a wall</button></div>
-                <BoardDraw Room="Room" WallMode="wallMode" />
-                <p class="board-caption">@(wallMode ? "Wall mode: choose two highlighted wall points." : "Move mode: select your pawn, then an available square.")</p>
+                <BoardDraw Room="Room" />
+                <p class="board-caption">Select your pawn and a highlighted square to move, or choose two connected wall points to place a wall.</p>
                 <p id="keyboard-help" class="board-caption">Keyboard: arrow keys explore the board · Enter or Space selects</p>
             </section>
             <aside class="game-sidebar" aria-label="Players and game information">
