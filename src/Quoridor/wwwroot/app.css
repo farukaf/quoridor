@@ -113,9 +113,6 @@ tr:first-child .rank-number { color: var(--accent); font-weight: 750; }
 .turn-banner { display: flex; justify-content: space-between; gap: 10px; align-items: center; border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 14px; font-size: 13px; font-weight: 650; }
 .live-badge { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 10px; font-weight: 750; text-transform: uppercase; letter-spacing: .12em; white-space: nowrap; }
 .live-badge::before { content: ""; width: 6px; height: 6px; background: currentColor; border-radius: 50%; }
-.board-tools { display: flex; justify-content: center; gap: 8px; margin-bottom: 14px; }
-.board-tools button { background: var(--paper); color: var(--ink); font-size: 11px; padding: 8px 12px; min-height: 36px; border-color: var(--line); }
-.board-tools button:hover { background: var(--accent-soft); }
 .board-caption { text-align: center; font-size: 10px; color: var(--muted); padding-top: 14px; margin-bottom: 0; }
 .game-sidebar { display: grid; gap: 18px; }
 .side-card { border: 1px solid var(--line); border-radius: 16px; background: var(--surface); padding: 20px; }
@@ -207,8 +204,6 @@ tr:first-child .rank-number { color: var(--accent); font-weight: 750; }
     .history-date { font-size: 10px; max-width: 95px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
-
-.board-tools button[aria-pressed=true] { background: var(--accent-soft); border-color: #9caf97; color: var(--accent); }
 
 h1:focus { outline: none; }
 

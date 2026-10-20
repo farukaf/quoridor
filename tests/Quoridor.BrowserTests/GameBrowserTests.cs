@@ -41,7 +41,6 @@ public class GameBrowserTests
     private static By Cell(int row, int column) => By.XPath($"//div[contains(@class,'cell')][small[normalize-space()='(r{row},c{column})']]");
     private static void Move(IWebDriver driver, int fromRow, int fromColumn, int row, int column)
     {
-        Click(driver, By.XPath("//button[normalize-space()='Move a pawn']"));
         Click(driver, Cell(fromRow, fromColumn));
         Wait(driver).Until(d => d.FindElements(By.CssSelector(".avaliable")).Count > 0);
         Click(driver, Cell(row, column));
@@ -99,6 +98,7 @@ public class GameBrowserTests
             Click(first,By.CssSelector("button[aria-label='Copy room invitation link']"));
             Wait(first).Until(d=>!string.IsNullOrWhiteSpace(d.FindElement(By.CssSelector(".share-status")).Text));
             Assert.Equal(room,first.FindElement(By.Id("room-link")).GetAttribute("value"));
+            Assert.Empty(first.FindElements(By.XPath("//button[normalize-space()='Move a pawn' or normalize-space()='Place a wall']")));
             Assert.True(first.FindElement(By.CssSelector(".cell-control")).Size.Width>=24);
             Assert.True(first.FindElement(By.CssSelector(".cell-control")).Size.Height>=24);
             ((IJavaScriptExecutor)first).ExecuteScript("window.scrollTo({top:0,behavior:'instant'})");
@@ -121,18 +121,15 @@ public class GameBrowserTests
             Assert.True(((IJavaScriptExecutor)first).ExecuteScript("return getComputedStyle(document.activeElement).outlineStyle !== 'none'") is true);
             first.SwitchTo().ActiveElement().SendKeys(Keys.Enter);
             Wait(second).Until(d => d.FindElements(By.XPath("//li[small[contains(.,'Player 2')]][small[normalize-space()='TURN']]")).Count == 1);
-            Click(second, By.XPath("//button[normalize-space()='Place a wall']"));
             Wait(second).Until(d=>d.FindElement(By.CssSelector("button[data-corner='1,0']")).Enabled);
             Assert.True(second.FindElement(By.CssSelector("button[data-corner='1,0']")).Size.Width >= 24);
             Assert.True(second.FindElement(By.CssSelector("button[data-corner='1,0']")).Size.Height >= 24);
-            // Wall controls have their own mode, avoiding overlapping active touch targets.
-            Assert.True(second.FindElement(By.CssSelector(".cell-control")).GetAttribute("disabled") is not null);
-            Wait(second).Until(d=>d.SwitchTo().ActiveElement().GetAttribute("data-corner") == "1,0");
-            second.SwitchTo().ActiveElement().SendKeys(Keys.Space);
+            Assert.Null(second.FindElement(Cell(8,4)).FindElement(By.CssSelector(".cell-control")).GetAttribute("disabled"));
+            Click(second, By.CssSelector("button[data-corner='1,0']"));
             Wait(second).Until(d=>d.FindElement(By.CssSelector("button[data-corner='1,2']")).GetAttribute("class")?.Contains("avaliable") == true);
-            second.SwitchTo().ActiveElement().SendKeys(Keys.ArrowRight);
-            second.SwitchTo().ActiveElement().SendKeys(Keys.ArrowRight);
-            second.SwitchTo().ActiveElement().SendKeys(Keys.Space);
+            var secondWallPoint = second.FindElement(By.CssSelector("button[data-corner='1,2']"));
+            ((IJavaScriptExecutor)second).ExecuteScript("arguments[0].focus();", secondWallPoint);
+            secondWallPoint.SendKeys(Keys.Space);
             Wait(second).Until(d => d.FindElements(By.XPath("//li[small[contains(.,'Player 2')]]//li[contains(.,'Walls: 9')]")).Count == 1);
             Wait(first).Until(d => d.FindElements(By.XPath("//li[small[contains(.,'Player 1')]][small[normalize-space()='TURN']]")).Count == 1);
             // Finish by legal alternating moves; Bob steps aside and then shuffles.
