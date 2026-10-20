@@ -49,7 +49,8 @@ jobs:
         run: |
           test -n "$SONAR_TOKEN" && test -n "$SONAR_ORGANIZATION" && test -n "$SONAR_PROJECT_KEY"
           dotnet tool install dotnet-sonarscanner --version 12.0.0 --tool-path /tmp/sonar
-          /tmp/sonar/dotnet-sonarscanner begin /k:"$SONAR_PROJECT_KEY" /o:"$SONAR_ORGANIZATION" /d:sonar.host.url=https://sonarcloud.io /d:sonar.token="$SONAR_TOKEN" /d:sonar.qualitygate.wait=true /d:sonar.cs.opencover.reportsPaths='**/coverage.opencover.xml' /d:sonar.exclusions='**/node_modules/**,**/wwwroot/lib/**,**/wwwroot/vendor/**,**/wwwroot/bootstrap/**,**/wwwroot/jquery/**,**/*.min.js,**/*.min.css,**/*.map'
+          # Selenium exercises Razor/JS in the app container, while Coverlet only measures the test process.
+          /tmp/sonar/dotnet-sonarscanner begin /k:"$SONAR_PROJECT_KEY" /o:"$SONAR_ORGANIZATION" /d:sonar.host.url=https://sonarcloud.io /d:sonar.token="$SONAR_TOKEN" /d:sonar.qualitygate.wait=true /d:sonar.cs.opencover.reportsPaths='**/coverage.opencover.xml' /d:sonar.exclusions='**/node_modules/**,**/wwwroot/lib/**,**/wwwroot/vendor/**,**/wwwroot/bootstrap/**,**/wwwroot/jquery/**,**/*.min.js,**/*.min.css,**/*.map' /d:sonar.coverage.exclusions='**/*.razor,**/wwwroot/app.js,scripts/smoke.py'
       - run: dotnet build src/Quoridor.sln -c Release --no-restore -warnaserror
       - run: |
           dotnet list src/Quoridor.sln package --vulnerable --include-transitive --format json > nuget-audit.json
