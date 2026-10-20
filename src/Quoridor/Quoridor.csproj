@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <NuGetAuditMode>all</NuGetAuditMode>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <NoWarn>$(NoWarn);S1135</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
