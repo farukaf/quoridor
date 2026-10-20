@@ -207,6 +207,8 @@ tr:first-child .rank-number { color: var(--accent); font-weight: 750; }
 
 h1:focus { outline: none; }
 
+#blazor-error-ui { background: var(--surface); border-top: 1px solid var(--line); bottom: 0; box-shadow: 0 -2px 12px rgb(28 39 30 / 12%); display: none; left: 0; padding: 12px 20px; position: fixed; width: 100%; z-index: 1000; }
+
 .profile-heading > div, .turn-banner > span:first-child, .player-name > span:last-child { min-width: 0; overflow-wrap: anywhere; }
 .leaderboard-card th:first-child { width: 12%; }
 .leaderboard-card th:nth-child(2) { width: 56%; }

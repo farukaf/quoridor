@@ -95,6 +95,7 @@ public class GameBrowserTests
             Join(first, room, alice, navigate:false);
             Join(second, room, bob);
             Wait(first).Until(d => d.PageSource.Contains(bob));
+            Assert.Equal("none", ((IJavaScriptExecutor)first).ExecuteScript("return getComputedStyle(document.getElementById('blazor-error-ui')).display"));
             Click(first,By.CssSelector("button[aria-label='Copy room invitation link']"));
             Wait(first).Until(d=>!string.IsNullOrWhiteSpace(d.FindElement(By.CssSelector(".share-status")).Text));
             Assert.Equal(room,first.FindElement(By.Id("room-link")).GetAttribute("value"));
