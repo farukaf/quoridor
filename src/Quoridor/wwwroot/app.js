@@ -39,3 +39,12 @@ document.addEventListener('keydown', event => {
     candidates.sort((a,b) => vertical ? Math.abs(a.dc) - Math.abs(b.dc) || Math.abs(a.dr) - Math.abs(b.dr) : Math.abs(a.dr) - Math.abs(b.dr) || Math.abs(a.dc) - Math.abs(b.dc));
     candidates[0]?.control.focus();
 });
+// Pages restored from the browser's back-forward cache retain a dead server circuit.
+// Reload to establish a fresh interactive circuit before accepting player input.
+window.addEventListener('pageshow', event => {
+    if (event.persisted) window.location.reload();
+});
+
+document.addEventListener('components-reconnect-state-changed', event => {
+    if (event.detail?.state === 'rejected') window.location.reload();
+});
