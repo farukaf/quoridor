@@ -13,11 +13,6 @@ function GetLegacyName() {
 async function CopyRoomLink(url) {
     await navigator.clipboard.writeText(url);
 }
-function FocusBoardControl(kind) {
-    const selector = kind === 'wall' ? '.board [data-corner="1,0"]' : '.board [data-current-pawn="true"]';
-    const target = document.querySelector(selector);
-    if (target) target.focus();
-}
 // Keep one board control in the tab sequence. Native buttons handle Enter/Space.
 document.addEventListener('focusin', event => {
     if (!event.target.matches('.board-control')) return;
