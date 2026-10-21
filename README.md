@@ -1,5 +1,7 @@
 # Quoridor
 
+**Didn't read? Use it now:** [quoridor.farukaf.com](https://quoridor.farukaf.com)
+
 Play the strategy board game Quoridor with a friend in your browser. Create a room, share its link, then race to the opposite side of the board. On each turn, move your pawn or place a wall to make your opponent take a longer route.
 
 ![Quoridor home page with the game overview and leaderboard](assets/home.png)
